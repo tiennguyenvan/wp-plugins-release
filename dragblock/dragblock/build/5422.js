@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkdragblock=self.webpackChunkdragblock||[]).push([[5422],{5422:function(s,t,n){n.r(t),n.d(t,{LTSH:function(){return u}});var e=n(2592);class u extends e.x{constructor(s,t){const{p:n}=super(s,t);this.version=n.uint16,this.numGlyphs=n.uint16,this.yPels=n.readBytes(this.numGlyphs)}}}}]);

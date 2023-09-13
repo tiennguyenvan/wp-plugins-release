@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkdragblock=self.webpackChunkdragblock||[]).push([[4169],{4169:function(e,r,u){u.r(r),u.d(r,{GPOS:function(){return t}});var s=u(197);class t extends s.L{constructor(e,r){super(e,r,"GPOS")}getLookup(e){return super.getLookup(e,"GPOS")}}}}]);

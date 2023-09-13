@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkdragblock=self.webpackChunkdragblock||[]).push([[8469],{8469:function(r,s,t){t.r(s),t.d(s,{cvt:function(){return n}});var c=t(2592),e=t(7047);class n extends c.x{constructor(r,s){const{p:t}=super(r,s),c=r.length/2;(0,e.Z)(this,"items",(()=>[...new Array(c)].map((r=>t.fword))))}}}}]);

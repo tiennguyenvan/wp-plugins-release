@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkdragblock=self.webpackChunkdragblock||[]).push([[2131],{2131:function(t,r,s){s.r(r),s.d(r,{glyf:function(){return a}});var e=s(2592);class a extends e.x{constructor(t,r){const{p:s}=super(t,r)}getGlyphData(t,r){return this.parser.currentPosition=this.tableStart+t,this.parser.readBytes(r)}}}}]);
