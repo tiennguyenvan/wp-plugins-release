@@ -3,7 +3,7 @@
 /**
  * Plugin Name: Sneeit Core
  * Plugin URI:  https://sneeit.com/
- * Version: 23.09.13-1815
+ * Version: 23.09.14-1150
  * Author:      Sneeit.Com
  * Author URI:  https://sneeit.com/
  * Update URI:  https://sneeit.com/
