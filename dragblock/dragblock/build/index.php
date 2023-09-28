@@ -22,18 +22,18 @@ add_action( 'init', 'dragblock_init_defines', 1 );
  * Check Documentation#312
  */
 function dragblock_init_defines() {
-	$dragblock_0 = wp_upload_dir();
-	define( 'DRAGBLOCK_UPLOAD_DIR', $dragblock_0['basedir'] . '/dragblock' );
-	define( 'DRAGBLOCK_UPLOAD_URL', $dragblock_0['baseurl'] . '/dragblock' );
+	$dragblock_b_upload_dir = wp_upload_dir();
+	define( 'DRAGBLOCK_UPLOAD_DIR', $dragblock_b_upload_dir['basedir'] . '/dragblock' );
+	define( 'DRAGBLOCK_UPLOAD_URL', $dragblock_b_upload_dir['baseurl'] . '/dragblock' );
 	// dev-reply#323.
 }
 require_once 'library/server/index.php';
 require_once 'applications/editor-init/server/index.php';
 require_once 'applications/editor-panel-content/server/index.php';
-require_once 'applications/editor-panel-attributes/server/index.php';
 require_once 'applications/editor-panel-appearance/server/index.php';
+require_once 'applications/editor-panel-attributes/server/index.php';
 require_once 'applications/editor-panel-interactions/server/index.php';
-require_once 'applications/editor-panel-database/server/index.php'; // dev-reply#337.
+require_once 'applications/editor-panel-database/server/index.php'; // dev-reply#336.
 require_once 'blocks/block-register.php';
 require_once 'applications/admin-menu/server/index.php';
 require_once 'applications/form-entries/server/index.php';

@@ -1,0 +1,1 @@
+!function(){"use strict";jQuery((function(){$=jQuery,$(document).on("click change","select[id*=inspector-select-control]",(function(){$(this).find('option[value="Arial, Helvetica, sans-serif"]').length&&($(this).find("option").each((function(){$(this).css("font-family",$(this).attr("value"))})),$(this).css("font-family",$(this).val()).css("font-size","20px"))}))}))}();
