@@ -34,5 +34,5 @@ function dragblock_admin_main_menu() {
 function dragblock_admin_main_menu_page() {
 	// dev-reply#326.
 	echo wp_kses_post( '<h1>' . esc_html__( 'Welcome to DragBlock', 'dragblock' ) . '</h1>' );
-	echo wp_kses_post( '<p>' . esc_html__( 'If you have any suggestion, please send to', 'dragblock' ) . ' <a href="mailto:contact@dragblock.com"><strong>contact@dragblock.com</strong></a>' . esc_html__( 'Thank you very much.', 'dragblock' ) . '</p>' );
+	echo wp_kses_post( '<p>' . esc_html__( 'If you have any suggestion, please send to', 'dragblock' ) . ' <a href="mailto:contact@dragblock.com"><strong>contact@dragblock.com</strong></a>. ' . esc_html__( 'Thank you very much.', 'dragblock' ) . '</p>' );
 }
