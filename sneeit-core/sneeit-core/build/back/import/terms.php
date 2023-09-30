@@ -17,48 +17,48 @@ endif; // dev-reply#59.
  */
 function sneeit_core_demo_import_terms() {
 	sneeit_core_ajax_request_verify_die( 'data' );
-	$sneeit_core_0 = $_POST['data'];
+	$sneeit_core_t_terms = $_POST['data'];
 	global $wpdb;
 	// dev-reply#519.
-	$sneeit_core_1 = array();
-	foreach ( $sneeit_core_0 as $sneeit_core_2 => $sneeit_core_3 ) {
-		foreach ( $sneeit_core_3 as $sneeit_core_4 => $sneeit_core_5 ) {
+	$sneeit_core_t_original_terms = array();
+	foreach ( $sneeit_core_t_terms as $sneeit_core_t_taxonomy => $sneeit_core_t_items ) {
+		foreach ( $sneeit_core_t_items as $sneeit_core_t_id => $sneeit_core_t_item ) {
 			// dev-reply#523.
-			if ( term_exists( $sneeit_core_4, $sneeit_core_2 ) ) {
-				$sneeit_core_1[ $sneeit_core_4 ] = true;
+			if ( term_exists( $sneeit_core_t_id, $sneeit_core_t_taxonomy ) ) {
+				$sneeit_core_t_original_terms[ $sneeit_core_t_id ] = true;
 				continue;
 			}
 			// dev-reply#529.
-			$sneeit_core_4 = (int) $sneeit_core_4;
+			$sneeit_core_t_id = (int) $sneeit_core_t_id;
 			$wpdb->insert( $wpdb->terms, array(
-				'term_id' => $sneeit_core_4,
-				'name' => $sneeit_core_5['name'],
-				'slug' => $sneeit_core_5['slug'],
+				'term_id' => $sneeit_core_t_id,
+				'name' => $sneeit_core_t_item['name'],
+				'slug' => $sneeit_core_t_item['slug'],
 			) );
-			$wpdb->insert( $wpdb->term_taxonomy, ['term_id' => $sneeit_core_4,
-				'taxonomy' => $sneeit_core_2, ] );
+			$wpdb->insert( $wpdb->term_taxonomy, ['term_id' => $sneeit_core_t_id,
+				'taxonomy' => $sneeit_core_t_taxonomy, ] );
 		}
 	}
 	// dev-reply#543.
-	foreach ( $sneeit_core_0 as $sneeit_core_2 => $sneeit_core_3 ) {
-		foreach ( $sneeit_core_3 as $sneeit_core_4 => $sneeit_core_5 ) {
+	foreach ( $sneeit_core_t_terms as $sneeit_core_t_taxonomy => $sneeit_core_t_items ) {
+		foreach ( $sneeit_core_t_items as $sneeit_core_t_id => $sneeit_core_t_item ) {
 			// dev-reply#546.
-			if ( ! empty( $sneeit_core_5['meta'] ) ) {
-				foreach ( $sneeit_core_5['meta'] as $sneeit_core_6 => $sneeit_core_7 ) {
-					update_term_meta( $sneeit_core_4, $sneeit_core_6, $sneeit_core_7 );
+			if ( ! empty( $sneeit_core_t_item['meta'] ) ) {
+				foreach ( $sneeit_core_t_item['meta'] as $sneeit_core_t_key => $sneeit_core_t_value ) {
+					update_term_meta( $sneeit_core_t_id, $sneeit_core_t_key, $sneeit_core_t_value );
 				}
 			}
 			// dev-reply#553.
-			if ( ! isset( $sneeit_core_1[ $sneeit_core_4 ] ) ) {
-				update_term_meta( $sneeit_core_4, 'sneeit-demo-id', 'created' );
+			if ( ! isset( $sneeit_core_t_original_terms[ $sneeit_core_t_id ] ) ) {
+				update_term_meta( $sneeit_core_t_id, 'sneeit-demo-id', 'created' );
 			}
 			// dev-reply#558.
-			if ( empty( $sneeit_core_5['parent'] ) ) {
+			if ( empty( $sneeit_core_t_item['parent'] ) ) {
 				continue;
 			}
-			$sneeit_core_4 = (int) $sneeit_core_4;
-			wp_update_term( $sneeit_core_4, $sneeit_core_2, array(
-				'parent' => (int) $sneeit_core_5['parent'],
+			$sneeit_core_t_id = (int) $sneeit_core_t_id;
+			wp_update_term( $sneeit_core_t_id, $sneeit_core_t_taxonomy, array(
+				'parent' => (int) $sneeit_core_t_item['parent'],
 			) );
 		}
 	}

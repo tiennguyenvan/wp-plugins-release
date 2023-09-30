@@ -17,8 +17,8 @@ endif; // dev-reply#29.
  */
 function sneeit_core_update_sneeit_license() {
 	sneeit_core_ajax_request_verify_die( 'data' );
-	$sneeit_core_0 = sanitize_key( $_POST['data'] );
-	update_option( SNEEIT_CORE_KEY_SNEEIT_LICENSE_USERNAME, $sneeit_core_0 );
+	$sneeit_core_ul_data = sanitize_key( $_POST['data'] );
+	update_option( SNEEIT_CORE_KEY_SNEEIT_LICENSE_USERNAME, $sneeit_core_ul_data );
 	echo json_encode( 'DONE' );
 	die();
 }
