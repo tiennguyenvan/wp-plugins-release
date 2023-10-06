@@ -14,8 +14,8 @@ add_action( 'enqueue_block_editor_assets', 'dragblock_appearance_panel_editor_as
  */
 function dragblock_appearance_panel_editor_assets() {
 	$dragblock_ae_panel = 'appearance';
-	dragblock_enqueue( "{$dragblock_ae_panel}-panel", "build/applications/editor-panel-{$dragblock_ae_panel}/client/index.js", array( DRAGBLOCK_EDITOR_INIT_SLUG ) );
-	dragblock_enqueue( "{$dragblock_ae_panel}-panel", "build/applications/editor-panel-{$dragblock_ae_panel}/client/index.css" );
+	dragblock_enqueue( "dragblock-{$dragblock_ae_panel}-panel", "build/applications/editor-panel-{$dragblock_ae_panel}/client/index.js", array( DRAGBLOCK_EDITOR_INIT_SLUG ) );
+	dragblock_enqueue( "dragblock-{$dragblock_ae_panel}-panel", "build/applications/editor-panel-{$dragblock_ae_panel}/client/index.css" );
 }
 global $dragblock_css;
 $dragblock_css = array();

@@ -10,18 +10,18 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 add_filter( 'render_block_data', 'dragblock_attributes_parsing', 10, 1 );
 /**
- * Check Documentation#153
+ * Check Documentation#163
  *
- * @param object|array|string $dragblock_ar_parsed_block check var-def#153.
+ * @param object|array|string $dragblock_ar_parsed_block check var-def#163.
  */
 function dragblock_attributes_parsing( $dragblock_ar_parsed_block ) {
 	if ( empty( $dragblock_ar_parsed_block['attrs']['dragBlockAttrs'] ) ) {
 		return $dragblock_ar_parsed_block;
 	}
-	// dev-reply#1513.
+	// dev-reply#1613.
 	$dragblock_ar_renderedattrs = array();
 	foreach ( $dragblock_ar_parsed_block['attrs']['dragBlockAttrs'] as $dragblock_ar_attr ) {
-		// dev-reply#1517.
+		// dev-reply#1617.
 		if (
 			! empty( $dragblock_ar_attr['disabled'] ) ||
 			! isset( $dragblock_ar_attr['value'] ) ||
@@ -29,9 +29,9 @@ function dragblock_attributes_parsing( $dragblock_ar_parsed_block ) {
 		) {
 			continue;
 		}
-		// dev-reply#1526.
+		// dev-reply#1626.
 		if ( ! empty( $dragblock_ar_attr['locale'] ) ) {
-			// dev-reply#1531.
+			// dev-reply#1631.
 			if ( DRAGBLOCK_SITE_LOCALE === $dragblock_ar_attr['locale'] ) {
 				$dragblock_ar_renderedattrs[ $dragblock_ar_attr['slug'] ] = $dragblock_ar_attr['value'];
 			} elseif ( 'en_US' === $dragblock_ar_attr['locale'] && empty( $dragblock_ar_renderedattrs[ $dragblock_ar_attr['slug'] ] ) ) {
@@ -39,7 +39,7 @@ function dragblock_attributes_parsing( $dragblock_ar_parsed_block ) {
 			}
 			continue;
 		}
-		// dev-reply#1544.
+		// dev-reply#1644.
 		if ( 'sizes' === $dragblock_ar_attr['slug'] ) {
 			if ( ! empty( $dragblock_ar_attr['devices'] ) && strlen( $dragblock_ar_attr['devices'] ) < 3 ) {
 				if ( 'd' === $dragblock_ar_attr['devices'] ) {
@@ -62,27 +62,27 @@ function dragblock_attributes_parsing( $dragblock_ar_parsed_block ) {
 				}
 			}
 		}
-		// dev-reply#1569.
+		// dev-reply#1669.
 		if ( empty( $dragblock_ar_renderedattrs[ $dragblock_ar_attr['slug'] ] ) ) {
 			$dragblock_ar_renderedattrs[ $dragblock_ar_attr['slug'] ] = $dragblock_ar_attr['value'];
 		} else {
 			$dragblock_ar_renderedattrs[ $dragblock_ar_attr['slug'] ] .= ', ' . $dragblock_ar_attr['value'];
 		}
 	}
-	// dev-reply#1577.
+	// dev-reply#1677.
 	if ( 'dragblock/image' === $dragblock_ar_parsed_block['blockName'] ) {
-		// dev-reply#1579.
+		// dev-reply#1679.
 		if ( empty( $dragblock_ar_renderedattrs['loading'] ) ) {
 			$dragblock_ar_renderedattrs['loading'] = 'lazy';
 		}
 		if ( empty( $dragblock_ar_renderedattrs['decoding'] ) ) {
 			$dragblock_ar_renderedattrs['decoding'] = 'async';
 		}
-		// dev-reply#1587.
+		// dev-reply#1687.
 		if ( ! empty( $dragblock_ar_renderedattrs['src'] ) ) {
-			// dev-reply#1589.
+			// dev-reply#1689.
 			if ( strpos( $dragblock_ar_renderedattrs['src'], '[dragblock.post.image.src' ) !== false ) {
-				// dev-reply#1591.
+				// dev-reply#1691.
 				if ( empty( $dragblock_ar_renderedattrs['alt'] ) ) {
 					$dragblock_ar_renderedattrs['alt'] = '[dragblock.post.title]';
 				}
@@ -101,18 +101,18 @@ function dragblock_attributes_parsing( $dragblock_ar_parsed_block ) {
 			$dragblock_ar_renderedattrs['alt'] = empty( $dragblock_ar_alt ) ? esc_html__( 'Just a placeholder', 'dragblock' ) : $dragblock_ar_alt;
 		}
 	}
-	// dev-reply#15117.
+	// dev-reply#16117.
 	if ( 'dragblock/link' === $dragblock_ar_parsed_block['blockName'] ) {
-		// dev-reply#15119.
+		// dev-reply#16119.
 		if ( empty( $dragblock_ar_renderedattrs['aria-label'] ) ) {
 			$dragblock_ar_renderedattrs['aria-label'] = esc_html__( 'DragBlock Link Block', 'dragblock' );
 		}
 	}
-	// dev-reply#15125.
+	// dev-reply#16125.
 	$dragblock_ar_attrstring = '';
 	if ( ! empty( $dragblock_ar_renderedattrs['name'] ) && dragblock_is_reseved_terms( $dragblock_ar_renderedattrs['name'] ) ) {
 		$dragblock_ar_renderedattrs['name'] .= '__dragblock_wp_reseved_terms';
-		// dev-reply#15133.
+		// dev-reply#16142.
 	}
 	foreach ( $dragblock_ar_renderedattrs as $dragblock_ar_slug => $dragblock_ar_value ) {
 		$dragblock_ar_attrstring .= ( sanitize_key( $dragblock_ar_slug ) . '="' . esc_attr( do_shortcode( $dragblock_ar_value ) ) . '"' );
@@ -124,10 +124,10 @@ function dragblock_attributes_parsing( $dragblock_ar_parsed_block ) {
 }
 add_filter( 'render_block', 'dragblock_attributes_insert', 10, 2 );
 /**
- * Check Documentation#15115
+ * Check Documentation#16115
  *
- * @param object|array|string $dragblock_ar_block_content check var-def#15115.
- * @param object|array|string $dragblock_ar_parsed_block check var-def#15115.
+ * @param object|array|string $dragblock_ar_block_content check var-def#16115.
+ * @param object|array|string $dragblock_ar_parsed_block check var-def#16115.
  */
 function dragblock_attributes_insert( $dragblock_ar_block_content, $dragblock_ar_parsed_block ) {
 	if ( empty( $dragblock_ar_parsed_block['attrs']['dragBlockParsedAttrs'] ) ) {

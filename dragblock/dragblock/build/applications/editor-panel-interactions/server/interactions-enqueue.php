@@ -14,8 +14,8 @@ add_action( 'enqueue_block_editor_assets', 'dragblock_interactions_panel_editor_
  */
 function dragblock_interactions_panel_editor_assets() {
 	$dragblock_ie_panel = 'interactions';
-	dragblock_enqueue( "{$dragblock_ie_panel}-panel", "build/applications/editor-panel-{$dragblock_ie_panel}/client/index.js", array( DRAGBLOCK_EDITOR_INIT_SLUG ) );
-	dragblock_enqueue( "{$dragblock_ie_panel}-panel", "build/applications/editor-panel-{$dragblock_ie_panel}/client/index.css" );
+	dragblock_enqueue( "dragblock-{$dragblock_ie_panel}-panel", "build/applications/editor-panel-{$dragblock_ie_panel}/client/index.js", array( DRAGBLOCK_EDITOR_INIT_SLUG ) );
+	dragblock_enqueue( "dragblock-{$dragblock_ie_panel}-panel", "build/applications/editor-panel-{$dragblock_ie_panel}/client/index.css" );
 }
 global $dragblock_js;
 $dragblock_js = array();

@@ -53,7 +53,7 @@ function dragblock_database_collector( $dragblock_dr_parsed_block ) {
 				$dragblock_dr_query['params'] = array();
 			}
 			$dragblock_dr_params = $dragblock_dr_query['params'];
-			// dev-reply#1084.
+			// dev-reply#1085.
 			if ( in_array( $dragblock_dr_slug, array( 'WP_Query', 'WP_Query_Default' ) ) ) {
 				$dragblock_dr_args = array(
 					'fields' => 'ids',
@@ -62,21 +62,21 @@ function dragblock_database_collector( $dragblock_dr_parsed_block ) {
 					if ( ! empty( $dragblock_dr_param['disabled'] ) || empty( $dragblock_dr_param['value'] ) ) {
 						continue;
 					}
-					// dev-reply#1096.
+					// dev-reply#1097.
 					$dragblock_dr_key = $dragblock_dr_param['slug'];
 					$dragblock_dr_val = $dragblock_dr_param['value'];
-					// dev-reply#10100.
+					// dev-reply#10103.
 					if ( 'ignore_loaded_posts' === $dragblock_dr_key ) {
 						if ( $dragblock_dr_val ) {
 							$dragblock_dr_args['post__not_in'] = array_merge( ...array_values( $dragblock_queries ) );
 						}
 						continue;
 					}
-					// dev-reply#10108.
+					// dev-reply#10112.
 					if ( strpos( $dragblock_dr_val, '[dragblock.' ) !== false ) {
 						$dragblock_dr_val = do_shortcode( $dragblock_dr_val );
 					}
-					// dev-reply#10113.
+					// dev-reply#10117.
 					if ( strpos( $dragblock_dr_key, '__' ) !== false ) {
 						$dragblock_dr_args[ $dragblock_dr_key ] = explode( ',', $dragblock_dr_val );
 						continue;
@@ -87,15 +87,15 @@ function dragblock_database_collector( $dragblock_dr_parsed_block ) {
 				if ( 'WP_Query' === $dragblock_dr_slug ) {
 					$dragblock_queries[ $dragblock_current_query_list_id ] = new WP_Query( $dragblock_dr_args );
 					$dragblock_queries[ $dragblock_current_query_list_id ] = $dragblock_queries[ $dragblock_current_query_list_id ]->posts;
-					// dev-reply#10129.
+					// dev-reply#10133.
 					$dragblock_current_query_list_item_id = null;
 				} elseif ( 'WP_Query_Default' === $dragblock_dr_slug ) {
-					// dev-reply#10132.
+					// dev-reply#10136.
 					$dragblock_current_query_list_item_id = null;
 					$dragblock_current_query_list_id = 'default';
 				}
 			}
-			// dev-reply#10138.
+			// dev-reply#10142.
 			if ( 'parse_item' === $dragblock_dr_slug ) {
 				if ( ! empty( $dragblock_dr_params['query_id'] ) ) {
 					$dragblock_current_query_list_id = $dragblock_dr_params['query_id'];

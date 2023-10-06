@@ -14,6 +14,6 @@ add_action( 'enqueue_block_editor_assets', 'dragblock_database_panel_editor_asse
  */
 function dragblock_database_panel_editor_assets() {
 	$dragblock_de_panel = 'database';
-	dragblock_enqueue( "{$dragblock_de_panel}-panel", "build/applications/editor-panel-{$dragblock_de_panel}/client/index.js", array( DRAGBLOCK_EDITOR_INIT_SLUG ) );
-	dragblock_enqueue( "{$dragblock_de_panel}-panel", "build/applications/editor-panel-{$dragblock_de_panel}/client/index.css" );
+	dragblock_enqueue( "dragblock-{$dragblock_de_panel}-panel", "build/applications/editor-panel-{$dragblock_de_panel}/client/index.js", array( DRAGBLOCK_EDITOR_INIT_SLUG ) );
+	dragblock_enqueue( "dragblock-{$dragblock_de_panel}-panel", "build/applications/editor-panel-{$dragblock_de_panel}/client/index.css" );
 }

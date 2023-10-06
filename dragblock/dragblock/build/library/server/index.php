@@ -10,3 +10,4 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 require_once 'lib-common.php';
 require_once 'lib-enqueue.php';
+require_once 'lib-identify.php';

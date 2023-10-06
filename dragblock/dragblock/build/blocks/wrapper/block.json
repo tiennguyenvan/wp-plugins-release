@@ -23,7 +23,7 @@
     }
   },
   "providesContext": {
-    "dragblock/wrapper-dragBlockStyles": "dragBlockStyles"
+    "dragblockParentStyles": "dragBlockStyles"
   },
   "textdomain": "dragblock",
   "editorScript": "file:./index.js",

@@ -90,11 +90,24 @@ function dragblock_shortcode_post_url( $dragblock_s_attrs ) {
 	}
 	return get_the_permalink( $dragblock_s_post_id );
 }
-add_shortcode( 'dragblock.post.image.src', 'dragblock_shortcode_post_image_src' );
+add_shortcode( 'dragblock.post.comment.number', 'dragblock_shortcode_post_comment_number' );
 /**
  * Check Documentation#2471
  *
  * @param object|array|string $dragblock_s_attrs check var-def#2471.
+ */
+function dragblock_shortcode_post_comment_number( $dragblock_s_attrs ) {
+	$dragblock_s_post_id = dragblock_get_current_list_query_id();
+	if ( null === $dragblock_s_post_id ) {
+		return '';
+	}
+	return get_comments_number( $dragblock_s_post_id );
+}
+add_shortcode( 'dragblock.post.image.src', 'dragblock_shortcode_post_image_src' );
+/**
+ * Check Documentation#2480
+ *
+ * @param object|array|string $dragblock_s_attrs check var-def#2480.
  */
 function dragblock_shortcode_post_image_src( $dragblock_s_attrs ) {
 	$dragblock_s_size = isset( $dragblock_s_attrs['size'] ) ? sanitize_text_field( $dragblock_s_attrs['size'] ) : 'full';
@@ -102,12 +115,12 @@ function dragblock_shortcode_post_image_src( $dragblock_s_attrs ) {
 	if ( null === $dragblock_s_post_id ) {
 		return 'data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=';
 	}
-	// dev-reply#24116.
+	// dev-reply#24134.
 	if ( has_post_thumbnail( $dragblock_s_post_id ) ) {
 		$dragblock_s_image_url = get_the_post_thumbnail_url( $dragblock_s_post_id, $dragblock_s_size );
 		return $dragblock_s_image_url;
 	}
-	// dev-reply#24123.
+	// dev-reply#24140.
 	$dragblock_s_content = get_post_field( 'post_content', $dragblock_s_post_id );
 	if ( $dragblock_s_content ) {
 		$dragblock_s_doc = new DOMDocument();
@@ -117,7 +130,7 @@ function dragblock_shortcode_post_image_src( $dragblock_s_attrs ) {
 			$dragblock_s_image_url = $dragblock_s_img_tags[0]->getAttribute( 'src' );
 			return $dragblock_s_image_url;
 		}
-		// dev-reply#24137.
+		// dev-reply#24154.
 		$dragblock_s_pattern = '/<iframe.*?src="(https?:\/\/www\.youtube\.com\/embed\/([\w-]+))".*?><\/iframe>/i';
 		preg_match( $dragblock_s_pattern, $dragblock_s_content, $dragblock_s_matches );
 		if ( count( $dragblock_s_matches ) > 0 ) {
@@ -126,128 +139,128 @@ function dragblock_shortcode_post_image_src( $dragblock_s_attrs ) {
 			return $dragblock_s_image_url;
 		}
 	}
-	// dev-reply#24150.
+	// dev-reply#24167.
 	return 'data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=';
-	// dev-reply#24154.
+	// dev-reply#24171.
 }
 add_shortcode( 'dragblock.post.image.srcset', 'dragblock_shortcode_post_image_srcset' );
 /**
- * Check Documentation#24107
+ * Check Documentation#24116
  *
- * @param object|array|string $dragblock_s_attrs check var-def#24107.
+ * @param object|array|string $dragblock_s_attrs check var-def#24116.
  */
 function dragblock_shortcode_post_image_srcset( $dragblock_s_attrs ) {
 	$dragblock_s_post_id = dragblock_get_current_list_query_id();
 	if ( null === $dragblock_s_post_id || ! has_post_thumbnail( $dragblock_s_post_id ) ) {
 		return '';
 	}
-	// dev-reply#24180.
+	// dev-reply#24197.
 	$dragblock_s_image_id = get_post_thumbnail_id( $dragblock_s_post_id );
 	$dragblock_s_image_srcset = wp_get_attachment_image_srcset( $dragblock_s_image_id );
 	return $dragblock_s_image_srcset;
 }
 add_shortcode( 'dragblock.post.image.sizes', 'dragblock_shortcode_post_image_sizes' );
 /**
- * Check Documentation#24119
+ * Check Documentation#24128
  *
- * @param object|array|string $dragblock_s_attrs check var-def#24119.
+ * @param object|array|string $dragblock_s_attrs check var-def#24128.
  */
 function dragblock_shortcode_post_image_sizes( $dragblock_s_attrs ) {
 	$dragblock_s_size = isset( $dragblock_s_attrs['size'] ) ? sanitize_text_field( $dragblock_s_attrs['size'] ) : 'full';
-	// dev-reply#24195.
+	// dev-reply#24212.
 	if ( 'full' === $dragblock_s_size ) {
 		return '';
 	}
-	// dev-reply#24200.
+	// dev-reply#24217.
 	if ( 'large' === $dragblock_s_size ) {
 		return '75vw';
-		// dev-reply#24203.
+		// dev-reply#24220.
 	}
 	if ( 'medium' === $dragblock_s_size ) {
 		return '50vw';
-		// dev-reply#24208.
+		// dev-reply#24225.
 	}
 	if ( 'thumbnail' === $dragblock_s_size ) {
 		return '25vw';
-		// dev-reply#24213.
+		// dev-reply#24230.
 	}
 }
 add_shortcode( 'dragblock.post.date', 'dragblock_shortcode_post_date' );
 /**
- * Check Documentation#24141
+ * Check Documentation#24150
  *
- * @param object|array|string $dragblock_s_attrs check var-def#24141.
+ * @param object|array|string $dragblock_s_attrs check var-def#24150.
  */
 function dragblock_shortcode_post_date( $dragblock_s_attrs ) {
 	$dragblock_s_post_id = dragblock_get_current_list_query_id();
 	if ( null === $dragblock_s_post_id ) {
 		return '';
 	}
-	// dev-reply#24228.
+	// dev-reply#24245.
 	$dragblock_s_post_date = get_post_field( 'post_date', $dragblock_s_post_id );
-	// dev-reply#24231.
+	// dev-reply#24248.
 	$dragblock_s_date_format = get_option( 'date_format' );
-	// dev-reply#24234.
+	// dev-reply#24251.
 	$dragblock_s_formatted_date = date_i18n( $dragblock_s_date_format, strtotime( $dragblock_s_post_date ) );
 	return $dragblock_s_formatted_date;
 }
 add_shortcode( 'dragblock.post.author.url', 'dragblock_shortcode_post_author_url' );
 /**
- * Check Documentation#24156
+ * Check Documentation#24165
  *
- * @param object|array|string $dragblock_s_attrs check var-def#24156.
+ * @param object|array|string $dragblock_s_attrs check var-def#24165.
  */
 function dragblock_shortcode_post_author_url( $dragblock_s_attrs ) {
 	$dragblock_s_post_id = dragblock_get_current_list_query_id();
 	if ( null === $dragblock_s_post_id ) {
 		return '';
 	}
-	// dev-reply#24249.
+	// dev-reply#24266.
 	$dragblock_s_author_id = get_post_field( 'post_author', $dragblock_s_post_id );
-	// dev-reply#24252.
+	// dev-reply#24269.
 	$dragblock_s_author_url = get_author_posts_url( $dragblock_s_author_id );
 	return esc_url_raw( $dragblock_s_author_url );
 }
 add_shortcode( 'dragblock.post.author.name', 'dragblock_shortcode_post_author_name' );
 /**
- * Check Documentation#24169
+ * Check Documentation#24178
  *
- * @param object|array|string $dragblock_s_attrs check var-def#24169.
+ * @param object|array|string $dragblock_s_attrs check var-def#24178.
  */
 function dragblock_shortcode_post_author_name( $dragblock_s_attrs ) {
 	$dragblock_s_post_id = dragblock_get_current_list_query_id();
 	if ( null === $dragblock_s_post_id ) {
 		return '';
 	}
-	// dev-reply#24267.
+	// dev-reply#24284.
 	$dragblock_s_author_id = get_post_field( 'post_author', $dragblock_s_post_id );
-	// dev-reply#24270.
+	// dev-reply#24287.
 	$dragblock_s_author_name = get_the_author_meta( 'display_name', $dragblock_s_author_id );
-	// dev-reply#24273.
+	// dev-reply#24290.
 	return $dragblock_s_author_name;
 }
 add_shortcode( 'dragblock.post.author.avatar.src', 'dragblock_shortcode_post_author_avatar_src' );
 /**
- * Check Documentation#24183
+ * Check Documentation#24192
  *
- * @param object|array|string $dragblock_s_attrs check var-def#24183.
+ * @param object|array|string $dragblock_s_attrs check var-def#24192.
  */
 function dragblock_shortcode_post_author_avatar_src( $dragblock_s_attrs ) {
 	$dragblock_s_post_id = dragblock_get_current_list_query_id();
 	if ( null === $dragblock_s_post_id ) {
 		return '';
 	}
-	// dev-reply#24285.
+	// dev-reply#24302.
 	$dragblock_s_author_id = get_post_field( 'post_author', $dragblock_s_post_id );
-	// dev-reply#24288.
+	// dev-reply#24305.
 	$dragblock_s_avatar_src = get_avatar_url( $dragblock_s_author_id );
 	return esc_url_raw( $dragblock_s_avatar_src );
 }
 add_shortcode( 'dragblock.post.cat.name', 'dragblock_shortcode_post_cat_name' );
 /**
- * Check Documentation#24196
+ * Check Documentation#24205
  *
- * @param object|array|string $dragblock_s_attrs check var-def#24196.
+ * @param object|array|string $dragblock_s_attrs check var-def#24205.
  */
 function dragblock_shortcode_post_cat_name( $dragblock_s_attrs ) {
 	$dragblock_s_post_id = dragblock_get_current_list_query_id();
@@ -262,13 +275,13 @@ function dragblock_shortcode_post_cat_name( $dragblock_s_attrs ) {
 			}
 		}
 	}
-	return ''; // dev-reply#24320.
+	return ''; // dev-reply#24337.
 }
 add_shortcode( 'dragblock.post.cat.url', 'dragblock_shortcode_post_cat_url' );
 /**
- * Check Documentation#24213
+ * Check Documentation#24222
  *
- * @param object|array|string $dragblock_s_attrs check var-def#24213.
+ * @param object|array|string $dragblock_s_attrs check var-def#24222.
  */
 function dragblock_shortcode_post_cat_url( $dragblock_s_attrs ) {
 	$dragblock_s_post_id = dragblock_get_current_list_query_id();
@@ -283,13 +296,13 @@ function dragblock_shortcode_post_cat_url( $dragblock_s_attrs ) {
 			}
 		}
 	}
-	return '#empty_cat_id'; // dev-reply#24346.
+	return '#empty_cat_id'; // dev-reply#24363.
 }
 add_shortcode( 'dragblock.post.cat.id', 'dragblock_shortcode_post_cat_id' );
 /**
- * Check Documentation#24230
+ * Check Documentation#24239
  *
- * @param object|array|string $dragblock_s_attrs check var-def#24230.
+ * @param object|array|string $dragblock_s_attrs check var-def#24239.
  */
 function dragblock_shortcode_post_cat_id( $dragblock_s_attrs ) {
 	$dragblock_s_post_id = dragblock_get_current_list_query_id();
@@ -306,12 +319,12 @@ function dragblock_shortcode_post_cat_id( $dragblock_s_attrs ) {
 	}
 	return - 1;
 }
-// dev-reply#24377.
+// dev-reply#24394.
 add_shortcode( 'dragblock.share.url.twitter', 'dragblock_shortcode_share_url_twitter' );
 /**
- * Check Documentation#24248
+ * Check Documentation#24257
  *
- * @param object|array|string $dragblock_s_attrs check var-def#24248.
+ * @param object|array|string $dragblock_s_attrs check var-def#24257.
  */
 function dragblock_shortcode_share_url_twitter( $dragblock_s_attrs ) {
 	if ( empty( $_SERVER['REQUEST_URI'] ) ) {
@@ -321,9 +334,9 @@ function dragblock_shortcode_share_url_twitter( $dragblock_s_attrs ) {
 }
 add_shortcode( 'dragblock.share.url.facebook', 'dragblock_shortcode_share_url_facebook' );
 /**
- * Check Documentation#24256
+ * Check Documentation#24265
  *
- * @param object|array|string $dragblock_s_attrs check var-def#24256.
+ * @param object|array|string $dragblock_s_attrs check var-def#24265.
  */
 function dragblock_shortcode_share_url_facebook( $dragblock_s_attrs ) {
 	if ( empty( $_SERVER['REQUEST_URI'] ) ) {
@@ -333,9 +346,9 @@ function dragblock_shortcode_share_url_facebook( $dragblock_s_attrs ) {
 }
 add_shortcode( 'dragblock.share.url.whatsapp', 'dragblock_shortcode_share_url_whatsapp' );
 /**
- * Check Documentation#24264
+ * Check Documentation#24273
  *
- * @param object|array|string $dragblock_s_attrs check var-def#24264.
+ * @param object|array|string $dragblock_s_attrs check var-def#24273.
  */
 function dragblock_shortcode_share_url_whatsapp( $dragblock_s_attrs ) {
 	if ( empty( $_SERVER['REQUEST_URI'] ) ) {
@@ -345,9 +358,9 @@ function dragblock_shortcode_share_url_whatsapp( $dragblock_s_attrs ) {
 }
 add_shortcode( 'dragblock.share.url.telegram', 'dragblock_shortcode_share_url_telegram' );
 /**
- * Check Documentation#24272
+ * Check Documentation#24281
  *
- * @param object|array|string $dragblock_s_attrs check var-def#24272.
+ * @param object|array|string $dragblock_s_attrs check var-def#24281.
  */
 function dragblock_shortcode_share_url_telegram( $dragblock_s_attrs ) {
 	if ( empty( $_SERVER['REQUEST_URI'] ) ) {
@@ -357,9 +370,9 @@ function dragblock_shortcode_share_url_telegram( $dragblock_s_attrs ) {
 }
 add_shortcode( 'dragblock.share.url.tumblr', 'dragblock_shortcode_share_url_tumblr' );
 /**
- * Check Documentation#24280
+ * Check Documentation#24289
  *
- * @param object|array|string $dragblock_s_attrs check var-def#24280.
+ * @param object|array|string $dragblock_s_attrs check var-def#24289.
  */
 function dragblock_shortcode_share_url_tumblr( $dragblock_s_attrs ) {
 	if ( empty( $_SERVER['REQUEST_URI'] ) ) {
@@ -369,9 +382,9 @@ function dragblock_shortcode_share_url_tumblr( $dragblock_s_attrs ) {
 }
 add_shortcode( 'dragblock.share.url.reddit', 'dragblock_shortcode_share_url_reddit' );
 /**
- * Check Documentation#24288
+ * Check Documentation#24297
  *
- * @param object|array|string $dragblock_s_attrs check var-def#24288.
+ * @param object|array|string $dragblock_s_attrs check var-def#24297.
  */
 function dragblock_shortcode_share_url_reddit( $dragblock_s_attrs ) {
 	if ( empty( $_SERVER['REQUEST_URI'] ) ) {
@@ -381,9 +394,9 @@ function dragblock_shortcode_share_url_reddit( $dragblock_s_attrs ) {
 }
 add_shortcode( 'dragblock.share.url.linkedin', 'dragblock_shortcode_share_url_linkedin' );
 /**
- * Check Documentation#24296
+ * Check Documentation#24305
  *
- * @param object|array|string $dragblock_s_attrs check var-def#24296.
+ * @param object|array|string $dragblock_s_attrs check var-def#24305.
  */
 function dragblock_shortcode_share_url_linkedin( $dragblock_s_attrs ) {
 	if ( empty( $_SERVER['REQUEST_URI'] ) ) {
@@ -393,9 +406,9 @@ function dragblock_shortcode_share_url_linkedin( $dragblock_s_attrs ) {
 }
 add_shortcode( 'dragblock.share.url.gmail', 'dragblock_shortcode_share_url_gmail' );
 /**
- * Check Documentation#24304
+ * Check Documentation#24313
  *
- * @param object|array|string $dragblock_s_attrs check var-def#24304.
+ * @param object|array|string $dragblock_s_attrs check var-def#24313.
  */
 function dragblock_shortcode_share_url_gmail( $dragblock_s_attrs ) {
 	if ( empty( $_SERVER['REQUEST_URI'] ) ) {
@@ -405,9 +418,9 @@ function dragblock_shortcode_share_url_gmail( $dragblock_s_attrs ) {
 }
 add_shortcode( 'dragblock.share.url.email', 'dragblock_shortcode_share_url_email' );
 /**
- * Check Documentation#24312
+ * Check Documentation#24321
  *
- * @param object|array|string $dragblock_s_attrs check var-def#24312.
+ * @param object|array|string $dragblock_s_attrs check var-def#24321.
  */
 function dragblock_shortcode_share_url_email( $dragblock_s_attrs ) {
 	if ( empty( $_SERVER['REQUEST_URI'] ) ) {
@@ -417,18 +430,18 @@ function dragblock_shortcode_share_url_email( $dragblock_s_attrs ) {
 }
 add_shortcode( 'dragblock.share.url.navigator', 'dragblock_shortcode_share_url_navigator' );
 /**
- * Check Documentation#24320
+ * Check Documentation#24329
  *
- * @param object|array|string $dragblock_s_attrs check var-def#24320.
+ * @param object|array|string $dragblock_s_attrs check var-def#24329.
  */
 function dragblock_shortcode_share_url_navigator( $dragblock_s_attrs ) {
 	return 'javascript:navigator.share?navigator.share({url:location.href}):null';
 }
 add_filter( 'kses_allowed_protocols', 'dragblock_kses_allowed_protocols', 1 );
 /**
- * Check Documentation#24325
+ * Check Documentation#24334
  *
- * @param object|array|string $dragblock_s_protocols check var-def#24325.
+ * @param object|array|string $dragblock_s_protocols check var-def#24334.
  */
 function dragblock_kses_allowed_protocols( $dragblock_s_protocols ) {
 	$dragblock_s_protocols[] = 'data';

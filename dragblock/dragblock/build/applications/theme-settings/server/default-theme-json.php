@@ -32,7 +32,7 @@ function dragblock_default_theme_json( $dragblock_dtj_theme_json ) {
 		$dragblock_update_theme_json['settings']['color']['palette']['theme'] =
 			DRAG_BLOCK_DEFAULT_THEME_JSON['settings']['color']['palette'];
 	}
-	// dev-reply#444.
+	// dev-reply#445.
 	if ( DRAGBLOCK_CUSTOM_DEFAULT_STYLE ) {
 		if ( empty( $dragblock_update_theme_json['styles']['css'] ) ) {
 			$dragblock_update_theme_json['styles']['css'] = '';
