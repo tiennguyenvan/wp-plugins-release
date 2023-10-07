@@ -1,7 +1,0 @@
-{
-	"name": "dragblock/dragblock-applications-managing-font",
-	"title": "DragBlock Applications for Managing Fonts",
-	"editorScript": "file:./index.js",
-	"editorStyle": "file:./index.css",
-	"style": "file:./style-index.css"
-}

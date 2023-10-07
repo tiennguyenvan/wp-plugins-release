@@ -1,11 +1,11 @@
 === DragBlock  - Advanced WordPress Gutenberg Full Site Editor ===
-Contributors: dragblock.com
+Contributors: dragblock, sneeit, Tien Nguyen
 Donate link: https://www.paypal.me/sneeit
 Tags: gutenberg, blocks, gutenberg blocks, editor, block, site builder, drag-and-drop, visual editor
 Requires at least: 5.9
 Requires PHP: 7.0
 Tested up to: 6.3.1
-Stable tag: 23.10.06
+Stable tag: 23.10.07
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -13,8 +13,7 @@ The "DragBlock " is a plugin for WordPress Full Site Gutenberg Editor to support
 
 == Description ==
 
-
-The DragBlock  plugin is the future of the WordPress Full Site design workflow. It is more than just an extended page builder for the Gutenberg Editor. With its advanced features like dictionary designing panels and multilingual text, it offers a creative approach that enables users to effortlessly create pixel-perfect aesthetic responsive websites.
+The DragBlock plugin is the future of the WordPress Full Site design workflow. It is more than just an extended page builder for the Gutenberg Editor. With its advanced features like dictionary designing panels and multilingual text, it offers a creative approach that enables users to effortlessly create pixel-perfect aesthetic responsive websites.
 
 
 ## Main Features
@@ -137,3 +136,7 @@ If you're up for some exploration and have technical skills, the DragBlock plugi
 * Fixed: prevent accessing files directly
 * Fixed: sanitized, escaped, and validated all i/o data
 * Fixed: verify nonce before processing form data
+
+== Upgrade Notice ==
+= 23.09.28 =
+First release with the most stable features
