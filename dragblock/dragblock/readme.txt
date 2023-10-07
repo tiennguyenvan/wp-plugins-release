@@ -67,13 +67,6 @@ With the DragBlock, every WordPress website owner can feel the comfort if they w
 https://www.youtube.com/watch?v=bbnUsu-fXU4
 Understanding the need of having aesthetic fonts in designs, the DragBlock supports a rich-style font picker. All fonts in the picker were chosen from the popular font pairs that are being used in notable WordPress websites around the designing world.
 
-## Designing Philosophy
-Our philosophy is "block oriented designing" (BOD) which means attaching everything related to a block to itself. By doing that, we can manage things related to an individual block easily and when removing a block, everything that is plugged into it, including server side scripts, client scripts, css and text definitions, will be completely removed as well. This will give a huge impact on improving the performance of websites and also saving the time for developers to not find and clean codes manually like before.
-
-Moreover, we also want to get rid of the era when we treat users like babies by providing them inputs for everything. In the DragBlock, we provide users with dictionaries so they can grasp their layout properties completely without being smashed by a flood of many different kinds of inputs.
-
-In summary, DragBlock empowers users to create professional-looking websites like an expert designer effortlessly with a fresh feeling of managing blocks with simplicity. Everything can be done within the Gutenberg editor, ushering in a new era of Full Site Editing with the DragBlock plugin.
-
 == Frequently Asked Questions ==
 = Who would use the DragBlock?
 Any designers or developers or newbie users, who want to turn from zero to hero in a couple of hours, would use the DragBlock to take advantage over their counterparts.
@@ -111,32 +104,10 @@ If you're up for some exploration and have technical skills, the DragBlock plugi
 6. **Custom** Create custom forms with beautiful layout and assign form action to process submitted data automatically. No need Contact-Form 7 or any other form plugins.
 
 == Changelog ==
-= 23.09.28 = 
-* Fixed: remove direct script enqueue
-* Fixed: remove relative path defines
-* New: provide public source code github links
-* Fixed: update Tested Upto Version
-* Fixed: sanitize variables to echo
+= 23.10.07 = 
+* Initial Release
 
-= 23.09.11 = 
-* Switched to the CalVer
-* Fixed all code issues related to WordPress Coding Standards
-* Reorganized files as a Microservices Architecture
-* Simplified our variable names to reduce the naming time
-* Mapped code commenting to avoid updating the plugin solely for comment changes.
-
-= 23.08.08 =
-* Fixed: replaced move_uploaded_file with wp_handle_upload
-* Fixed: added nonce verification for all data processes in the font library
-* Fixed: cleaned up font credits to minify the initial release
-* Fixed: removed unnecessary system option updates
-
-= 23.07.19 =
-* Fixed: incorrect stable tag
-* Fixed: prevent accessing files directly
-* Fixed: sanitized, escaped, and validated all i/o data
-* Fixed: verify nonce before processing form data
 
 == Upgrade Notice ==
-= 23.09.28 =
+= 23.10.07 =
 First release with the most stable features

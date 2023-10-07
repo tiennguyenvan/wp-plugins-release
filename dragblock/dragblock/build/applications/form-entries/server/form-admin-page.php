@@ -41,12 +41,12 @@ add_action( 'manage_' . DRAGBLOCK_FORM_ENTRY . '_posts_custom_column', 'dragbloc
  * Check Documentation#725
  *
  * @param object|array|string $dragblock_fap_column check var-def#725.
- * @param object|array|string $dragblock_fap_post_id check var-def#725.
+ * @param object|array|string $dragblock_fap_post check var-def#725.
  */
-function dragblock_manage_posts_custom_column_form_entries( $dragblock_fap_column, $dragblock_fap_post_id ) {
+function dragblock_manage_posts_custom_column_form_entries( $dragblock_fap_column, $dragblock_fap_post ) {
 	if ( 'content' === $dragblock_fap_column ) {
 		echo wp_kses(
-			get_the_content( $dragblock_fap_post_id ),
+			get_the_content( $dragblock_fap_post ),
 			array(
 				'strong' => array(),
 				'p' => array(),
@@ -55,10 +55,10 @@ function dragblock_manage_posts_custom_column_form_entries( $dragblock_fap_colum
 		return;
 	}
 	if ( 'referrer' === $dragblock_fap_column ) {
-		$dragblock_fap_referrer = get_post_meta( $dragblock_fap_post_id, DRAGBLOCK_FORM_ENTRY . '--_wp_http_referer', true );
-		$dragblock_fap_referrer_html = '<a target="_blank" href="' . esc_url( $dragblock_fap_referrer ) . '">' . esc_html( $dragblock_fap_referrer ) . '</a>';
+		$dragblock_fap_id = get_post_meta( $dragblock_fap_post, DRAGBLOCK_FORM_ENTRY . '--_wp_http_referer', true );
+		$dragblock_fap_referrer = '<a target="_blank" href="' . esc_url( $dragblock_fap_id ) . '">' . esc_html( $dragblock_fap_id ) . '</a>';
 		echo wp_kses(
-			$dragblock_fap_referrer_html,
+			$dragblock_fap_referrer,
 			array(
 				'a' => array(
 					'target' => array(),
@@ -69,8 +69,8 @@ function dragblock_manage_posts_custom_column_form_entries( $dragblock_fap_colum
 		return;
 	}
 	if ( 'email' === $dragblock_fap_column ) {
-		$dragblock_fap_failedemail = get_post_meta( $dragblock_fap_post_id, DRAGBLOCK_FORM_ENTRY . '-failed-email', true );
-		if ( 'PASSED' === $dragblock_fap_failedemail ) {
+		$dragblock_fap_html = get_post_meta( $dragblock_fap_post, DRAGBLOCK_FORM_ENTRY . '-failed-email', true );
+		if ( 'PASSED' === $dragblock_fap_html ) {
 			echo wp_kses(
 				'<span class="dragblock-form-emailed-successful">' . esc_html__( 'SENT', 'dragblock' ) . '</span>',
 				array(
@@ -79,7 +79,7 @@ function dragblock_manage_posts_custom_column_form_entries( $dragblock_fap_colum
 					),
 				)
 			);
-		} elseif ( ! $dragblock_fap_failedemail ) {
+		} elseif ( ! $dragblock_fap_html ) {
 			echo wp_kses(
 				'<strong class="dragblock-form-emailed-local">' . esc_html__( 'LOCAL', 'dragblock' ) . '</strong>',
 				array(

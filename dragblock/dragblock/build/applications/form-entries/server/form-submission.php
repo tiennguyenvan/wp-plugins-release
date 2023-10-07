@@ -38,21 +38,21 @@ function dragblock_form_submission() {
 		session_start();
 	}
 	// dev-reply#1244.
-	$dragblock_fs_unique_id = sanitize_text_field( wp_unslash( $_POST['dragblock/form-session-token'] ) );
-	if ( empty( $_SESSION[ $dragblock_fs_unique_id ] ) ) {
+	$dragblock_fs_ = sanitize_text_field( wp_unslash( $_POST['dragblock/form-session-token'] ) );
+	if ( empty( $_SESSION[ $dragblock_fs_ ] ) ) {
 		return;
 	}
-	$dragblock_fs_createdformtime = sanitize_text_field( wp_unslash( $_SESSION[ $dragblock_fs_unique_id ] ) );
+	$dragblock_fs_post = sanitize_text_field( wp_unslash( $_SESSION[ $dragblock_fs_ ] ) );
 	// dev-reply#1251.
-	if ( ! $dragblock_fs_createdformtime || time() - $dragblock_fs_createdformtime < 1 ) {
+	if ( ! $dragblock_fs_post || time() - $dragblock_fs_post < 1 ) {
 		return;
 	}
 	// dev-reply#1256.
-	$dragblock_fs_formclientid = '';
+	$dragblock_fs_unique = '';
 	if ( isset( $_POST['dragblock/form-client-id'] ) ) {
-		$dragblock_fs_formclientid = sanitize_text_field( wp_unslash( $_POST['dragblock/form-client-id'] ) );
+		$dragblock_fs_unique = sanitize_text_field( wp_unslash( $_POST['dragblock/form-client-id'] ) );
 	} else {
-		$dragblock_fs_formclientid = 'dragblock-form-unorganized';
+		$dragblock_fs_unique = 'dragblock-form-unorganized';
 	}
 	// dev-reply#1265.
 	unset( $_POST['dragblock/form-client-id'] );
@@ -62,69 +62,69 @@ function dragblock_form_submission() {
 	unset( $_POST['submit'] );
 	// dev-reply#1273.
 	global $dragblock_form_entries_message_error;
-	$dragblock_form_entries_message_error[ $dragblock_fs_formclientid ] = false; // dev-reply#1275.
-	$dragblock_fs_transienthash = get_transient( 'dragblock/form-transient-' . $dragblock_fs_formclientid );
-	$dragblock_fs_sanitized_post = array();
-	foreach ( $_POST as $dragblock_fs_key => $dragblock_fs_value ) {
-		$dragblock_fs_sanitized_post[ sanitize_text_field( $dragblock_fs_key ) ] = sanitize_textarea_field( wp_unslash( $dragblock_fs_value ) );
+	$dragblock_form_entries_message_error[ $dragblock_fs_unique ] = false; // dev-reply#1275.
+	$dragblock_fs_id = get_transient( 'dragblock/form-transient-' . $dragblock_fs_unique );
+	$dragblock_fs_session = array();
+	foreach ( $_POST as $dragblock_fs_createdformtime => $dragblock_fs_formclientid ) {
+		$dragblock_fs_session[ sanitize_text_field( $dragblock_fs_createdformtime ) ] = sanitize_textarea_field( wp_unslash( $dragblock_fs_formclientid ) );
 	}
-	$dragblock_fs_newtransienthash = sha1( http_build_query( $dragblock_fs_sanitized_post ) );
-	if ( ( $dragblock_fs_transienthash ) === $dragblock_fs_newtransienthash ) {
-		set_transient( 'dragblock/form-transient-' . $dragblock_fs_formclientid, $dragblock_fs_newtransienthash, 3600 );
-		$dragblock_form_entries_message_error[ $dragblock_fs_formclientid ] = esc_html__( 'Duplicate submission', 'dragblock' );
+	$dragblock_fs_dragblock = sha1( http_build_query( $dragblock_fs_session ) );
+	if ( ( $dragblock_fs_id ) === $dragblock_fs_dragblock ) {
+		set_transient( 'dragblock/form-transient-' . $dragblock_fs_unique, $dragblock_fs_dragblock, 3600 );
+		$dragblock_form_entries_message_error[ $dragblock_fs_unique ] = esc_html__( 'Duplicate submission', 'dragblock' );
 		return;
 	}
-	set_transient( 'dragblock/form-transient-' . $dragblock_fs_formclientid, $dragblock_fs_newtransienthash, 3600 );
+	set_transient( 'dragblock/form-transient-' . $dragblock_fs_unique, $dragblock_fs_dragblock, 3600 );
 	// dev-reply#1293.
-	$dragblock_fs_post_id = wp_insert_post(
+	$dragblock_fs_form = wp_insert_post(
 		array(
 			'post_content'  => '',
 			'post_status'   => 'publish',
 			'post_type'     => DRAGBLOCK_FORM_ENTRY,
 		)
 	);
-	if ( is_wp_error( $dragblock_fs_post_id ) ) {
+	if ( is_wp_error( $dragblock_fs_form ) ) {
 		// dev-reply#12103.
-		$dragblock_form_entries_message_error[ $dragblock_fs_formclientid ] = $dragblock_fs_post_id->get_error_message();
+		$dragblock_form_entries_message_error[ $dragblock_fs_unique ] = $dragblock_fs_form->get_error_message();
 		return;
 	}
-	$dragblock_fs_content = '';
-	$dragblock_fs_title = ucwords( str_replace( '-', ' ', sanitize_title( $dragblock_fs_formclientid ) ) ) . ': #' . $dragblock_fs_post_id;
-	$dragblock_fs_keys = array();
-	foreach ( $dragblock_fs_sanitized_post as $dragblock_fs_key => $dragblock_fs_value ) {
+	$dragblock_fs_entries = '';
+	$dragblock_fs_message = ucwords( str_replace( '-', ' ', sanitize_title( $dragblock_fs_unique ) ) ) . ': #' . $dragblock_fs_form;
+	$dragblock_fs_error = array();
+	foreach ( $dragblock_fs_session as $dragblock_fs_createdformtime => $dragblock_fs_formclientid ) {
 		// dev-reply#12144.
-		if ( strpos( $dragblock_fs_key, '__dragblock_wp_reseved_terms' ) !== false ) {
-			$dragblock_fs_key = str_replace( '__dragblock_wp_reseved_terms', '', $dragblock_fs_key );
+		if ( strpos( $dragblock_fs_createdformtime, '__dragblock_wp_reseved_terms' ) !== false ) {
+			$dragblock_fs_createdformtime = str_replace( '__dragblock_wp_reseved_terms', '', $dragblock_fs_createdformtime );
 		}
-		if ( '_wp_http_referer' !== $dragblock_fs_key ) {
-			$dragblock_fs_content .= '<p><strong>' . esc_html( $dragblock_fs_key ) . ':</strong> ' . esc_html( $dragblock_fs_value ) . '</p>';
+		if ( '_wp_http_referer' !== $dragblock_fs_createdformtime ) {
+			$dragblock_fs_entries .= '<p><strong>' . esc_html( $dragblock_fs_createdformtime ) . ':</strong> ' . esc_html( $dragblock_fs_formclientid ) . '</p>';
 		}
-		array_push( $dragblock_fs_keys, $dragblock_fs_key );
+		array_push( $dragblock_fs_error, $dragblock_fs_createdformtime );
 		// dev-reply#12154.
-		update_post_meta( $dragblock_fs_post_id, DRAGBLOCK_FORM_ENTRY . '--' . $dragblock_fs_key, $dragblock_fs_value );
+		update_post_meta( $dragblock_fs_form, DRAGBLOCK_FORM_ENTRY . '--' . $dragblock_fs_createdformtime, $dragblock_fs_formclientid );
 	}
 	// dev-reply#12158.
-	update_post_meta( $dragblock_fs_post_id, DRAGBLOCK_FORM_ENTRY . '-keys', $dragblock_fs_keys );
+	update_post_meta( $dragblock_fs_form, DRAGBLOCK_FORM_ENTRY . '-keys', $dragblock_fs_error );
 	wp_update_post(
 		array(
-			'ID' => $dragblock_fs_post_id,
-			'post_title' => $dragblock_fs_title,
-			'post_content' => $dragblock_fs_content,
+			'ID' => $dragblock_fs_form,
+			'post_title' => $dragblock_fs_message,
+			'post_content' => $dragblock_fs_entries,
 		)
 	);
 	// dev-reply#12171.
-	$dragblock_fs_to = get_option( 'admin_email' );
-	$dragblock_fs_headers = array( 'Content-Type: text/html; charset=UTF-8' );
-	$dragblock_fs_subject = get_bloginfo( 'name' ) . ' - DragBlock Form – ' . $dragblock_fs_title;
+	$dragblock_fs_transienthash = get_option( 'admin_email' );
+	$dragblock_fs_sanitized = array( 'Content-Type: text/html; charset=UTF-8' );
+	$dragblock_fs_key = get_bloginfo( 'name' ) . ' - DragBlock Form – ' . $dragblock_fs_message;
 	if ( DRAGBLOCK_IS_LOCAL ) {
 		return;
 	}
 	// dev-reply#12184.
-	if ( ! wp_mail( $dragblock_fs_to, $dragblock_fs_subject, $dragblock_fs_content, $dragblock_fs_headers ) ) {
+	if ( ! wp_mail( $dragblock_fs_transienthash, $dragblock_fs_key, $dragblock_fs_entries, $dragblock_fs_sanitized ) ) {
 		// dev-reply#12187.
-		update_post_meta( $dragblock_fs_post_id, DRAGBLOCK_FORM_ENTRY . '-failed-email', time() );
+		update_post_meta( $dragblock_fs_form, DRAGBLOCK_FORM_ENTRY . '-failed-email', time() );
 		return;
 	}
-	update_post_meta( $dragblock_fs_post_id, DRAGBLOCK_FORM_ENTRY . '-failed-email', 'PASSED' );
+	update_post_meta( $dragblock_fs_form, DRAGBLOCK_FORM_ENTRY . '-failed-email', 'PASSED' );
 	// dev-reply#12193.
 }

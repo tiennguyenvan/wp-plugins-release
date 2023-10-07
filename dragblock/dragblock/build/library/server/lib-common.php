@@ -56,41 +56,41 @@ function dragblock_url( $dragblock_lc_path ) {
 /**
  * Check Documentation#1936
  *
- * @param object|array|string $dragblock_lc_attachment_id check var-def#1936.
+ * @param object|array|string $dragblock_lc_attachment check var-def#1936.
  */
-function dragblock_get_image_srcsets( $dragblock_lc_attachment_id ) {
+function dragblock_get_image_srcsets( $dragblock_lc_attachment ) {
 	// dev-reply#1955.
-	if ( ! is_numeric( $dragblock_lc_attachment_id ) ) {
-		$dragblock_lc_attachment_id = attachment_url_to_postid( $dragblock_lc_attachment_id );
-		if ( ! $dragblock_lc_attachment_id ) {
+	if ( ! is_numeric( $dragblock_lc_attachment ) ) {
+		$dragblock_lc_attachment = attachment_url_to_postid( $dragblock_lc_attachment );
+		if ( ! $dragblock_lc_attachment ) {
 			return '';
 		}
 	}
 	// dev-reply#1963.
-	$dragblock_lc_attachment_id = (int) $dragblock_lc_attachment_id;
-	$dragblock_lc_image_sizes = get_intermediate_image_sizes(); // dev-reply#1966.
-	$dragblock_lc_image_srcset_values = array();
-	foreach ( $dragblock_lc_image_sizes as $dragblock_lc_image_size ) {
-		$dragblock_lc_image_src = wp_get_attachment_image_src( $dragblock_lc_attachment_id, $dragblock_lc_image_size );
-		if ( $dragblock_lc_image_src ) {
-			$dragblock_lc_image_srcset_values[ $dragblock_lc_image_src[1] . 'w' ] = $dragblock_lc_image_src[0];
+	$dragblock_lc_attachment = (int) $dragblock_lc_attachment;
+	$dragblock_lc_id = get_intermediate_image_sizes(); // dev-reply#1966.
+	$dragblock_lc_image = array();
+	foreach ( $dragblock_lc_id as $dragblock_lc_sizes ) {
+		$dragblock_lc_srcset = wp_get_attachment_image_src( $dragblock_lc_attachment, $dragblock_lc_sizes );
+		if ( $dragblock_lc_srcset ) {
+			$dragblock_lc_image[ $dragblock_lc_srcset[1] . 'w' ] = $dragblock_lc_srcset[0];
 		}
 	}
-	$dragblock_lc_srcset = '';
-	foreach ( $dragblock_lc_image_srcset_values as $dragblock_lc_width => $dragblock_lc_url ) {
-		$dragblock_lc_srcset .= $dragblock_lc_url . ' ' . $dragblock_lc_width . ', ';
+	$dragblock_lc_values = '';
+	foreach ( $dragblock_lc_image as $dragblock_lc_size => $dragblock_lc_src ) {
+		$dragblock_lc_values .= $dragblock_lc_src . ' ' . $dragblock_lc_size . ', ';
 	}
 	// dev-reply#1983.
-	$dragblock_lc_srcset = rtrim( $dragblock_lc_srcset, ', ' );
-	return $dragblock_lc_srcset;
+	$dragblock_lc_values = rtrim( $dragblock_lc_values, ', ' );
+	return $dragblock_lc_values;
 }
 /**
  * Check Documentation#1963
  *
- * @param object|array|string $dragblock_lc_term check var-def#1963.
+ * @param object|array|string $dragblock_lc_width check var-def#1963.
  */
-function dragblock_is_reseved_terms( $dragblock_lc_term ) {
-	$dragblock_lc_reserved_terms = array(
+function dragblock_is_reseved_terms( $dragblock_lc_width ) {
+	$dragblock_lc_url = array(
 		'action',
 		'attachment',
 		'attachment_id',
@@ -414,5 +414,5 @@ function dragblock_is_reseved_terms( $dragblock_lc_term ) {
 		'xfn',
 		'zxcvbn-async',
 	);
-	return in_array( $dragblock_lc_term, $dragblock_lc_reserved_terms );
+	return in_array( $dragblock_lc_width, $dragblock_lc_url );
 }

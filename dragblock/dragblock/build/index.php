@@ -22,9 +22,9 @@ add_action( 'init', 'dragblock_init_defines', 1 );
  * Check Documentation#312
  */
 function dragblock_init_defines() {
-	$dragblock_b_upload_dir = wp_upload_dir();
-	define( 'DRAGBLOCK_UPLOAD_DIR', $dragblock_b_upload_dir['basedir'] . '/dragblock' );
-	define( 'DRAGBLOCK_UPLOAD_URL', $dragblock_b_upload_dir['baseurl'] . '/dragblock' );
+	$dragblock_b_upload = wp_upload_dir();
+	define( 'DRAGBLOCK_UPLOAD_DIR', $dragblock_b_upload['basedir'] . '/dragblock' );
+	define( 'DRAGBLOCK_UPLOAD_URL', $dragblock_b_upload['baseurl'] . '/dragblock' );
 	// dev-reply#323.
 }
 require_once 'library/server/index.php';

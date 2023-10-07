@@ -1,0 +1,25 @@
+= 23.09.28 = 
+* Fixed: remove direct script enqueue
+* Fixed: remove relative path defines
+* New: provide public source code github links
+* Fixed: update Tested Upto Version
+* Fixed: sanitize variables to echo
+
+= 23.09.11 = 
+* Switched to the CalVer
+* Fixed all code issues related to WordPress Coding Standards
+* Reorganized files as a Microservices Architecture
+* Simplified our variable names to reduce the naming time
+* Mapped code commenting to avoid updating the plugin solely for comment changes.
+
+= 23.08.08 =
+* Fixed: replaced move_uploaded_file with wp_handle_upload
+* Fixed: added nonce verification for all data processes in the font library
+* Fixed: cleaned up font credits to minify the initial release
+* Fixed: removed unnecessary system option updates
+
+= 23.07.19 =
+* Fixed: incorrect stable tag
+* Fixed: prevent accessing files directly
+* Fixed: sanitized, escaped, and validated all i/o data
+* Fixed: verify nonce before processing form data

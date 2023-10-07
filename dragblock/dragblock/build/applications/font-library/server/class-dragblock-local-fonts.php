@@ -20,11 +20,11 @@ class DragBlock_Local_Fonts {
 		// dev-reply#39.
 		wp_enqueue_script( 'inflate', DRAGBLOCK_BUILD_URL . 'applications/font-library/client/font-readers/index.js', array(), DRAGBLOCK_VERSION, false );
 		DragBlock_React_App::bootstrap();
-		$dragblock_cdlf_app_nonce = esc_attr( wp_create_nonce( 'dragblock_font_library' ) );
-		$dragblock_cdlf_app_html = "<input id=\"nonce\" type=\"hidden\" value=\"{$dragblock_cdlf_app_nonce}\" />";
-		$dragblock_cdlf_app_html .= '<div id="dragblock-font-library-app"></div>';
+		$dragblock_cdlf_app = esc_attr( wp_create_nonce( 'dragblock_font_library' ) );
+		$dragblock_cdlf_nonce = "<input id=\"nonce\" type=\"hidden\" value=\"{$dragblock_cdlf_app}\" />";
+		$dragblock_cdlf_nonce .= '<div id="dragblock-font-library-app"></div>';
 		// dev-reply#320.
-		$dragblock_cdlf_allowed_html = array(
+		$dragblock_cdlf_html = array(
 			'p' => array(
 				'name' => true,
 				'id' => true,
@@ -40,6 +40,6 @@ class DragBlock_Local_Fonts {
 				'value' => true,
 			),
 		);
-		echo wp_kses( $dragblock_cdlf_app_html, $dragblock_cdlf_allowed_html );
+		echo wp_kses( $dragblock_cdlf_nonce, $dragblock_cdlf_html );
 	}
 }

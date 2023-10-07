@@ -17,16 +17,16 @@ class DragBlock_React_App {
 	 */
 	public static function bootstrap() {
 		// dev-reply#37.
-		$dragblock_cdra_asset_file = include DRAGBLOCK_BUILD_PATH . 'applications/font-library/client/index.asset.php';
+		$dragblock_cdra_asset = include DRAGBLOCK_BUILD_PATH . 'applications/font-library/client/index.asset.php';
 		// dev-reply#311.
-		foreach ( $dragblock_cdra_asset_file['dependencies'] as $dragblock_cdra_style ) {
-			wp_enqueue_style( $dragblock_cdra_style );
+		foreach ( $dragblock_cdra_asset['dependencies'] as $dragblock_cdra_file ) {
+			wp_enqueue_style( $dragblock_cdra_file );
 		}
 		// dev-reply#316.
-		wp_enqueue_style( 'dragblock-font-library-app', DRAGBLOCK_BUILD_URL . 'applications/font-library/client/index.css', array(), $dragblock_cdra_asset_file['version'] );
+		wp_enqueue_style( 'dragblock-font-library-app', DRAGBLOCK_BUILD_URL . 'applications/font-library/client/index.css', array(), $dragblock_cdra_asset['version'] );
 		// dev-reply#319.
-		array_push( $dragblock_cdra_asset_file['dependencies'], 'wp-i18n' );
-		wp_enqueue_script( 'dragblock-font-library-app', DRAGBLOCK_BUILD_URL . 'applications/font-library/client/index.js', $dragblock_cdra_asset_file['dependencies'], $dragblock_cdra_asset_file['version'] );
+		array_push( $dragblock_cdra_asset['dependencies'], 'wp-i18n' );
+		wp_enqueue_script( 'dragblock-font-library-app', DRAGBLOCK_BUILD_URL . 'applications/font-library/client/index.js', $dragblock_cdra_asset['dependencies'], $dragblock_cdra_asset['version'] );
 		// dev-reply#324.
 		wp_localize_script(
 			'dragblock-font-library-app',

@@ -19,23 +19,23 @@ class DragBlock_Fonts_Page {
 	public static function manage_fonts_admin_page() {
 		DragBlock_React_App::bootstrap();
 		// dev-reply#411.
-		$dragblock_cdfp_font_families = get_option( DRAGBLOCK_FONT_LIB_SLUG, array() );
+		$dragblock_cdfp_font = get_option( DRAGBLOCK_FONT_LIB_SLUG, array() );
 		// dev-reply#417.
 		if ( class_exists( 'WP_Webfonts' ) !== true ) {
-			$dragblock_cdfp_font_assets_stylesheet = dragblock_render_font_styles( $dragblock_cdfp_font_families );
+			$dragblock_cdfp_families = dragblock_render_font_styles( $dragblock_cdfp_font );
 			wp_register_style( 'dragblock-font-library', false );
-			wp_add_inline_style( 'dragblock-font-library', $dragblock_cdfp_font_assets_stylesheet );
+			wp_add_inline_style( 'dragblock-font-library', $dragblock_cdfp_families );
 			wp_enqueue_style( 'dragblock-font-library' );
 		}
-		$dragblock_cdfp_fonts_json = wp_json_encode( $dragblock_cdfp_font_families );
+		$dragblock_cdfp_assets = wp_json_encode( $dragblock_cdfp_font );
 		// dev-reply#432.
-		$dragblock_cdfp_fonts_json_string = esc_html( preg_replace( '~(?:^|\G)\h{4}~m', "\t", $dragblock_cdfp_fonts_json ) );
-		$dragblock_cdfp_font_app_nonce = esc_attr( wp_create_nonce( 'dragblock_font_library' ) );
-		$dragblock_cdfp_font_app_html = "<p name=dragblock-font-library-json id=dragblock-font-library-json class=hidden>{$dragblock_cdfp_fonts_json_string}</p>";
-		$dragblock_cdfp_font_app_html .= '<div id=dragblock-font-library-app></div>';
-		$dragblock_cdfp_font_app_html .= "<input type=hidden name=nonce id=nonce value=\"{$dragblock_cdfp_font_app_nonce}\" />";
+		$dragblock_cdfp_stylesheet = esc_html( preg_replace( '~(?:^|\G)\h{4}~m', "\t", $dragblock_cdfp_assets ) );
+		$dragblock_cdfp_fonts = esc_attr( wp_create_nonce( 'dragblock_font_library' ) );
+		$dragblock_cdfp_json = "<p name=dragblock-font-library-json id=dragblock-font-library-json class=hidden>{$dragblock_cdfp_stylesheet}</p>";
+		$dragblock_cdfp_json .= '<div id=dragblock-font-library-app></div>';
+		$dragblock_cdfp_json .= "<input type=hidden name=nonce id=nonce value=\"{$dragblock_cdfp_fonts}\" />";
 		// dev-reply#441.
-		$dragblock_cdfp_allowed_html = array(
+		$dragblock_cdfp_string = array(
 			'p' => array(
 				'name' => true,
 				'id' => true,
@@ -51,6 +51,6 @@ class DragBlock_Fonts_Page {
 				'value' => true,
 			),
 		);
-		echo wp_kses( $dragblock_cdfp_font_app_html, $dragblock_cdfp_allowed_html );
+		echo wp_kses( $dragblock_cdfp_json, $dragblock_cdfp_string );
 	}
 }

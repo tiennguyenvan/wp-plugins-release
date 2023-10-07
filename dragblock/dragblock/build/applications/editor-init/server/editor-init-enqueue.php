@@ -18,12 +18,12 @@ function dragblock_editor_init_editor_assets() {
 	dragblock_enqueue( DRAGBLOCK_EDITOR_INIT_SLUG, 'build/applications/editor-init/client/editor/index.js', array( 'jquery' ) );
 	dragblock_enqueue( DRAGBLOCK_EDITOR_INIT_SLUG, 'build/applications/editor-init/client/editor/index.css' );
 	// dev-reply#316.
-	$dragblock_eie_script_data = array(
+	$dragblock_eie_script = array(
 		'blankDemoImgUrl' => DRAGBLOCK_URL . 'assets/images/demo/blank.png',
 		'siteLocale' => DRAGBLOCK_SITE_LOCALE,
 	);
 	// dev-reply#322.
-	wp_localize_script( DRAGBLOCK_EDITOR_INIT_SLUG, 'dragBlockEditorInit', $dragblock_eie_script_data );
+	wp_localize_script( DRAGBLOCK_EDITOR_INIT_SLUG, 'dragBlockEditorInit', $dragblock_eie_script );
 }
 add_action( 'after_setup_theme', 'dragblock_editor_init_editor_iframe', 100 );
 /**

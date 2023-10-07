@@ -18,11 +18,11 @@ class DragBlock_Google_Fonts {
 	 */
 	public static function google_fonts_admin_page() {
 		DragBlock_React_App::bootstrap();
-		$dragblock_cdgf_app_nonce = esc_attr( wp_create_nonce( 'dragblock_font_library' ) );
-		$dragblock_cdgf_app_html = "<input id=\"nonce\" type=\"hidden\" value=\"{$dragblock_cdgf_app_nonce}\" />";
-		$dragblock_cdgf_app_html .= '<div id="dragblock-font-library-app"></div>';
+		$dragblock_cdgf_app = esc_attr( wp_create_nonce( 'dragblock_font_library' ) );
+		$dragblock_cdgf_nonce = "<input id=\"nonce\" type=\"hidden\" value=\"{$dragblock_cdgf_app}\" />";
+		$dragblock_cdgf_nonce .= '<div id="dragblock-font-library-app"></div>';
 		// dev-reply#313.
-		$dragblock_cdgf_allowed_html = array(
+		$dragblock_cdgf_html = array(
 			'p' => array(
 				'name' => true,
 				'id' => true,
@@ -38,6 +38,6 @@ class DragBlock_Google_Fonts {
 				'value' => true,
 			),
 		);
-		echo wp_kses( $dragblock_cdgf_app_html, $dragblock_cdgf_allowed_html );
+		echo wp_kses( $dragblock_cdgf_nonce, $dragblock_cdgf_html );
 	}
 }

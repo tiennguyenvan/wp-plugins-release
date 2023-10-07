@@ -23,49 +23,49 @@ add_filter( 'render_block', 'dragblock_interactions_collect_js', 10, 2 );
 /**
  * Check Documentation#712
  *
- * @param object|array|string $dragblock_ie_block_content check var-def#712.
- * @param object|array|string $dragblock_ie_parsed_block check var-def#712.
+ * @param object|array|string $dragblock_ie_dragblock check var-def#712.
+ * @param object|array|string $dragblock_ie_js check var-def#712.
  */
-function dragblock_interactions_collect_js( $dragblock_ie_block_content, $dragblock_ie_parsed_block ) {
+function dragblock_interactions_collect_js( $dragblock_ie_dragblock, $dragblock_ie_js ) {
 	if (
-		'core/null' === $dragblock_ie_parsed_block['blockName'] ||
-		empty( $dragblock_ie_parsed_block['attrs']['dragBlockClientId'] )
+		'core/null' === $dragblock_ie_js['blockName'] ||
+		empty( $dragblock_ie_js['attrs']['dragBlockClientId'] )
 	) {
-		return $dragblock_ie_block_content;
+		return $dragblock_ie_dragblock;
 	}
-	$dragblock_ie_uid_key = $dragblock_ie_parsed_block['blockName'] . $dragblock_ie_parsed_block['attrs']['dragBlockClientId'];
-	$dragblock_ie_js = '';
-	if ( ! empty( $dragblock_ie_parsed_block['attrs']['dragBlockJS'] ) ) {
+	$dragblock_ie_block = $dragblock_ie_js['blockName'] . $dragblock_ie_js['attrs']['dragBlockClientId'];
+	$dragblock_ie_content = '';
+	if ( ! empty( $dragblock_ie_js['attrs']['dragBlockJS'] ) ) {
 		global $dragblock_uids;
-		if ( ! empty( $dragblock_uids[ $dragblock_ie_uid_key ] ) ) {
-			$dragblock_ie_uid_selector = '.' . $dragblock_uids[ $dragblock_ie_uid_key ];
-			$dragblock_ie_js =
+		if ( ! empty( $dragblock_uids[ $dragblock_ie_block ] ) ) {
+			$dragblock_ie_parsed = '.' . $dragblock_uids[ $dragblock_ie_block ];
+			$dragblock_ie_content =
 				str_replace(
-					'[data-dragblock-client-id="' . $dragblock_ie_parsed_block['attrs']['dragBlockClientId'] . '"]',
-					$dragblock_ie_uid_selector,
-					$dragblock_ie_parsed_block['attrs']['dragBlockJS']
+					'[data-dragblock-client-id="' . $dragblock_ie_js['attrs']['dragBlockClientId'] . '"]',
+					$dragblock_ie_parsed,
+					$dragblock_ie_js['attrs']['dragBlockJS']
 				);
 		}
 	}
 	// dev-reply#759.
 	global $dragblock_js;
 	// dev-reply#763.
-	if ( ! empty( $dragblock_ie_parsed_block['innerBlocks'] ) ) {
-		foreach ( $dragblock_ie_parsed_block['innerBlocks'] as $dragblock_ie_inner_block ) {
-			if ( empty( $dragblock_ie_inner_block['blockName'] ) || empty( $dragblock_ie_inner_block['attrs']['dragBlockClientId'] ) ) {
+	if ( ! empty( $dragblock_ie_js['innerBlocks'] ) ) {
+		foreach ( $dragblock_ie_js['innerBlocks'] as $dragblock_ie_uid ) {
+			if ( empty( $dragblock_ie_uid['blockName'] ) || empty( $dragblock_ie_uid['attrs']['dragBlockClientId'] ) ) {
 				continue;
 			}
-			$dragblock_ie_key = $dragblock_ie_inner_block['blockName'] . $dragblock_ie_inner_block['attrs']['dragBlockClientId'];
+			$dragblock_ie_key = $dragblock_ie_uid['blockName'] . $dragblock_ie_uid['attrs']['dragBlockClientId'];
 			if ( ! empty( $dragblock_js[ $dragblock_ie_key ] ) ) {
-				$dragblock_ie_js .= $dragblock_js[ $dragblock_ie_key ];
+				$dragblock_ie_content .= $dragblock_js[ $dragblock_ie_key ];
 				unset( $dragblock_js[ $dragblock_ie_key ] );
 			}
 		}
 	}
-	if ( $dragblock_ie_js ) {
-		$dragblock_js[ $dragblock_ie_uid_key ] = $dragblock_ie_js;
+	if ( $dragblock_ie_content ) {
+		$dragblock_js[ $dragblock_ie_block ] = $dragblock_ie_content;
 	}
-	return $dragblock_ie_block_content;
+	return $dragblock_ie_dragblock;
 }
 add_action( 'wp_footer', 'dragblock_enqueue_front_end' );
 /**
@@ -73,9 +73,9 @@ add_action( 'wp_footer', 'dragblock_enqueue_front_end' );
  */
 function dragblock_enqueue_front_end() {
 	global $dragblock_js;
-	$dragblock_ie_dragblock_save_js = implode( '', $dragblock_js );
-	if ( $dragblock_ie_dragblock_save_js ) {
+	$dragblock_ie_uids = implode( '', $dragblock_js );
+	if ( $dragblock_ie_uids ) {
 		// dev-reply#796.
-		wp_add_inline_script( DRAGBLOCK_EDITOR_INIT_SLUG, $dragblock_ie_dragblock_save_js, 'before' );
+		wp_add_inline_script( DRAGBLOCK_EDITOR_INIT_SLUG, $dragblock_ie_uids, 'before' );
 	}
 }

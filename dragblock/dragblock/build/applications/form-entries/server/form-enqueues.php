@@ -26,9 +26,9 @@ function dragblock_form_front_scripts() {
 		session_start();
 	}
 	// dev-reply#327.
-	$dragblock_fe_unique_id = uniqid();
-	$_SESSION[ $dragblock_fe_unique_id ] = time();
-	wp_add_inline_script( DRAGBLOCK_FORM_ENTRY, 'var DRAG_BLOCK_FORM_SESSION_TOKEN ="' . $dragblock_fe_unique_id . '"', 'before' );
+	$dragblock_fe_dragblock = uniqid();
+	$_SESSION[ $dragblock_fe_dragblock ] = time();
+	wp_add_inline_script( DRAGBLOCK_FORM_ENTRY, 'var DRAG_BLOCK_FORM_SESSION_TOKEN ="' . $dragblock_fe_dragblock . '"', 'before' );
 }
 add_action( 'admin_enqueue_scripts', 'dragblock_form_admin_scripts' );
 /**

@@ -16,14 +16,14 @@ add_filter( 'wp_theme_json_data_theme', 'dragblock_default_theme_json', 1 );
 /**
  * Check Documentation#47
  *
- * @param object|array|string $dragblock_dtj_theme_json check var-def#47.
+ * @param object|array|string $dragblock_dtj_dragblock check var-def#47.
  */
-function dragblock_default_theme_json( $dragblock_dtj_theme_json ) {
+function dragblock_default_theme_json( $dragblock_dtj_dragblock ) {
 	global $dragblock_update_theme_json;
 	if ( ! empty( $dragblock_update_theme_json ) ) {
-		return $dragblock_dtj_theme_json->update_with( $dragblock_update_theme_json );
+		return $dragblock_dtj_dragblock->update_with( $dragblock_update_theme_json );
 	}
-	$dragblock_update_theme_json = $dragblock_dtj_theme_json->get_data();
+	$dragblock_update_theme_json = $dragblock_dtj_dragblock->get_data();
 	$dragblock_update_theme_json = dragblock_theme_json_merge( $dragblock_update_theme_json, DRAG_BLOCK_DEFAULT_THEME_JSON );
 	if (
 		empty( $dragblock_update_theme_json['settings']['color']['palette']['theme'] ) &&
@@ -40,5 +40,5 @@ function dragblock_default_theme_json( $dragblock_dtj_theme_json ) {
 		$dragblock_update_theme_json['styles']['css'] .= '/* START: CSS OF DRAGBLOCK */' . file_get_contents( dragblock_url( 'build/applications/front/style-index.css' ) ) . '/* END: CSS OF DRAGBLOCK */';
 	}
 	$dragblock_update_theme_json = apply_filters( 'dragblock_default_theme_json', $dragblock_update_theme_json );
-	return $dragblock_dtj_theme_json->update_with( $dragblock_update_theme_json );
+	return $dragblock_dtj_dragblock->update_with( $dragblock_update_theme_json );
 }
