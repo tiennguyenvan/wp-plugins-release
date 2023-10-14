@@ -28,14 +28,14 @@ function sneeit_core_demo_get_font_slug( $sneeit_core_f_name ) {
  * @param object|array|string $sneeit_core_f_file check var-def#1312.
  */
 function sneeit_core_has_font_mime_type( $sneeit_core_f_file ) {
-	$sneeit_core_f_allowed_font_mime_types = array(
+	$sneeit_core_f_allowed = array(
 		'otf'   => 'font/otf',
 		'ttf'   => 'font/ttf',
 		'woff'  => 'font/woff',
 		'woff2' => 'font/woff2',
 	);
-	$sneeit_core_f_filetype = wp_check_filetype( $sneeit_core_f_file, $sneeit_core_f_allowed_font_mime_types );
-	return in_array( $sneeit_core_f_filetype['type'], $sneeit_core_f_allowed_font_mime_types, true );
+	$sneeit_core_f_font = wp_check_filetype( $sneeit_core_f_file, $sneeit_core_f_allowed );
+	return in_array( $sneeit_core_f_font['type'], $sneeit_core_f_allowed, true );
 }
 /**
  * Check Documentation#1323
@@ -45,103 +45,103 @@ function sneeit_core_demo_import_fonts() {
 	// dev-reply#1333.
 	require_once ABSPATH . '/wp-admin/includes/file.php';
 	WP_Filesystem();
-	$sneeit_core_f_upload_dir = wp_upload_dir();
-	if ( ! is_dir( $sneeit_core_f_upload_dir['basedir'] . '/dragblock/' ) ) {
-		if ( ! mkdir( $sneeit_core_f_upload_dir['basedir'] . '/dragblock/', 0777 ) ) {
+	$sneeit_core_f_mime = wp_upload_dir();
+	if ( ! is_dir( $sneeit_core_f_mime['basedir'] . '/dragblock/' ) ) {
+		if ( ! mkdir( $sneeit_core_f_mime['basedir'] . '/dragblock/', 0777 ) ) {
 			sneeit_core_ajax_error_die( esc_html__( 'Cannot create dragblock directory', 'sneeit-core' ) );
 		}
 	}
-	chmod( $sneeit_core_f_upload_dir['basedir'] . '/dragblock/', 0777 );
-	if ( ! is_dir( $sneeit_core_f_upload_dir['basedir'] . '/dragblock/fonts/' ) ) {
-		if ( ! mkdir( $sneeit_core_f_upload_dir['basedir'] . '/dragblock/fonts/', 0777 ) ) {
+	chmod( $sneeit_core_f_mime['basedir'] . '/dragblock/', 0777 );
+	if ( ! is_dir( $sneeit_core_f_mime['basedir'] . '/dragblock/fonts/' ) ) {
+		if ( ! mkdir( $sneeit_core_f_mime['basedir'] . '/dragblock/fonts/', 0777 ) ) {
 			sneeit_core_ajax_error_die( esc_html__( 'Cannot create dragblock/fonts directory', 'sneeit-core' ) );
 		}
 	}
-	chmod( $sneeit_core_f_upload_dir['basedir'] . '/dragblock/fonts/', 0777 );
-	$sneeit_core_f_font_dir = $sneeit_core_f_upload_dir['basedir'] . '/dragblock/fonts/';
-	$sneeit_core_f_font_url = $sneeit_core_f_upload_dir['baseurl'] . '/dragblock/fonts/';
+	chmod( $sneeit_core_f_mime['basedir'] . '/dragblock/fonts/', 0777 );
+	$sneeit_core_f_types = $sneeit_core_f_mime['basedir'] . '/dragblock/fonts/';
+	$sneeit_core_f_filetype = $sneeit_core_f_mime['baseurl'] . '/dragblock/fonts/';
 	// dev-reply#1355.
-	$sneeit_core_f_fonts = $_POST['data'];
-	$sneeit_core_f_hash = array();
-	$sneeit_core_f_dragblockkey = sanitize_key( 'dragblockFontLib' );
-	$sneeit_core_f_dragblockoption = get_option( $sneeit_core_f_dragblockkey );
-	foreach ( $sneeit_core_f_dragblockoption as $sneeit_core_f_key => $sneeit_core_f_value ) {
-		$sneeit_core_f_hash[ $sneeit_core_f_value["fontFamily"] ] = $sneeit_core_f_key;
+	$sneeit_core_f_upload = $_POST['data'];
+	$sneeit_core_f_dir = array();
+	$sneeit_core_f_url = sanitize_key( 'dragblockFontLib' );
+	$sneeit_core_f_fonts = get_option( $sneeit_core_f_url );
+	foreach ( $sneeit_core_f_fonts as $sneeit_core_f_name => $sneeit_core_f_post ) {
+		$sneeit_core_f_dir[ $sneeit_core_f_post["fontFamily"] ] = $sneeit_core_f_name;
 	}
 	// dev-reply#1364.
-	foreach ( $sneeit_core_f_fonts as $sneeit_core_f_name => $sneeit_core_f_faces ) {
-		$sneeit_core_f_font = ! isset( $sneeit_core_f_hash[ $sneeit_core_f_name ] ) ? [] : $sneeit_core_f_dragblockoption[ $sneeit_core_f_hash[ $sneeit_core_f_name ] ];
+	foreach ( $sneeit_core_f_upload as $sneeit_core_f_name => $sneeit_core_f_hash ) {
+		$sneeit_core_f_dragblockkey = ! isset( $sneeit_core_f_dir[ $sneeit_core_f_name ] ) ? [] : $sneeit_core_f_fonts[ $sneeit_core_f_dir[ $sneeit_core_f_name ] ];
 		// dev-reply#1369.
-		if ( empty( $sneeit_core_f_font['fontFamily'] ) ) {
-			$sneeit_core_f_font['fontFamily'] = $sneeit_core_f_name;
+		if ( empty( $sneeit_core_f_dragblockkey['fontFamily'] ) ) {
+			$sneeit_core_f_dragblockkey['fontFamily'] = $sneeit_core_f_name;
 		}
-		if ( empty( $sneeit_core_f_font['slug'] ) ) {
-			$sneeit_core_f_font['slug'] = sneeit_core_demo_get_font_slug( $sneeit_core_f_name );
+		if ( empty( $sneeit_core_f_dragblockkey['slug'] ) ) {
+			$sneeit_core_f_dragblockkey['slug'] = sneeit_core_demo_get_font_slug( $sneeit_core_f_name );
 		}
-		if ( empty( $sneeit_core_f_font['fontFace'] ) ) {
-			$sneeit_core_f_font['fontFace'] = array();
+		if ( empty( $sneeit_core_f_dragblockkey['fontFace'] ) ) {
+			$sneeit_core_f_dragblockkey['fontFace'] = array();
 		}
 		// dev-reply#1381.
-		foreach ( $sneeit_core_f_faces as $sneeit_core_f_slug => $sneeit_core_f_url ) {
+		foreach ( $sneeit_core_f_hash as $sneeit_core_f_slug => $sneeit_core_f_dragblockoption ) {
 			// dev-reply#1383.
-			$sneeit_core_f_style = strpos( $sneeit_core_f_slug, 'italic' ) !== false ? 'italic' : 'normal';
-			$sneeit_core_f_weight = str_replace( 'italic', '', $sneeit_core_f_slug );
-			if ( ( $sneeit_core_f_weight ) === '' || ( $sneeit_core_f_weight ) === 'regular' ) {
-				$sneeit_core_f_weight = '400';
+			$sneeit_core_f_key = strpos( $sneeit_core_f_slug, 'italic' ) !== false ? 'italic' : 'normal';
+			$sneeit_core_f_value = str_replace( 'italic', '', $sneeit_core_f_slug );
+			if ( ( $sneeit_core_f_value ) === '' || ( $sneeit_core_f_value ) === 'regular' ) {
+				$sneeit_core_f_value = '400';
 			}
 			// dev-reply#1390.
-			$sneeit_core_f_existed = false;
-			foreach ( $sneeit_core_f_font['fontFace'] as $sneeit_core_f_face ) {
-				if ( empty( $sneeit_core_f_face['fontStyle'] ) || empty( $sneeit_core_f_face['fontWeight'] ) ) {
+			$sneeit_core_f_faces = false;
+			foreach ( $sneeit_core_f_dragblockkey['fontFace'] as $sneeit_core_f_style ) {
+				if ( empty( $sneeit_core_f_style['fontStyle'] ) || empty( $sneeit_core_f_style['fontWeight'] ) ) {
 					// dev-reply#1394.
 					continue;
 				}
 				// dev-reply#1398.
-				if ( ( $sneeit_core_f_style ) === $sneeit_core_f_face['fontStyle'] && ( $sneeit_core_f_weight ) === $sneeit_core_f_face['fontWeight'] ) {
-					$sneeit_core_f_existed = true;
+				if ( ( $sneeit_core_f_key ) === $sneeit_core_f_style['fontStyle'] && ( $sneeit_core_f_value ) === $sneeit_core_f_style['fontWeight'] ) {
+					$sneeit_core_f_faces = true;
 					break;
 				}
 			}
 			// dev-reply#13106.
-			if ( $sneeit_core_f_existed ) {
+			if ( $sneeit_core_f_faces ) {
 				continue;
 			}
 			// dev-reply#13113.
-			if ( ! sneeit_core_has_font_mime_type( $sneeit_core_f_url ) ) {
+			if ( ! sneeit_core_has_font_mime_type( $sneeit_core_f_dragblockoption ) ) {
 				continue;
 			}
 			// dev-reply#13118.
-			$sneeit_core_f_file_extension = pathinfo( $sneeit_core_f_url, PATHINFO_EXTENSION );
-			$sneeit_core_f_file_name = $sneeit_core_f_font['slug'] . '_' . $sneeit_core_f_style . '_' . $sneeit_core_f_weight . '.' . $sneeit_core_f_file_extension;
-			$sneeit_core_f_file_path = $sneeit_core_f_font_dir . $sneeit_core_f_file_name;
-			$sneeit_core_f_file_url = $sneeit_core_f_font_url . $sneeit_core_f_file_name;
-			$sneeit_core_f_temp_file = download_url( $sneeit_core_f_url );
-			if ( is_wp_error( $sneeit_core_f_temp_file ) ) {
+			$sneeit_core_f_weight = pathinfo( $sneeit_core_f_dragblockoption, PATHINFO_EXTENSION );
+			$sneeit_core_f_existed = $sneeit_core_f_dragblockkey['slug'] . '_' . $sneeit_core_f_key . '_' . $sneeit_core_f_value . '.' . $sneeit_core_f_weight;
+			$sneeit_core_f_face = $sneeit_core_f_types . $sneeit_core_f_existed;
+			$sneeit_core_f_extension = $sneeit_core_f_filetype . $sneeit_core_f_existed;
+			$sneeit_core_f_path = download_url( $sneeit_core_f_dragblockoption );
+			if ( is_wp_error( $sneeit_core_f_path ) ) {
 				/* translators: see trans-note#13101 */
-				sneeit_core_ajax_error_die( sprintf( esc_html__( 'Cannot download font %s', 'sneeit-core' ), $sneeit_core_f_file_name ) );
+				sneeit_core_ajax_error_die( sprintf( esc_html__( 'Cannot download font %s', 'sneeit-core' ), $sneeit_core_f_existed ) );
 			}
 			// dev-reply#13130.
-			if ( ! rename( $sneeit_core_f_temp_file, $sneeit_core_f_file_path ) ) {
+			if ( ! rename( $sneeit_core_f_path, $sneeit_core_f_face ) ) {
 				/* translators: see trans-note#13105 */
-				sneeit_core_ajax_error_die( sprintf( esc_html__( 'Cannot copy font %s', 'sneeit-core' ), $sneeit_core_f_file_name ) );
+				sneeit_core_ajax_error_die( sprintf( esc_html__( 'Cannot copy font %s', 'sneeit-core' ), $sneeit_core_f_existed ) );
 			}
 			// dev-reply#13135.
-			$sneeit_core_f_font['fontFace'][] = array(
+			$sneeit_core_f_dragblockkey['fontFace'][] = array(
 				'fontFamily' => $sneeit_core_f_name,
-				'fontStyle'  => $sneeit_core_f_style,
-				'fontWeight' => $sneeit_core_f_weight,
-				'src'        => array( $sneeit_core_f_file_url ),
+				'fontStyle'  => $sneeit_core_f_key,
+				'fontWeight' => $sneeit_core_f_value,
+				'src'        => array( $sneeit_core_f_extension ),
 			);
 		}
 		// dev-reply#13143.
-		if ( ! isset( $sneeit_core_f_hash[ $sneeit_core_f_name ] ) ) {
-			$sneeit_core_f_dragblockoption[] = $sneeit_core_f_font;
+		if ( ! isset( $sneeit_core_f_dir[ $sneeit_core_f_name ] ) ) {
+			$sneeit_core_f_fonts[] = $sneeit_core_f_dragblockkey;
 		} else {
-			$sneeit_core_f_dragblockoption[ $sneeit_core_f_hash[ $sneeit_core_f_name ] ] = $sneeit_core_f_font;
+			$sneeit_core_f_fonts[ $sneeit_core_f_dir[ $sneeit_core_f_name ] ] = $sneeit_core_f_dragblockkey;
 		}
 	}
 	// dev-reply#13151.
-	update_option( $sneeit_core_f_dragblockkey, $sneeit_core_f_dragblockoption );
+	update_option( $sneeit_core_f_url, $sneeit_core_f_fonts );
 	echo json_encode( 'done' );
 	die();
 }

@@ -5,7 +5,7 @@ Tags: gutenberg, blocks, gutenberg blocks, editor, block, site builder, drag-and
 Requires at least: 5.9
 Requires PHP: 7.4
 Tested up to: 6.3.1
-Stable tag: 23.10.10
+Stable tag: 23.10.13
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -66,6 +66,11 @@ language plugin. Saving time by not creating many different pages.
 No need Contact-Form 7 or any other form plugins.
 
 == Changelog ==
+= 23.10.13 =
+* Improve editor performance
+* Add more appearance styles
+* Support scrolling and current link classes
+
 = 23.10.07 =
 * Initial Release
 

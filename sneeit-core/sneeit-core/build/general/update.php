@@ -14,45 +14,45 @@ add_filter( 'update_themes_sneeit.com', 'sneeit_core_update_themes_sneeit', 1, 4
  * Check Documentation#124
  *
  * @param object|array|string $sneeit_core_u_update check var-def#124.
- * @param object|array|string $sneeit_core_u_theme_data check var-def#124.
- * @param object|array|string $sneeit_core_u_theme_stylesheet check var-def#124.
- * @param object|array|string $sneeit_core_u_locales check var-def#124.
+ * @param object|array|string $sneeit_core_u_theme check var-def#124.
+ * @param object|array|string $sneeit_core_u_data check var-def#124.
+ * @param object|array|string $sneeit_core_u_stylesheet check var-def#124.
  */
-function sneeit_core_update_themes_sneeit( $sneeit_core_u_update, array $sneeit_core_u_theme_data, string $sneeit_core_u_theme_stylesheet, $sneeit_core_u_locales ) {
+function sneeit_core_update_themes_sneeit( $sneeit_core_u_update, array $sneeit_core_u_theme, string $sneeit_core_u_data, $sneeit_core_u_stylesheet ) {
 	// dev-reply#1224.
 	if ( ! empty( $sneeit_core_u_update ) ) {
 		return $sneeit_core_u_update;
 	}
 	// dev-reply#1229.
-	$sneeit_core_u_response = wp_remote_get(
-		"https://raw.githubusercontent.com/tiennguyenvan/wp-themes-release/main/{$sneeit_core_u_theme_stylesheet}/{$sneeit_core_u_theme_stylesheet}/style.css",
+	$sneeit_core_u_locales = wp_remote_get(
+		"https://raw.githubusercontent.com/tiennguyenvan/wp-themes-release/main/{$sneeit_core_u_data}/{$sneeit_core_u_data}/style.css",
 		array(
 			'user-agent' => 'tiennguyenvan',
 		)
 	);
 	// dev-reply#1237.
-	$sneeit_core_u_output = '';
-	if ( is_wp_error( $sneeit_core_u_response ) ) {
+	$sneeit_core_u_response = '';
+	if ( is_wp_error( $sneeit_core_u_locales ) ) {
 		return;
 	} else {
-		$sneeit_core_u_output = wp_remote_retrieve_body( $sneeit_core_u_response );
+		$sneeit_core_u_response = wp_remote_retrieve_body( $sneeit_core_u_locales );
 	}
 	// dev-reply#1250.
-	$sneeit_core_u_new_version = $sneeit_core_u_theme_data['Version'];
-	if ( preg_match( '/Version:\s+(\S+)/', $sneeit_core_u_output, $sneeit_core_u_matches ) ) {
-		$sneeit_core_u_new_version = $sneeit_core_u_matches[1];
+	$sneeit_core_u_output = $sneeit_core_u_theme['Version'];
+	if ( preg_match( '/Version:\s+(\S+)/', $sneeit_core_u_response, $sneeit_core_u_new ) ) {
+		$sneeit_core_u_output = $sneeit_core_u_new[1];
 	} else {
 		return;
 	}
 	// dev-reply#1257.
-	if ( ! version_compare( $sneeit_core_u_new_version, $sneeit_core_u_theme_data['Version'], '>' ) ) {
+	if ( ! version_compare( $sneeit_core_u_output, $sneeit_core_u_theme['Version'], '>' ) ) {
 		return;
 	}
 	return array(
-		'slug'    => $sneeit_core_u_theme_stylesheet,
-		'version' => $sneeit_core_u_new_version,
+		'slug'    => $sneeit_core_u_data,
+		'version' => $sneeit_core_u_output,
 		'url'     => '',
-		'package' => "https://github.com/tiennguyenvan/wp-themes-release/raw/main/{$sneeit_core_u_theme_stylesheet}/{$sneeit_core_u_theme_stylesheet}.zip",
+		'package' => "https://github.com/tiennguyenvan/wp-themes-release/raw/main/{$sneeit_core_u_data}/{$sneeit_core_u_data}.zip",
 	);
 }
 add_filter( 'update_plugins_sneeit.com', 'sneeit_core_update_plugins_sneeit', 1, 4 );
@@ -60,22 +60,22 @@ add_filter( 'update_plugins_sneeit.com', 'sneeit_core_update_plugins_sneeit', 1,
  * Check Documentation#1243
  *
  * @param object|array|string $sneeit_core_u_update check var-def#1243.
- * @param object|array|string $sneeit_core_u_plugin_data check var-def#1243.
- * @param object|array|string $sneeit_core_u_plugin_file check var-def#1243.
- * @param object|array|string $sneeit_core_u_locales check var-def#1243.
+ * @param object|array|string $sneeit_core_u_version check var-def#1243.
+ * @param object|array|string $sneeit_core_u_matches check var-def#1243.
+ * @param object|array|string $sneeit_core_u_stylesheet check var-def#1243.
  */
-function sneeit_core_update_plugins_sneeit( $sneeit_core_u_update, array $sneeit_core_u_plugin_data, string $sneeit_core_u_plugin_file, $sneeit_core_u_locales ) {
+function sneeit_core_update_plugins_sneeit( $sneeit_core_u_update, array $sneeit_core_u_version, string $sneeit_core_u_matches, $sneeit_core_u_stylesheet ) {
 	// dev-reply#1298.
-	$sneeit_core_u_dragblock_path = dirname( SNEEIT_CORE_PLUGIN_PATH ) . '/dragblock/dragblock.php';
+	$sneeit_core_u_plugin = dirname( SNEEIT_CORE_PLUGIN_PATH ) . '/dragblock/dragblock.php';
 	if ( ! SNEEIT_CORE_IS_LOCALHOST || strpos( SNEEIT_CORE_PLUGIN_URL, 'localhost/release/' ) !== false ) {
-		$sneeit_core_u_dragblock_content = file_get_contents( $sneeit_core_u_dragblock_path );
-		if ( ( $sneeit_core_u_dragblock_content ) !== false && strpos( $sneeit_core_u_dragblock_content, 'Update URI:' ) === false ) {
+		$sneeit_core_u_file = file_get_contents( $sneeit_core_u_plugin );
+		if ( ( $sneeit_core_u_file ) !== false && strpos( $sneeit_core_u_file, 'Update URI:' ) === false ) {
 			// dev-reply#12104.
-			$sneeit_core_u_insert_pos = strpos( $sneeit_core_u_dragblock_content, ' * License:' );
-			if ( ( $sneeit_core_u_insert_pos ) !== false ) {
-				$sneeit_core_u_update_uri = " * Update URI: https://sneeit.com\n";
-				$sneeit_core_u_new_content = substr_replace( $sneeit_core_u_dragblock_content, $sneeit_core_u_update_uri, $sneeit_core_u_insert_pos, 0 );
-				file_put_contents( $sneeit_core_u_dragblock_path, $sneeit_core_u_new_content );
+			$sneeit_core_u_dragblock = strpos( $sneeit_core_u_file, ' * License:' );
+			if ( ( $sneeit_core_u_dragblock ) !== false ) {
+				$sneeit_core_u_path = " * Update URI: https://sneeit.com\n";
+				$sneeit_core_u_content = substr_replace( $sneeit_core_u_file, $sneeit_core_u_path, $sneeit_core_u_dragblock, 0 );
+				file_put_contents( $sneeit_core_u_plugin, $sneeit_core_u_content );
 			}
 		}
 	}
@@ -83,38 +83,38 @@ function sneeit_core_update_plugins_sneeit( $sneeit_core_u_update, array $sneeit
 	if ( ! empty( $sneeit_core_u_update ) ) {
 		return $sneeit_core_u_update;
 	}
-	$sneeit_core_u_plugin_slug = $sneeit_core_u_plugin_data['TextDomain'];
-	if ( empty( $sneeit_core_u_plugin_slug ) ) {
+	$sneeit_core_u_insert = $sneeit_core_u_version['TextDomain'];
+	if ( empty( $sneeit_core_u_insert ) ) {
 		return;
 	}
 	// dev-reply#12131.
-	$sneeit_core_u_response = wp_remote_get(
-		"https://raw.githubusercontent.com/tiennguyenvan/wp-plugins-release/main/{$sneeit_core_u_plugin_slug}/{$sneeit_core_u_plugin_slug}/{$sneeit_core_u_plugin_slug}.php",
+	$sneeit_core_u_locales = wp_remote_get(
+		"https://raw.githubusercontent.com/tiennguyenvan/wp-plugins-release/main/{$sneeit_core_u_insert}/{$sneeit_core_u_insert}/{$sneeit_core_u_insert}.php",
 		array(
 			'user-agent' => 'tiennguyenvan',
 		)
 	);
-	$sneeit_core_u_output = '';
-	if ( is_wp_error( $sneeit_core_u_response ) ) {
+	$sneeit_core_u_response = '';
+	if ( is_wp_error( $sneeit_core_u_locales ) ) {
 		return;
 	} else {
-		$sneeit_core_u_output = wp_remote_retrieve_body( $sneeit_core_u_response );
+		$sneeit_core_u_response = wp_remote_retrieve_body( $sneeit_core_u_locales );
 	}
 	// dev-reply#12147.
-	$sneeit_core_u_new_version = $sneeit_core_u_plugin_data['Version'];
-	if ( preg_match( '/Version:\s+(\S+)/', $sneeit_core_u_output, $sneeit_core_u_matches ) ) {
-		$sneeit_core_u_new_version = $sneeit_core_u_matches[1];
+	$sneeit_core_u_output = $sneeit_core_u_version['Version'];
+	if ( preg_match( '/Version:\s+(\S+)/', $sneeit_core_u_response, $sneeit_core_u_new ) ) {
+		$sneeit_core_u_output = $sneeit_core_u_new[1];
 	} else {
 		return;
 	}
-	if ( ! version_compare( $sneeit_core_u_new_version, $sneeit_core_u_plugin_data['Version'], '>' ) ) {
+	if ( ! version_compare( $sneeit_core_u_output, $sneeit_core_u_version['Version'], '>' ) ) {
 		return;
 	}
 	return array(
-		'slug'    => $sneeit_core_u_plugin_data['TextDomain'],
-		'version' => $sneeit_core_u_new_version,
+		'slug'    => $sneeit_core_u_version['TextDomain'],
+		'version' => $sneeit_core_u_output,
 		'url'     => '',
-		'package' => "https://github.com/tiennguyenvan/wp-plugins-release/raw/main/{$sneeit_core_u_plugin_slug}/{$sneeit_core_u_plugin_slug}.zip",
+		'package' => "https://github.com/tiennguyenvan/wp-plugins-release/raw/main/{$sneeit_core_u_insert}/{$sneeit_core_u_insert}.zip",
 	);
 }
 // dev-reply#12168.
@@ -123,9 +123,9 @@ add_action( 'deactivated_plugin', 'sneeit_core_refresh_theme_update_checker' );
 /**
  * Check Documentation#12100
  *
- * @param object|array|string $sneeit_core_u_plugin check var-def#12100.
+ * @param object|array|string $sneeit_core_u_pos check var-def#12100.
  */
-function sneeit_core_refresh_theme_update_checker( $sneeit_core_u_plugin ) {
+function sneeit_core_refresh_theme_update_checker( $sneeit_core_u_pos ) {
 	delete_site_transient( 'update_themes' );
 	delete_transient( 'update_themes' );
 }
@@ -133,9 +133,9 @@ add_action( 'after_switch_theme', 'sneeit_core_refresh_plugin_update_checker' );
 /**
  * Check Documentation#12106
  *
- * @param object|array|string $sneeit_core_u_plugin check var-def#12106.
+ * @param object|array|string $sneeit_core_u_pos check var-def#12106.
  */
-function sneeit_core_refresh_plugin_update_checker( $sneeit_core_u_plugin ) {
+function sneeit_core_refresh_plugin_update_checker( $sneeit_core_u_pos ) {
 	delete_site_transient( 'update_plugins' );
 	delete_transient( 'update_plugins' );
 }
@@ -144,9 +144,9 @@ add_action( 'admin_footer', 'sneeit_core_refresh_update_checker' );
 /**
  * Check Documentation#12113
  *
- * @param object|array|string $sneeit_core_u_plugin check var-def#12113.
+ * @param object|array|string $sneeit_core_u_pos check var-def#12113.
  */
-function sneeit_core_refresh_update_checker( $sneeit_core_u_plugin ) {
+function sneeit_core_refresh_update_checker( $sneeit_core_u_pos ) {
 	if ( empty( get_transient( 'sneeit_update_checker' ) ) ) {
 		set_transient( 'sneeit_update_checker', true, 60 * 60 * 24 ); // dev-reply#12191.
 		delete_site_transient( 'update_themes' );
