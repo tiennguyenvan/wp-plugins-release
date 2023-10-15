@@ -9,66 +9,57 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 // dev-reply#193.
-add_action( 'init', 'dragblock_block_start_session', 1 );
 /**
- * Check Documentation#194
- */
-function dragblock_block_start_session() {
-	if ( ! session_id() ) {
-		session_start();
-	}
-}
-/**
- * Check Documentation#1910
+ * Check Documentation#193
  *
- * @param object|array|string $dragblock_lc_receiver check var-def#1910.
- * @param object|array|string $dragblock_lc_provider check var-def#1910.
+ * @param object|array|string $dragblock_lc_receiver check var-def#193.
+ * @param object|array|string $dragblock_lc_provider check var-def#193.
  */
 function dragblock_theme_json_merge( $dragblock_lc_receiver, $dragblock_lc_provider ) {
-	// dev-reply#1914.
+	// dev-reply#1915.
 	if ( ! is_array( $dragblock_lc_receiver ) || ! is_array( $dragblock_lc_provider ) ) {
 		return $dragblock_lc_receiver;
 	}
 	foreach ( $dragblock_lc_provider as $dragblock_lc_key => $dragblock_lc_value ) {
-		// dev-reply#1921.
+		// dev-reply#1922.
 		if ( is_array( $dragblock_lc_value ) && key( $dragblock_lc_value ) === 0 ) {
 			continue;
 		}
-		// dev-reply#1925.
+		// dev-reply#1926.
 		if ( ! isset( $dragblock_lc_receiver[ $dragblock_lc_key ] ) ) {
 			$dragblock_lc_receiver[ $dragblock_lc_key ] = $dragblock_lc_value;
 			continue;
 		}
-		// dev-reply#1932.
+		// dev-reply#1933.
 		$dragblock_lc_receiver[ $dragblock_lc_key ] = dragblock_theme_json_merge( $dragblock_lc_receiver[ $dragblock_lc_key ], $dragblock_lc_value );
 	}
 	return $dragblock_lc_receiver;
 }
 /**
- * Check Documentation#1931
+ * Check Documentation#1924
  *
- * @param object|array|string $dragblock_lc_path check var-def#1931.
+ * @param object|array|string $dragblock_lc_path check var-def#1924.
  */
 function dragblock_url( $dragblock_lc_path ) {
 	return DRAGBLOCK_URL . '/' . $dragblock_lc_path;
-	// dev-reply#1946.
+	// dev-reply#1947.
 }
 /**
- * Check Documentation#1936
+ * Check Documentation#1929
  *
- * @param object|array|string $dragblock_lc_attachment check var-def#1936.
+ * @param object|array|string $dragblock_lc_attachment check var-def#1929.
  */
 function dragblock_get_image_srcsets( $dragblock_lc_attachment ) {
-	// dev-reply#1955.
+	// dev-reply#1956.
 	if ( ! is_numeric( $dragblock_lc_attachment ) ) {
 		$dragblock_lc_attachment = attachment_url_to_postid( $dragblock_lc_attachment );
 		if ( ! $dragblock_lc_attachment ) {
 			return '';
 		}
 	}
-	// dev-reply#1963.
+	// dev-reply#1964.
 	$dragblock_lc_attachment = (int) $dragblock_lc_attachment;
-	$dragblock_lc_id = get_intermediate_image_sizes(); // dev-reply#1966.
+	$dragblock_lc_id = get_intermediate_image_sizes(); // dev-reply#1967.
 	$dragblock_lc_image = array();
 	foreach ( $dragblock_lc_id as $dragblock_lc_sizes ) {
 		$dragblock_lc_srcset = wp_get_attachment_image_src( $dragblock_lc_attachment, $dragblock_lc_sizes );
@@ -80,14 +71,14 @@ function dragblock_get_image_srcsets( $dragblock_lc_attachment ) {
 	foreach ( $dragblock_lc_image as $dragblock_lc_size => $dragblock_lc_src ) {
 		$dragblock_lc_values .= $dragblock_lc_src . ' ' . $dragblock_lc_size . ', ';
 	}
-	// dev-reply#1983.
+	// dev-reply#1984.
 	$dragblock_lc_values = rtrim( $dragblock_lc_values, ', ' );
 	return $dragblock_lc_values;
 }
 /**
- * Check Documentation#1963
+ * Check Documentation#1956
  *
- * @param object|array|string $dragblock_lc_width check var-def#1963.
+ * @param object|array|string $dragblock_lc_width check var-def#1956.
  */
 function dragblock_is_reseved_terms( $dragblock_lc_width ) {
 	$dragblock_lc_url = array(
