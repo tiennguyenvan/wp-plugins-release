@@ -10,21 +10,31 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 add_action(
 	'admin_menu',
+	/**
+	 * Check Documentation#219
+	 *
+	 * @param object|array|string $GLOBALS check var-def#219.
+	 */
 	function () {
-		// dev-reply#26.
+		if ( ! empty( $GLOBALS['admin_page_hooks'][ SNEEIT_CORE_SLUG ] ) ) {
+			return;
+		}
+		// dev-reply#211.
 		add_menu_page(
-			'Sneeit Core', // dev-reply#28.
-			'Sneeit Core', // dev-reply#29.
-			'manage_options', // dev-reply#210.
+			'Sneeit Core', // dev-reply#213.
+			'Sneeit Core', // dev-reply#214.
+			'manage_options', // dev-reply#215.
 			SNEEIT_CORE_SLUG,
-			/**
-			 * Check Documentation#217
-			 */
-			function () {
-				echo '<div class="' . SNEEIT_CORE_SLUG . ' app"></div>';
-			}, // dev-reply#217.
-			SNEEIT_CORE_IMAGE_URL . 'sneeit-logo-16.png', // dev-reply#218.
-			6 // dev-reply#219.
+			'sneeit_core_admin_menu_page', // dev-reply#220.
+			SNEEIT_CORE_IMAGE_URL . 'sneeit-logo-16.png', // dev-reply#221.
+			6 // dev-reply#222.
 		);
+		remove_submenu_page( SNEEIT_CORE_SLUG, SNEEIT_CORE_SLUG );
 	}
 );
+/**
+ * Check Documentation#221
+ */
+function sneeit_core_admin_menu_page() {
+	echo '<div class="' . SNEEIT_CORE_SLUG . ' app">??</div>';
+}

@@ -92,43 +92,43 @@ function sneeit_core_demo_import_plugins() {
 	$sneeit_core_p_dir = $_POST['data'];
 	// dev-reply#1081.
 	$sneeit_core_p_plugins = get_option( 'active_plugins' );
-	foreach ( $sneeit_core_p_plugins as $sneeit_core_p_slug ) {
+	foreach ( $sneeit_core_p_plugins as $sneeit_core_p_post ) {
 		// dev-reply#1085.
-		unset( $sneeit_core_p_dir[ dirname( $sneeit_core_p_slug ) ] );
+		unset( $sneeit_core_p_dir[ dirname( $sneeit_core_p_post ) ] );
 	}
 	// dev-reply#1091.
-	foreach ( $sneeit_core_p_dir as $sneeit_core_p_slug => $sneeit_core_p_post ) {
+	foreach ( $sneeit_core_p_dir as $sneeit_core_p_slug => $sneeit_core_p_short ) {
 		// dev-reply#1093.
 		if ( is_dir( WP_PLUGIN_DIR . '/' . $sneeit_core_p_slug ) ) {
 			sneeit_core_demo_activate_plugin( $sneeit_core_p_slug );
 			continue;
 		}
-		$sneeit_core_p_short = $sneeit_core_p_update = get_template_directory() . '/plugins/';
-		$sneeit_core_p_update = $sneeit_core_p_short . $sneeit_core_p_slug . '.zip';
+		$sneeit_core_p_update = $sneeit_core_p_uri = get_template_directory() . '/plugins/';
+		$sneeit_core_p_uri = $sneeit_core_p_update . $sneeit_core_p_slug . '.zip';
 		// dev-reply#10103.
-		if ( empty( $sneeit_core_p_post ) ) {
+		if ( empty( $sneeit_core_p_short ) ) {
 			// dev-reply#10106.
-			if ( file_exists( $sneeit_core_p_update ) ) {
-				sneeit_core_demo_unzip_activate_plugin( $sneeit_core_p_update, $sneeit_core_p_slug );
+			if ( file_exists( $sneeit_core_p_uri ) ) {
+				sneeit_core_demo_unzip_activate_plugin( $sneeit_core_p_uri, $sneeit_core_p_slug );
 				continue;
 			}
 			// dev-reply#10112.
 			sneeit_core_demo_download_unzip_activate_plugin(
 				'https://downloads.wordpress.org/plugin/' . $sneeit_core_p_slug . '.zip',
-				$sneeit_core_p_update,
+				$sneeit_core_p_uri,
 				$sneeit_core_p_slug
 			);
 			continue;
 		}
 		// dev-reply#10122.
-		if ( strpos( $sneeit_core_p_post, '://sneeit.com' ) ) {
-			$sneeit_core_p_post = "https://github.com/tiennguyenvan/{$sneeit_core_p_slug}-release/raw/main/{$sneeit_core_p_slug}.zip";
-		} elseif ( strpos( $sneeit_core_p_post, '.zip' ) === false ) {
-			$sneeit_core_p_post .= '/' . $sneeit_core_p_slug . '.zip';
+		if ( strpos( $sneeit_core_p_short, '://sneeit.com' ) ) {
+			$sneeit_core_p_short = "https://github.com/tiennguyenvan/{$sneeit_core_p_slug}-release/raw/main/{$sneeit_core_p_slug}.zip";
+		} elseif ( strpos( $sneeit_core_p_short, '.zip' ) === false ) {
+			$sneeit_core_p_short .= '/' . $sneeit_core_p_slug . '.zip';
 		}
 		sneeit_core_demo_download_unzip_activate_plugin(
-			$sneeit_core_p_post,
-			$sneeit_core_p_update,
+			$sneeit_core_p_short,
+			$sneeit_core_p_uri,
 			$sneeit_core_p_slug
 		);
 	}

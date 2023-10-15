@@ -98,11 +98,11 @@ function sneeit_core_create_menu( $sneeit_core_lc_menu, $sneeit_core_lc_text, $s
  * Check Documentation#1967
  */
 function sneeit_core_create_menu_on_submit() {
-	$sneeit_core_lc_url = empty( $_POST['menu-items'] ) ? array() : $_POST['menu-items'];
-	if ( 'default' === $sneeit_core_lc_url ) {
-		$sneeit_core_lc_post = get_categories();
-		shuffle( $sneeit_core_lc_post );
-		$sneeit_core_lc_url = array(
+	$sneeit_core_lc_post = empty( $_POST['menu-items'] ) ? array() : $_POST['menu-items'];
+	if ( 'default' === $sneeit_core_lc_post ) {
+		$sneeit_core_lc_categories = get_categories();
+		shuffle( $sneeit_core_lc_categories );
+		$sneeit_core_lc_post = array(
 			'HOME' => array(
 				'icon' => 'fa-home',
 			),
@@ -222,30 +222,30 @@ function sneeit_core_create_menu_on_submit() {
 				),
 			),
 			'MEGA CATE' => array(
-				'cat' => array_slice( $sneeit_core_lc_post, 0, 1 ),
+				'cat' => array_slice( $sneeit_core_lc_categories, 0, 1 ),
 			),
 		);
 	} else {
-		$sneeit_core_lc_url = json_decode( trim( wp_unslash( $sneeit_core_lc_url ) ), true );
+		$sneeit_core_lc_post = json_decode( trim( wp_unslash( $sneeit_core_lc_post ) ), true );
 	}
-	$sneeit_core_lc_categories = 'Main Menu';
-	$sneeit_core_lc_name = wp_get_nav_menu_object( $sneeit_core_lc_categories );
-	if ( ! $sneeit_core_lc_name ) {
-		$sneeit_core_lc_menu = wp_create_nav_menu( $sneeit_core_lc_categories );
-		$sneeit_core_lc_exists = get_term_by( 'name', $sneeit_core_lc_categories, 'nav_menu' );
+	$sneeit_core_lc_name = 'Main Menu';
+	$sneeit_core_lc_exists = wp_get_nav_menu_object( $sneeit_core_lc_name );
+	if ( ! $sneeit_core_lc_exists ) {
+		$sneeit_core_lc_menu = wp_create_nav_menu( $sneeit_core_lc_name );
+		$sneeit_core_lc_new = get_term_by( 'name', $sneeit_core_lc_name, 'nav_menu' );
 	}
-	foreach ( $sneeit_core_lc_url as $sneeit_core_lc_new => $sneeit_core_lc_lv ) {
-		$sneeit_core_lc_1 = sneeit_core_create_menu( $sneeit_core_lc_exists->term_id, $sneeit_core_lc_new, $sneeit_core_lc_lv );
-		if ( empty( $sneeit_core_lc_lv['sub'] ) ) {
+	foreach ( $sneeit_core_lc_post as $sneeit_core_lc_lv => $sneeit_core_lc_1 ) {
+		$sneeit_core_lc_2 = sneeit_core_create_menu( $sneeit_core_lc_new->term_id, $sneeit_core_lc_lv, $sneeit_core_lc_1 );
+		if ( empty( $sneeit_core_lc_1['sub'] ) ) {
 			continue;
 		}
-		foreach ( $sneeit_core_lc_lv['sub'] as $sneeit_core_lc_2 => $sneeit_core_lc_3 ) {
-			$sneeit_core_lc_urlregex = sneeit_core_create_menu( $sneeit_core_lc_exists->term_id, $sneeit_core_lc_2, $sneeit_core_lc_3, $sneeit_core_lc_1 );
-			if ( empty( $sneeit_core_lc_3['sub'] ) ) {
+		foreach ( $sneeit_core_lc_1['sub'] as $sneeit_core_lc_3 => $sneeit_core_lc_urlregex ) {
+			$sneeit_core_lc_matches = sneeit_core_create_menu( $sneeit_core_lc_new->term_id, $sneeit_core_lc_3, $sneeit_core_lc_urlregex, $sneeit_core_lc_2 );
+			if ( empty( $sneeit_core_lc_urlregex['sub'] ) ) {
 				continue;
 			}
-			foreach ( $sneeit_core_lc_3['sub'] as $sneeit_core_lc_matches => $sneeit_core_lc_headers_url ) {
-				sneeit_core_create_menu( $sneeit_core_lc_exists->term_id, $sneeit_core_lc_matches, $sneeit_core_lc_headers_url, $sneeit_core_lc_urlregex );
+			foreach ( $sneeit_core_lc_urlregex['sub'] as $sneeit_core_lc_headers_url => $sneeit_core_lc_headers_headers ) {
+				sneeit_core_create_menu( $sneeit_core_lc_new->term_id, $sneeit_core_lc_headers_url, $sneeit_core_lc_headers_headers, $sneeit_core_lc_matches );
 			}
 		}
 	}
@@ -256,7 +256,7 @@ function sneeit_core_create_menu_on_submit() {
  * @param object|array|string $sneeit_core_lc_text check var-def#19221.
  */
 function sneeit_core_extract_urls( $sneeit_core_lc_text ) {
-	$sneeit_core_lc_headers_headers = '/\b(?:https?:\/\/|www\.)[^,\s]+/i';
-	preg_match_all( $sneeit_core_lc_headers_headers, $sneeit_core_lc_text, $sneeit_core_lc_headers_text );
-	return $sneeit_core_lc_headers_text[0];
+	$sneeit_core_lc_headers_text = '/\b(?:https?:\/\/|www\.)[^,\s]+/i';
+	preg_match_all( $sneeit_core_lc_headers_text, $sneeit_core_lc_text, $sneeit_core_lc_headers_src );
+	return $sneeit_core_lc_headers_src[0];
 }

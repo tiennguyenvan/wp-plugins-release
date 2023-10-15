@@ -59,17 +59,17 @@ function sneeit_core_enqueue_app( $sneeit_core_le_slug, $sneeit_core_le_location
 			return;
 		}
 	} else {
-		$sneeit_core_le_file = isset( $_GET['page'] ) ? $_GET['page'] : '';
+		$sneeit_core_le_server = isset( $_GET['page'] ) ? $_GET['page'] : '';
 		// dev-reply#1046.
-		if ( empty( $sneeit_core_le_file ) ) {
-			$sneeit_core_le_file = isset( $_GET['app'] ) ? $_GET['app'] : '';
+		if ( empty( $sneeit_core_le_server ) ) {
+			$sneeit_core_le_server = isset( $_GET['app'] ) ? $_GET['app'] : '';
 		}
 		// dev-reply#1050.
-		if ( strpos( $sneeit_core_le_file, 'sneeit-core-' ) === false ) {
+		if ( strpos( $sneeit_core_le_server, 'sneeit-core-' ) === false ) {
 			return;
 		}
-		$sneeit_core_le_file = str_replace( 'sneeit-core-', '', $sneeit_core_le_file );
-		if ( ( $sneeit_core_le_slug ) !== $sneeit_core_le_file ) {
+		$sneeit_core_le_server = str_replace( 'sneeit-core-', '', $sneeit_core_le_server );
+		if ( ( $sneeit_core_le_slug ) !== $sneeit_core_le_server ) {
 			return;
 		}
 	}
@@ -80,10 +80,10 @@ function sneeit_core_enqueue_app( $sneeit_core_le_slug, $sneeit_core_le_location
 		 * Check Documentation#1056
 		 */
 		function() use ( $sneeit_core_le_slug, $sneeit_core_le_location ) {
-			$sneeit_core_le_server = wp_get_theme();
-			$sneeit_core_le_current = $sneeit_core_le_server->get( 'Name' );
-			$sneeit_core_le_page = $sneeit_core_le_server->get( 'UpdateURI' );
-			$sneeit_core_le_get = $sneeit_core_le_server->get( 'ThemeURI' );
+			$sneeit_core_le_current = wp_get_theme();
+			$sneeit_core_le_page = $sneeit_core_le_current->get( 'Name' );
+			$sneeit_core_le_get = $sneeit_core_le_current->get( 'UpdateURI' );
+			$sneeit_core_le_theme = $sneeit_core_le_current->get( 'ThemeURI' );
 			// dev-reply#1076.
 			wp_enqueue_script( 'jquery' );
 			wp_localize_script( 'jquery', 'sneeitCore', array(
@@ -93,9 +93,9 @@ function sneeit_core_enqueue_app( $sneeit_core_le_slug, $sneeit_core_le_location
 				'blankImgUrl'   => SNEEIT_CORE_BLANK_IMAGE_URL,
 				'themePath' => get_stylesheet_directory(),
 				'themeUrl' => get_stylesheet_directory_uri(),
-				'themeUri' => $sneeit_core_le_get,
-				'themeUpdateUri' => $sneeit_core_le_page,
-				'themeName' => $sneeit_core_le_current,
+				'themeUri' => $sneeit_core_le_theme,
+				'themeUpdateUri' => $sneeit_core_le_get,
+				'themeName' => $sneeit_core_le_page,
 				'themeSlug' => get_template(),
 				'homeUrl' => home_url(),
 				'uploadUrl' => wp_upload_dir()['url'],
@@ -109,19 +109,19 @@ function sneeit_core_enqueue_app( $sneeit_core_le_slug, $sneeit_core_le_location
 				return;
 			}
 			// dev-reply#10103.
-			$sneeit_core_le_theme = include SNEEIT_CORE_BUILD_PATH . 'applications/' . $sneeit_core_le_slug . '/client/index.asset.php';
+			$sneeit_core_le_name = include SNEEIT_CORE_BUILD_PATH . 'applications/' . $sneeit_core_le_slug . '/client/index.asset.php';
 			// dev-reply#10108.
-			foreach ( $sneeit_core_le_theme['dependencies'] as $sneeit_core_le_name ) {
-				wp_enqueue_style( $sneeit_core_le_name );
+			foreach ( $sneeit_core_le_name['dependencies'] as $sneeit_core_le_update ) {
+				wp_enqueue_style( $sneeit_core_le_update );
 			}
 			// dev-reply#10112.
-			array_push( $sneeit_core_le_theme['dependencies'], 'wp-i18n' );
-			$sneeit_core_le_update = ( $sneeit_core_le_location ) === 'admin' ? '' : 'style-';
+			array_push( $sneeit_core_le_name['dependencies'], 'wp-i18n' );
+			$sneeit_core_le_uri = ( $sneeit_core_le_location ) === 'admin' ? '' : 'style-';
 			// dev-reply#10117.
 			sneeit_core_enqueue_multiple(
 				array(
-					"applications/{$sneeit_core_le_slug}/client/{$sneeit_core_le_update}index.css",
-					"applications/{$sneeit_core_le_slug}/client/index.js" => $sneeit_core_le_theme['dependencies'],
+					"applications/{$sneeit_core_le_slug}/client/{$sneeit_core_le_uri}index.css",
+					"applications/{$sneeit_core_le_slug}/client/index.js" => $sneeit_core_le_name['dependencies'],
 				)
 			);
 		},

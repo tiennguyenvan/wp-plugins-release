@@ -55,14 +55,14 @@ function sneeit_core_enqueue_scripts() {
 		$sneeit_core_e_current
 	);
 	$sneeit_core_e_page = is_admin() ? 'back' : 'front';
-	$sneeit_core_e_file = SNEEIT_CORE_BUILD_PATH . '/' . $sneeit_core_e_page . '/' . $sneeit_core_e_current . '/index.asset.php';
-	if ( ! file_exists( $sneeit_core_e_file ) ) {
+	$sneeit_core_e_get = SNEEIT_CORE_BUILD_PATH . '/' . $sneeit_core_e_page . '/' . $sneeit_core_e_current . '/index.asset.php';
+	if ( ! file_exists( $sneeit_core_e_get ) ) {
 		return;
 	}
-	$sneeit_core_e_get = wp_get_theme();
-	$sneeit_core_e_location = $sneeit_core_e_get->get( 'Name' );
-	$sneeit_core_e_asset = $sneeit_core_e_get->get( 'UpdateURI' );
-	$sneeit_core_e_path = $sneeit_core_e_get->get( 'ThemeURI' );
+	$sneeit_core_e_location = wp_get_theme();
+	$sneeit_core_e_asset = $sneeit_core_e_location->get( 'Name' );
+	$sneeit_core_e_path = $sneeit_core_e_location->get( 'UpdateURI' );
+	$sneeit_core_e_theme = $sneeit_core_e_location->get( 'ThemeURI' );
 	wp_enqueue_script( 'jquery' );
 	wp_localize_script( 'jquery', 'sneeitCore', array(
 		'ajaxUrl' => admin_url( 'admin-ajax.php' ),
@@ -71,9 +71,9 @@ function sneeit_core_enqueue_scripts() {
 		'blankImgUrl'   => SNEEIT_CORE_BLANK_IMAGE_URL,
 		'themePath' => get_stylesheet_directory(),
 		'themeUrl' => get_stylesheet_directory_uri(),
-		'themeUri' => $sneeit_core_e_path,
-		'themeUpdateUri' => $sneeit_core_e_asset,
-		'themeName' => $sneeit_core_e_location,
+		'themeUri' => $sneeit_core_e_theme,
+		'themeUpdateUri' => $sneeit_core_e_path,
+		'themeName' => $sneeit_core_e_asset,
 		'themeSlug' => get_template(),
 		'homeUrl' => home_url(),
 		'uploadUrl' => wp_upload_dir()['url'],
@@ -81,11 +81,11 @@ function sneeit_core_enqueue_scripts() {
 		// dev-reply#873.
 		'sneeitLicenseUsername' => get_option( SNEEIT_CORE_KEY_SNEEIT_LICENSE_USERNAME, '' ), // dev-reply#874.,
 	) );
-	$sneeit_core_e_theme = include $sneeit_core_e_file;
+	$sneeit_core_e_name = include $sneeit_core_e_get;
 	// dev-reply#881.
-	foreach ( $sneeit_core_e_theme['dependencies'] as $sneeit_core_e_name ) {
-		wp_enqueue_style( $sneeit_core_e_name );
+	foreach ( $sneeit_core_e_name['dependencies'] as $sneeit_core_e_update ) {
+		wp_enqueue_style( $sneeit_core_e_update );
 	}
-	array_push( $sneeit_core_e_theme['dependencies'], 'wp-i18n' );
-	sneeit_core_enqueue( array( $sneeit_core_e_page . '/' . $sneeit_core_e_current . '/style-index.css', $sneeit_core_e_page . '/' . $sneeit_core_e_current . '/index.js' => $sneeit_core_e_theme['dependencies'] ) );
+	array_push( $sneeit_core_e_name['dependencies'], 'wp-i18n' );
+	sneeit_core_enqueue( array( $sneeit_core_e_page . '/' . $sneeit_core_e_current . '/style-index.css', $sneeit_core_e_page . '/' . $sneeit_core_e_current . '/index.js' => $sneeit_core_e_name['dependencies'] ) );
 }

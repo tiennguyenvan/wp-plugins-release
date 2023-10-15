@@ -46,18 +46,18 @@ function sneeit_core_ajax_request_verify_die( $sneeit_core_la_fields = array(), 
 /**
  * Check Documentation#426
  *
- * @param object|array|string $sneeit_core_la_action check var-def#426.
+ * @param object|array|string $sneeit_core_la_post check var-def#426.
  */
-function sneeit_core_ajax_error_die( $sneeit_core_la_action ) {
-	echo json_encode( array( 'error' => $sneeit_core_la_action ) );
+function sneeit_core_ajax_error_die( $sneeit_core_la_post ) {
+	echo json_encode( array( 'error' => $sneeit_core_la_post ) );
 	die();
 }
 /**
  * Check Documentation#431
  *
- * @param object|array|string $sneeit_core_la_post check var-def#431.
+ * @param object|array|string $sneeit_core_la_field check var-def#431.
  */
-function sneeit_core_ajax_succeed_die( $sneeit_core_la_post ) {
-	echo json_encode( $sneeit_core_la_post );
+function sneeit_core_ajax_succeed_die( $sneeit_core_la_field ) {
+	echo json_encode( $sneeit_core_la_field );
 	die();
 }

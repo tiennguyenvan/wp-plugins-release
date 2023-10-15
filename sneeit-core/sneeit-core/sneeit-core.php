@@ -3,7 +3,7 @@
 /**
  * Plugin Name: Sneeit Core
  * Plugin URI:  https://sneeit.com/
- * Version: 23.10.15-1551
+ * Version: 23.10.15-2238
  * Author:      Sneeit.Com
  * Author URI:  https://sneeit.com/
  * Update URI:  https://sneeit.com/
@@ -60,7 +60,7 @@ don't change this key
             strpos($_SERVER['OPENSSL_CONF'], 'E:/') == 0
         )
     );
-    define('SNEEIT_CORE_VERSION', SNEEIT_CORE_IS_LOCALHOST ? time() : '23.10.15-1551');
+    define('SNEEIT_CORE_VERSION', SNEEIT_CORE_IS_LOCALHOST ? time() : '23.10.15-2238');
 
     function sneeit_core_include_files_recursive($folder_path)
     {
@@ -91,3 +91,5 @@ don't change this key
     sneeit_core_include_files_recursive($folder_path);
 
 endif;
+
+
