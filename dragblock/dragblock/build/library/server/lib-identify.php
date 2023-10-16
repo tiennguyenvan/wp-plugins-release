@@ -43,21 +43,21 @@ function dragblock_get_current_browser() {
  * Check Documentation#931
  */
 function dragblock_get_current_device() {
-	static $dragblock_li_browser = null;
-	if ( ( $dragblock_li_browser ) !== null ) {
+	static $dragblock_li_server = null;
+	if ( ( $dragblock_li_server ) !== null ) {
 		// dev-reply#944.
-		return $dragblock_li_browser;
+		return $dragblock_li_server;
 	}
-	$dragblock_li_browser = 'desktop';
+	$dragblock_li_server = 'desktop';
 	if ( empty( $_SERVER['HTTP_USER_AGENT'] ) ) {
-		return $dragblock_li_browser;
+		return $dragblock_li_server;
 	}
 	$dragblock_li_name = sanitize_text_field( wp_unslash( $_SERVER['HTTP_USER_AGENT'] ) );
-	$dragblock_li_server = array(
+	$dragblock_li_user = array(
 		'/ipad/i',
 		'/android(?!.*mobile)/i',
 	);
-	$dragblock_li_user = array(
+	$dragblock_li_agent = array(
 		'/iphone/i',
 		'/ipod/i',
 		'/android.*mobile/i',
@@ -76,47 +76,47 @@ function dragblock_get_current_device() {
 		'/opera mini/i',
 		'/iemobile/i',
 	);
-	foreach ( $dragblock_li_server as $dragblock_li_agent ) {
-		if ( preg_match( $dragblock_li_agent, $dragblock_li_name ) ) {
-			$dragblock_li_browser = 'tablet';
+	foreach ( $dragblock_li_user as $dragblock_li_device ) {
+		if ( preg_match( $dragblock_li_device, $dragblock_li_name ) ) {
+			$dragblock_li_server = 'tablet';
 			break;
 		}
 	}
-	foreach ( $dragblock_li_user as $dragblock_li_agent ) {
-		if ( preg_match( $dragblock_li_agent, $dragblock_li_name ) ) {
-			$dragblock_li_browser = 'mobile';
+	foreach ( $dragblock_li_agent as $dragblock_li_device ) {
+		if ( preg_match( $dragblock_li_device, $dragblock_li_name ) ) {
+			$dragblock_li_server = 'mobile';
 			break;
 		}
 	}
 	// dev-reply#993.
-	return $dragblock_li_browser;
+	return $dragblock_li_server;
 }
 /**
  * Check Documentation#981
  */
 function dragblock_get_current_os() {
-	static $dragblock_li_device = null;
-	if ( ( $dragblock_li_device ) !== null ) {
+	static $dragblock_li_tablet = null;
+	if ( ( $dragblock_li_tablet ) !== null ) {
 		// dev-reply#9102.
-		return $dragblock_li_device;
+		return $dragblock_li_tablet;
 	}
-	$dragblock_li_device = '';
+	$dragblock_li_tablet = '';
 	if ( empty( $_SERVER['HTTP_USER_AGENT'] ) ) {
-		return $dragblock_li_device;
+		return $dragblock_li_tablet;
 	}
 	$dragblock_li_name = sanitize_text_field( wp_unslash( $_SERVER['HTTP_USER_AGENT'] ) );
-	$dragblock_li_tablet = array(
+	$dragblock_li_patterns = array(
 		'windows' => '/windows/i',
 		'linux' => '/linux/i',
 		'macintosh' => '/macintosh|mac os x/i',
 		'ios' => '/iphone|ipad|ipod/i',
 		'android' => '/android/i',
 	);
-	foreach ( $dragblock_li_tablet as $dragblock_li_patterns => $dragblock_li_agent ) {
-		if ( preg_match( $dragblock_li_agent, $dragblock_li_name ) ) {
-			$dragblock_li_device = $dragblock_li_patterns;
+	foreach ( $dragblock_li_patterns as $dragblock_li_mobile => $dragblock_li_device ) {
+		if ( preg_match( $dragblock_li_device, $dragblock_li_name ) ) {
+			$dragblock_li_tablet = $dragblock_li_mobile;
 		}
 	}
 	// dev-reply#9126.
-	return $dragblock_li_device;
+	return $dragblock_li_tablet;
 }

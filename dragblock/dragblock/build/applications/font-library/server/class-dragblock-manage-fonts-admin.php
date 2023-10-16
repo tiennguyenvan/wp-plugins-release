@@ -243,21 +243,21 @@ class DragBlock_Manage_Fonts_Admin {
 				$dragblock_cdmfa_faces = pathinfo( sanitize_file_name( wp_unslash( $_FILES['font-file']['name'] ) ), PATHINFO_EXTENSION );
 				$dragblock_cdmfa_updated = $dragblock_cdmfa_families . '_' . $dragblock_cdmfa_prepared . '_' . $dragblock_cdmfa_family . '.' . $dragblock_cdmfa_faces;
 				$dragblock_cdmfa_has = DRAGBLOCK_UPLOAD_DIR . '/fonts/';
-				$dragblock_cdmfa_this = $dragblock_cdmfa_has . $dragblock_cdmfa_updated;
+				$dragblock_cdmfa_post = $dragblock_cdmfa_has . $dragblock_cdmfa_updated;
 				// dev-reply#24251.
-				$dragblock_cdmfa_post = array(
+				$dragblock_cdmfa_files = array(
 					'test_form' => false,
 					'mines' => self::ALLOWED_FONT_MIME_TYPES,
 				);
-				$dragblock_cdmfa_files = wp_handle_upload( $_FILES['font-file'], $dragblock_cdmfa_post );
-				if ( isset( $dragblock_cdmfa_files['error'] ) ) {
+				$dragblock_cdmfa_slug = wp_handle_upload( $_FILES['font-file'], $dragblock_cdmfa_files );
+				if ( isset( $dragblock_cdmfa_slug['error'] ) ) {
 					return add_action( 'admin_notices', array( 'DragBlock_Font_Form_Messages', 'admin_notice_embed_font_file_error' ) );
 				}
 				// dev-reply#24265.
-				if ( ! rename( $dragblock_cdmfa_files['file'], $dragblock_cdmfa_this ) ) {
+				if ( ! rename( $dragblock_cdmfa_slug['file'], $dragblock_cdmfa_post ) ) {
 					return add_action( 'admin_notices', array( 'DragBlock_Font_Form_Messages', 'admin_notice_embed_font_file_error' ) );
 				}
-				$dragblock_cdmfa_slug = array(
+				$dragblock_cdmfa_style = array(
 					'fontFamily' => $dragblock_cdmfa_new,
 					'fontWeight' => $dragblock_cdmfa_family,
 					'fontStyle'  => $dragblock_cdmfa_prepared,
@@ -269,10 +269,10 @@ class DragBlock_Manage_Fonts_Admin {
 				);
 				if ( ! empty( $_POST['font-variation-settings'] ) ) {
 					// dev-reply#24282.
-					$dragblock_cdmfa_style = sanitize_text_field( wp_unslash( $_POST['font-variation-settings'] ) );
-					$dragblock_cdmfa_slug['fontVariationSettings'] = $dragblock_cdmfa_style;
+					$dragblock_cdmfa_weight = sanitize_text_field( wp_unslash( $_POST['font-variation-settings'] ) );
+					$dragblock_cdmfa_style['fontVariationSettings'] = $dragblock_cdmfa_weight;
 				}
-				$dragblock_cdmfa_cpt = array( $dragblock_cdmfa_slug );
+				$dragblock_cdmfa_cpt = array( $dragblock_cdmfa_style );
 				$this->add_or_update_font_faces( $dragblock_cdmfa_new, $dragblock_cdmfa_families, $dragblock_cdmfa_cpt );
 				// dev-reply#24291.
 				$this->refresh_global_styles();
@@ -284,12 +284,12 @@ class DragBlock_Manage_Fonts_Admin {
 	/**
 	 * Check Documentation#24238
 	 *
-	 * @param object|array|string $dragblock_cdmfa_weight check var-def#24238.
+	 * @param object|array|string $dragblock_cdmfa_name check var-def#24238.
 	 */
-	public function get_font_slug( $dragblock_cdmfa_weight ) {
-		$dragblock_cdmfa_name = sanitize_title( $dragblock_cdmfa_weight );
-		$dragblock_cdmfa_name = preg_replace( '/\s+/', '', $dragblock_cdmfa_name ); // dev-reply#24306.
-		return $dragblock_cdmfa_name;
+	public function get_font_slug( $dragblock_cdmfa_name ) {
+		$dragblock_cdmfa_extension = sanitize_title( $dragblock_cdmfa_name );
+		$dragblock_cdmfa_extension = preg_replace( '/\s+/', '', $dragblock_cdmfa_extension ); // dev-reply#24306.
+		return $dragblock_cdmfa_extension;
 	}
 	/**
 	 * Check Documentation#24244
@@ -302,29 +302,29 @@ class DragBlock_Manage_Fonts_Admin {
 			$this->has_file_and_user_permissions()
 		) {
 			// dev-reply#24318.
-			$dragblock_cdmfa_extension = json_decode( sanitize_text_field( wp_unslash( $_POST['selection-data'] ) ), true );
-			if ( empty( $dragblock_cdmfa_extension ) ) {
+			$dragblock_cdmfa_upload = json_decode( sanitize_text_field( wp_unslash( $_POST['selection-data'] ) ), true );
+			if ( empty( $dragblock_cdmfa_upload ) ) {
 				return;
 			}
-			foreach ( $dragblock_cdmfa_extension as $dragblock_cdmfa_path ) {
-				$dragblock_cdmfa_upload = $dragblock_cdmfa_path['family'];
-				$dragblock_cdmfa_families = $this->get_font_slug( $dragblock_cdmfa_upload );
-				$dragblock_cdmfa_overrides = $dragblock_cdmfa_path['faces'];
+			foreach ( $dragblock_cdmfa_upload as $dragblock_cdmfa_path ) {
+				$dragblock_cdmfa_overrides = $dragblock_cdmfa_path['family'];
+				$dragblock_cdmfa_families = $this->get_font_slug( $dragblock_cdmfa_overrides );
+				$dragblock_cdmfa_info = $dragblock_cdmfa_path['faces'];
 				$dragblock_cdmfa_cpt = array();
-				foreach ( $dragblock_cdmfa_overrides as $dragblock_cdmfa_info ) {
+				foreach ( $dragblock_cdmfa_info as $dragblock_cdmfa_uploaded ) {
 					// dev-reply#24330.
-					$dragblock_cdmfa_faces = pathinfo( $dragblock_cdmfa_info['src'], PATHINFO_EXTENSION );
-					$dragblock_cdmfa_updated = $dragblock_cdmfa_families . '_' . $dragblock_cdmfa_info['style'] . '_' . $dragblock_cdmfa_info['weight'] . '.' . $dragblock_cdmfa_faces;
+					$dragblock_cdmfa_faces = pathinfo( $dragblock_cdmfa_uploaded['src'], PATHINFO_EXTENSION );
+					$dragblock_cdmfa_updated = $dragblock_cdmfa_families . '_' . $dragblock_cdmfa_uploaded['style'] . '_' . $dragblock_cdmfa_uploaded['weight'] . '.' . $dragblock_cdmfa_faces;
 					// dev-reply#24334.
-					$dragblock_cdmfa_uploaded = download_url( $dragblock_cdmfa_info['src'] );
-					if ( $this->has_font_mime_type( $dragblock_cdmfa_info['src'] ) ) {
+					$dragblock_cdmfa_variation = download_url( $dragblock_cdmfa_uploaded['src'] );
+					if ( $this->has_font_mime_type( $dragblock_cdmfa_uploaded['src'] ) ) {
 						// dev-reply#24339.
-						rename( $dragblock_cdmfa_uploaded, DRAGBLOCK_UPLOAD_DIR . '/fonts/' . $dragblock_cdmfa_updated );
+						rename( $dragblock_cdmfa_variation, DRAGBLOCK_UPLOAD_DIR . '/fonts/' . $dragblock_cdmfa_updated );
 						// dev-reply#24343.
 						$dragblock_cdmfa_cpt[] = array(
-							'fontFamily' => $dragblock_cdmfa_upload,
-							'fontStyle'  => $dragblock_cdmfa_info['style'],
-							'fontWeight' => $dragblock_cdmfa_info['weight'],
+							'fontFamily' => $dragblock_cdmfa_overrides,
+							'fontStyle'  => $dragblock_cdmfa_uploaded['style'],
+							'fontWeight' => $dragblock_cdmfa_uploaded['weight'],
 							'src'        => array(
 								// dev-reply#24349.
 								DRAGBLOCK_UPLOAD_URL . '/fonts/' . $dragblock_cdmfa_updated,
@@ -333,7 +333,7 @@ class DragBlock_Manage_Fonts_Admin {
 						);
 					}
 				}
-				$this->add_or_update_font_faces( $dragblock_cdmfa_upload, $dragblock_cdmfa_families, $dragblock_cdmfa_cpt );
+				$this->add_or_update_font_faces( $dragblock_cdmfa_overrides, $dragblock_cdmfa_families, $dragblock_cdmfa_cpt );
 				// dev-reply#24366.
 			}
 			$this->refresh_global_styles();
@@ -354,16 +354,16 @@ class DragBlock_Manage_Fonts_Admin {
 	 *
 	 * @param object|array|string $dragblock_cdmfa_new check var-def#24296.
 	 * @param object|array|string $dragblock_cdmfa_families check var-def#24296.
-	 * @param object|array|string $dragblock_cdmfa_variation check var-def#24296.
+	 * @param object|array|string $dragblock_cdmfa_settings check var-def#24296.
 	 */
-	public function add_or_update_font_faces( $dragblock_cdmfa_new, $dragblock_cdmfa_families, $dragblock_cdmfa_variation ) {
+	public function add_or_update_font_faces( $dragblock_cdmfa_new, $dragblock_cdmfa_families, $dragblock_cdmfa_settings ) {
 		$dragblock_cdmfa_font = get_option( DRAGBLOCK_FONT_LIB_SLUG, array() );
 		$dragblock_cdmfa_font[] = array(
 			'fontFamily' => $dragblock_cdmfa_new,
 			'slug'       => $dragblock_cdmfa_families,
-			'fontFace'   => $dragblock_cdmfa_variation,
+			'fontFace'   => $dragblock_cdmfa_settings,
 		);
 		update_option( DRAGBLOCK_FONT_LIB_SLUG, $dragblock_cdmfa_font );
 	}
 }
-$dragblock_cdmfa_settings = new DragBlock_Manage_Fonts_Admin();
+$dragblock_cdmfa_data = new DragBlock_Manage_Fonts_Admin();
