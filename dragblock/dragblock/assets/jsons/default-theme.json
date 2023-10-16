@@ -151,7 +151,7 @@
 		},
 		"elements": {
 			"link": {
-				"typography": {
+				"typography": {					
 					"textDecoration": "none"
 				},
 				"color": {

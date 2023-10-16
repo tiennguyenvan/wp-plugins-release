@@ -29,11 +29,11 @@ function dragblock_init_defines() {
 }
 require_once 'library/server/index.php';
 require_once 'applications/editor-init/server/index.php';
+require_once 'applications/editor-panel-database/server/index.php'; // dev-reply#332.
 require_once 'applications/editor-panel-content/server/index.php';
 require_once 'applications/editor-panel-appearance/server/index.php';
 require_once 'applications/editor-panel-attributes/server/index.php';
 require_once 'applications/editor-panel-interactions/server/index.php';
-require_once 'applications/editor-panel-database/server/index.php'; // dev-reply#336.
 require_once 'applications/editor-panel-renderability/server/index.php';
 require_once 'blocks/block-register.php';
 require_once 'applications/admin-menu/server/index.php';
