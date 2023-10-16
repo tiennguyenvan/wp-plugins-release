@@ -99,7 +99,7 @@ function sneeit_core_enqueue_app( $sneeit_core_le_slug, $sneeit_core_le_location
 				'themeSlug' => get_template(),
 				'homeUrl' => home_url(),
 				'uploadUrl' => wp_upload_dir()['url'],
-				'isLocalhost' => SNEEIT_CORE_IS_LOCALHOST,
+				'isLocalhost' => SNEEIT_CORE_IS_LOCAL,
 				// dev-reply#1092.
 				'sneeitLicenseUsername' => get_option( SNEEIT_CORE_KEY_SNEEIT_LICENSE_USERNAME, '' ), // dev-reply#1093.,
 			) );

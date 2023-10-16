@@ -77,7 +77,7 @@ function sneeit_core_enqueue_scripts() {
 		'themeSlug' => get_template(),
 		'homeUrl' => home_url(),
 		'uploadUrl' => wp_upload_dir()['url'],
-		'isLocalhost' => SNEEIT_CORE_IS_LOCALHOST,
+		'isLocalhost' => SNEEIT_CORE_IS_LOCAL,
 		// dev-reply#873.
 		'sneeitLicenseUsername' => get_option( SNEEIT_CORE_KEY_SNEEIT_LICENSE_USERNAME, '' ), // dev-reply#874.,
 	) );
