@@ -2,7 +2,7 @@
 /**
  * DragBlock's Import.
  *
- * @package Options
+ * @package Import options
  */
 
 if ( ! defined( 'ABSPATH' ) ) {
@@ -17,9 +17,9 @@ endif; // dev-reply#29.
  */
 function sneeit_core_demo_import_options() {
 	sneeit_core_ajax_request_verify_die( 'data' );
-	$sneeit_core_o_options = $_POST['data'];
-	foreach ( $sneeit_core_o_options as $sneeit_core_o_post=>$sneeit_core_o_key ) {
-		update_option( $sneeit_core_o_post, $sneeit_core_o_key );
+	$sneeit_core_io_options = $_POST['data'];
+	foreach ( $sneeit_core_io_options as $sneeit_core_io_post=>$sneeit_core_io_key ) {
+		update_option( $sneeit_core_io_post, $sneeit_core_io_key );
 	}
 	echo json_encode( 'done' );
 	die();

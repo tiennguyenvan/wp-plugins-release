@@ -4,7 +4,7 @@ Donate link: https://www.paypal.me/sneeit
 Tags: gutenberg, blocks, gutenberg blocks, editor, block, site builder, drag-and-drop, visual editor
 Requires at least: 5.9
 Requires PHP: 7.4
-Stable tag: 23.10.16-1833
+Stable tag: 23.10.17-0954
 Tested up to: 6.3.2
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
@@ -71,6 +71,7 @@ No need Contact-Form 7 or any other form plugins.
 * Fix wrong session states
 * Wrapper toolbars not show in single post
 * Support link control suggestion type
+* Fix scrolling bugs
 
 = 23.10.13 =
 * Improve editor performance

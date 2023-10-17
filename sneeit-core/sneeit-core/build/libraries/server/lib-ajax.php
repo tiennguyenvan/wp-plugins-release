@@ -23,39 +23,41 @@ function sneeit_core_ajax_register( $sneeit_core_la_action, $sneeit_core_la_call
 /**
  * Check Documentation#48
  *
- * @param object|array|string $sneeit_core_la_fields check var-def#48.
- * @param object|array|string $sneeit_core_la_check check var-def#48.
+ * @param object|array|string $sneeit_core_la_text check var-def#48.
  */
-function sneeit_core_ajax_request_verify_die( $sneeit_core_la_fields = array(), $sneeit_core_la_check = false ) {
-	if ( $sneeit_core_la_check && empty( $_POST['nonce'] ) ) {
-		sneeit_core_ajax_error_die( 'empty nonce' );
+function sneeit_core_ajax_error_die( $sneeit_core_la_text ) {
+	echo json_encode( array( 'error' => $sneeit_core_la_text ) );
+	die();
+}
+/**
+ * Check Documentation#413
+ *
+ * @param object|array|string $sneeit_core_la_fields check var-def#413.
+ */
+function sneeit_core_ajax_request_verify_die( $sneeit_core_la_fields = array() ) {
+	if ( empty( $_POST['nonce'] ) ) {
+		sneeit_core_ajax_error_die( esc_html__( 'empty nonce', 'sneeit-core' ) );
 	}
-	if ( $sneeit_core_la_check && ! wp_verify_nonce( $_POST['nonce'], SNEEIT_CORE_KEY_NONCE ) ) {
-		sneeit_core_ajax_error_die( 'wrong nonce' );
+	if ( ! wp_verify_nonce( $_POST['nonce'], SNEEIT_CORE_KEY_NONCE ) ) {
+		sneeit_core_ajax_error_die( esc_html__( 'Timeout! Please reload the page.', 'sneeit-core' ) );
 	}
 	if ( is_string( $sneeit_core_la_fields ) ) {
 		$sneeit_core_la_fields = explode( ',', $sneeit_core_la_fields );
 	}
-	foreach ( $sneeit_core_la_fields as $sneeit_core_la_nonce ) {
-		$sneeit_core_la_nonce = trim( $sneeit_core_la_nonce );
-		if ( ! isset( $_POST[ $sneeit_core_la_nonce ] ) ) {
-			sneeit_core_ajax_error_die( 'missing required field: ' . $sneeit_core_la_nonce );
+	if ( ! empty( $sneeit_core_la_fields ) ) {
+		foreach ( $sneeit_core_la_fields as $sneeit_core_la_post ) {
+			$sneeit_core_la_post = trim( $sneeit_core_la_post );
+			if ( ! isset( $_POST[ $sneeit_core_la_post ] ) ) {
+				/* translators: see trans-note#428 */
+				sneeit_core_ajax_error_die( sprintf( esc_html__( 'Missing required field: %s', 'sneeit-core' ), $sneeit_core_la_post ) );
+			}
 		}
 	}
 }
 /**
- * Check Documentation#426
+ * Check Documentation#433
  *
- * @param object|array|string $sneeit_core_la_post check var-def#426.
- */
-function sneeit_core_ajax_error_die( $sneeit_core_la_post ) {
-	echo json_encode( array( 'error' => $sneeit_core_la_post ) );
-	die();
-}
-/**
- * Check Documentation#431
- *
- * @param object|array|string $sneeit_core_la_field check var-def#431.
+ * @param object|array|string $sneeit_core_la_field check var-def#433.
  */
 function sneeit_core_ajax_succeed_die( $sneeit_core_la_field ) {
 	echo json_encode( $sneeit_core_la_field );

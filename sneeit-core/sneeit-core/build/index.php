@@ -30,5 +30,6 @@ if( SNEEIT_CORE_MICROSERVICE ) :
 	define( 'SNEEIT_CORE_VERSION', SNEEIT_CORE_IS_LOCAL ? time() : '23.10.14' );
 	require_once SNEEIT_CORE_BUILD_PATH . 'libraries/server/index.php';
 	require_once SNEEIT_CORE_BUILD_PATH . 'applications/admin-menu/server/index.php';
+	require_once SNEEIT_CORE_BUILD_PATH . 'applications/import/server/index.php';
 	require_once SNEEIT_CORE_BUILD_PATH . 'applications/activate/server/index.php';
 endif;

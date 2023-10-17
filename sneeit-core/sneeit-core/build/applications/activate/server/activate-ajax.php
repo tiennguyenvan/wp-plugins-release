@@ -11,7 +11,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 if( is_admin() ) :
 	add_action( 'wp_ajax_nopriv_sneeit_core_update_sneeit_license', 'sneeit_core_update_sneeit_license' );
 	add_action( 'wp_ajax_sneeit_core_update_sneeit_license', 'sneeit_core_update_sneeit_license' );
-endif; // dev-reply#28.
+endif; // dev-reply#29.
 /**
  * Check Documentation#26
  */
