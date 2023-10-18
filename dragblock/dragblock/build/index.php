@@ -10,26 +10,29 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 define( 'DRAGBLOCK_SITE_LOCALE', get_locale() );
 define( 'DRAGBLOCK_URL', plugin_dir_url( DRAGBLOCK_FILE_PATH ) );
+define( 'DRAGBLOCK_ASSETS_URL', DRAGBLOCK_URL . 'assets/' );
+define( 'DRAGBLOCK_IMAGES_URL', DRAGBLOCK_ASSETS_URL . 'images/' );
 define( 'DRAGBLOCK_PATH', plugin_dir_path( DRAGBLOCK_FILE_PATH ) );
 define( 'DRAGBLOCK_BUILD_URL', DRAGBLOCK_URL . 'build/' );
 define( 'DRAGBLOCK_BUILD_PATH', DRAGBLOCK_PATH . 'build/' );
 define( 'DRAGBLOCK_APP_URL', DRAGBLOCK_BUILD_URL . 'applications/' );
 define( 'DRAGBLOCK_APP_PATH', DRAGBLOCK_BUILD_PATH . 'applications/' );
-// dev-reply#311.
+define( 'DRAGBLOCK_NONCE_SLUG', 'dragBlockNonce' );
+// dev-reply#414.
 define( 'DRAGBLOCK_CUSTOM_DEFAULT_STYLE', false );
 add_action( 'init', 'dragblock_init_defines', 1 );
 /**
- * Check Documentation#312
+ * Check Documentation#415
  */
 function dragblock_init_defines() {
 	$dragblock_b_upload = wp_upload_dir();
 	define( 'DRAGBLOCK_UPLOAD_DIR', $dragblock_b_upload['basedir'] . '/dragblock' );
 	define( 'DRAGBLOCK_UPLOAD_URL', $dragblock_b_upload['baseurl'] . '/dragblock' );
-	// dev-reply#323.
+	// dev-reply#426.
 }
 require_once 'library/server/index.php';
 require_once 'applications/editor-init/server/index.php';
-require_once 'applications/editor-panel-database/server/index.php'; // dev-reply#332.
+require_once 'applications/editor-panel-database/server/index.php'; // dev-reply#435.
 require_once 'applications/editor-panel-content/server/index.php';
 require_once 'applications/editor-panel-appearance/server/index.php';
 require_once 'applications/editor-panel-attributes/server/index.php';

@@ -59,7 +59,7 @@ function dragblock_database_collector( $dragblock_dr_dragblock ) {
 					'fields' => 'ids',
 				);
 				foreach ( $dragblock_dr_current['params'] as $dragblock_dr_parsed ) {
-					if ( ! empty( $dragblock_dr_parsed['disabled'] ) || empty( $dragblock_dr_parsed['value'] ) ) {
+					if ( ! empty( $dragblock_dr_parsed['disabled'] ) || $dragblock_dr_parsed['value'] === '' ) {
 						continue;
 					}
 					// dev-reply#1097.
@@ -87,15 +87,15 @@ function dragblock_database_collector( $dragblock_dr_dragblock ) {
 				if ( 'WP_Query' === $dragblock_dr_query ) {
 					$dragblock_queries[ $dragblock_current_query_list_id ] = new WP_Query( $dragblock_dr_item );
 					$dragblock_queries[ $dragblock_current_query_list_id ] = $dragblock_queries[ $dragblock_current_query_list_id ]->posts;
-					// dev-reply#10133.
+					// dev-reply#10132.
 					$dragblock_current_query_list_item_id = null;
 				} elseif ( 'WP_Query_Default' === $dragblock_dr_query ) {
-					// dev-reply#10136.
+					// dev-reply#10135.
 					$dragblock_current_query_list_item_id = null;
 					$dragblock_current_query_list_id = 'default';
 				}
 			}
-			// dev-reply#10142.
+			// dev-reply#10141.
 			if ( 'parse_item' === $dragblock_dr_query ) {
 				if ( ! empty( $dragblock_dr_id['query_id'] ) ) {
 					$dragblock_current_query_list_id = $dragblock_dr_id['query_id'];
