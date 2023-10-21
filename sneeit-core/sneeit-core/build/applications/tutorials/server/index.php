@@ -2,10 +2,10 @@
 /**
  * DragBlock's Applications.
  *
- * @package Example
+ * @package Tutorials
  */
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
-require_once '___-register.php';
+require_once 'tutorials-register.php';

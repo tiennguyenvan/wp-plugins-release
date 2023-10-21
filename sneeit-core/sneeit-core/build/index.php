@@ -32,4 +32,5 @@ if( SNEEIT_CORE_MICROSERVICE ) :
 	require_once SNEEIT_CORE_BUILD_PATH . 'applications/admin-menu/server/index.php';
 	require_once SNEEIT_CORE_BUILD_PATH . 'applications/import/server/index.php';
 	require_once SNEEIT_CORE_BUILD_PATH . 'applications/activate/server/index.php';
+	require_once SNEEIT_CORE_BUILD_PATH . 'applications/tutorials/server/index.php';
 endif;

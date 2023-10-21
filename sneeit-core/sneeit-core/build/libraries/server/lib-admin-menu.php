@@ -21,14 +21,16 @@ function sneeit_core_admin_submenu_register( $sneeit_core_lam_slug, $sneeit_core
 		 * Check Documentation#56
 		 */
 		function() use ( $sneeit_core_lam_slug, $sneeit_core_lam_title ) {
+			$sneeit_core_lam_sneeit = get_option( 'sneeit_license_username', '' );
+			$sneeit_core_lam_license = sneeit_core_is_license_required();
 			add_submenu_page(
-				SNEEIT_CORE_SLUG, // dev-reply#59.
+				SNEEIT_CORE_SLUG, // dev-reply#512.
 				$sneeit_core_lam_title,
-				$sneeit_core_lam_title,
-				'manage_options', // dev-reply#512.
-				SNEEIT_CORE_SLUG . '-' . $sneeit_core_lam_slug, // dev-reply#513.
+				$sneeit_core_lam_title . ( ( $sneeit_core_lam_slug ) === 'activate' && $sneeit_core_lam_license && ! $sneeit_core_lam_sneeit ? ' <span class="awaiting-mod">!</span>' : '' ),
+				'manage_options', // dev-reply#515.
+				SNEEIT_CORE_SLUG . '-' . $sneeit_core_lam_slug, // dev-reply#516.
 				/**
-				 * Check Documentation#513
+				 * Check Documentation#515
 				 */
 				function() use ( $sneeit_core_lam_slug ) {
 					echo '<div class="' . SNEEIT_CORE_SLUG . '-' . $sneeit_core_lam_slug . ' app"></div>';
@@ -38,41 +40,41 @@ function sneeit_core_admin_submenu_register( $sneeit_core_lam_slug, $sneeit_core
 	);
 }
 /**
- * Check Documentation#520
+ * Check Documentation#522
  *
- * @param object|array|string $sneeit_core_lam_slug check var-def#520.
+ * @param object|array|string $sneeit_core_lam_slug check var-def#522.
  */
 function sneeit_core_admin_bar_menu_register( $sneeit_core_lam_slug ) {
 	/**
-	 * Check Documentation#522
+	 * Check Documentation#524
 	 */
 	add_action( 'wp_before_admin_bar_render', function() use ( $sneeit_core_lam_slug ) {
 		$sneeit_core_lam_title = ucwords( str_replace( '-', ' ', $sneeit_core_lam_slug ) );
 		global $wp_admin_bar;
-		$sneeit_core_lam_wp = SNEEIT_CORE_SLUG . '-' . $sneeit_core_lam_slug;
-		$sneeit_core_lam_admin = isset( $_GET['app'] ) ? $_GET['app'] : '';
-		// dev-reply#531.
-		if ( empty( $sneeit_core_lam_admin ) ) {
+		$sneeit_core_lam_username = SNEEIT_CORE_SLUG . '-' . $sneeit_core_lam_slug;
+		$sneeit_core_lam_required = isset( $_GET['app'] ) ? $_GET['app'] : '';
+		// dev-reply#534.
+		if ( empty( $sneeit_core_lam_required ) ) {
 			$wp_admin_bar->add_menu(
 				array(
-					'id'    => $sneeit_core_lam_wp,
+					'id'    => $sneeit_core_lam_username,
 					'title' => 'Launch ' . $sneeit_core_lam_title,
-					'href'  => add_query_arg( 'app', $sneeit_core_lam_wp ),
+					'href'  => add_query_arg( 'app', $sneeit_core_lam_username ),
 					'meta'  => array(
-						'class' => $sneeit_core_lam_wp,
-						// dev-reply#540.
+						'class' => $sneeit_core_lam_username,
+						// dev-reply#543.
 					),
 				)
 			);
-		} elseif ( ( $sneeit_core_lam_admin ) === $sneeit_core_lam_wp ) {
-			$sneeit_core_lam_bar = remove_query_arg( 'app', $_SERVER['REQUEST_URI'] );
+		} elseif ( ( $sneeit_core_lam_required ) === $sneeit_core_lam_username ) {
+			$sneeit_core_lam_wp = remove_query_arg( 'app', $_SERVER['REQUEST_URI'] );
 			$wp_admin_bar->add_menu(
 				array(
-					'id'    => $sneeit_core_lam_wp . '-exit',
+					'id'    => $sneeit_core_lam_username . '-exit',
 					'title' => 'Exit ' . $sneeit_core_lam_title,
-					'href'  => $sneeit_core_lam_bar,
+					'href'  => $sneeit_core_lam_wp,
 					'meta'  => array(
-						'class' => $sneeit_core_lam_wp . '-exit',
+						'class' => $sneeit_core_lam_username . '-exit',
 					),
 				)
 			);
