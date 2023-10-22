@@ -4,7 +4,7 @@ Donate link: https://www.paypal.me/sneeit
 Tags: gutenberg, blocks, gutenberg blocks, editor, block, site builder, drag-and-drop, visual editor
 Requires at least: 5.9
 Requires PHP: 7.4
-Stable tag: 23.10.21
+Stable tag: 23.10.22
 Tested up to: 6.3.2
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
@@ -66,6 +66,11 @@ language plugin. Saving time by not creating many different pages.
 No need Contact-Form 7 or any other form plugins.
 
 == Changelog ==
+= 23.10.22 =
+* Support: Appender for empty wrapper blocks
+* Fixed: cannot add styles for paragraphs in post editor
+* Fixed: remove empty post images
+
 = 23.10.19 =
 * Minimized right side panels and highlight block that has database queries
 * Show real post content in the Editor

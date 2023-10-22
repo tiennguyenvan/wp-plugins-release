@@ -53,19 +53,19 @@ function dragblock_uid_inserter( $dragblock_au_source, $dragblock_au_dragblock, 
 	}
 	global $dragblock_uids;
 	$dragblock_au_parsed = $dragblock_au_dragblock['blockName'] . $dragblock_au_dragblock['attrs']['dragBlockClientId'];
-	// dev-reply#780.
+	// dev-reply#782.
 	$dragblock_au_key = 'class="';
 	$dragblock_au_short = strpos( $dragblock_au_source, $dragblock_au_key );
 	$dragblock_au_class = strpos( $dragblock_au_source, '>' );
-	// dev-reply#785.
+	// dev-reply#787.
 	if ( false === $dragblock_au_class ) {
 		return $dragblock_au_source;
 	}
-	// dev-reply#790.
+	// dev-reply#792.
 	if ( false === $dragblock_au_short ) {
 		return (
 			substr( $dragblock_au_source, 0, $dragblock_au_class ) .
-			'class="' . ( $dragblock_uids[ $dragblock_au_parsed ] ) . '"' .
+			' class="' . ( $dragblock_uids[ $dragblock_au_parsed ] ) . '"' .
 			substr( $dragblock_au_source, $dragblock_au_class )
 		);
 	}

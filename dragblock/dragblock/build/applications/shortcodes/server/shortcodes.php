@@ -123,21 +123,22 @@ add_shortcode( 'dragblock.post.image.src', 'dragblock_shortcode_post_image_src' 
  * @param object|array|string $dragblock_s_current check var-def#2488.
  */
 function dragblock_shortcode_post_image_src( $dragblock_s_queries, $dragblock_s_current = null ) {
-	$dragblock_s_snippet = ( ( $dragblock_s_current ) === 0 || ! ! $dragblock_s_current ? DRAGBLOCK_IMAGES_URL . 'demos/blank.png' : 'data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=' );
+	// dev-reply#24121.
+	$dragblock_s_snippet = '';
 	if ( ( $dragblock_s_current ) !== 0 && ! $dragblock_s_current ) {
 		$dragblock_s_current = dragblock_get_current_list_query_id();
 	}
 	if ( ( $dragblock_s_current ) !== 0 && ! $dragblock_s_current ) {
-		// dev-reply#24126.
+		// dev-reply#24127.
 		return $dragblock_s_snippet;
 	}
 	$dragblock_s_def = isset( $dragblock_s_queries['size'] ) ? sanitize_text_field( $dragblock_s_queries['size'] ) : 'full';
-	// dev-reply#24132.
+	// dev-reply#24133.
 	if ( has_post_thumbnail( $dragblock_s_current ) ) {
 		$dragblock_s_len = get_the_post_thumbnail_url( $dragblock_s_current, $dragblock_s_def );
 		return $dragblock_s_len;
 	}
-	// dev-reply#24138.
+	// dev-reply#24139.
 	$dragblock_s_word = get_post_field( 'post_content', $dragblock_s_current );
 	if ( $dragblock_s_word ) {
 		$dragblock_s_count = new DOMDocument();
@@ -147,7 +148,7 @@ function dragblock_shortcode_post_image_src( $dragblock_s_queries, $dragblock_s_
 			$dragblock_s_len = $dragblock_s_max[0]->getAttribute( 'src' );
 			return $dragblock_s_len;
 		}
-		// dev-reply#24152.
+		// dev-reply#24153.
 		$dragblock_s_blank = '/<iframe.*?src="(https?:\/\/www\.youtube\.com\/embed\/([\w-]+))".*?><\/iframe>/i';
 		preg_match( $dragblock_s_blank, $dragblock_s_word, $dragblock_s_src );
 		if ( count( $dragblock_s_src ) > 0 ) {
@@ -156,16 +157,16 @@ function dragblock_shortcode_post_image_src( $dragblock_s_queries, $dragblock_s_
 			return $dragblock_s_len;
 		}
 	}
-	// dev-reply#24165.
+	// dev-reply#24166.
 	return $dragblock_s_snippet;
-	// dev-reply#24169.
+	// dev-reply#24170.
 }
 add_shortcode( 'dragblock.post.image.srcset', 'dragblock_shortcode_post_image_srcset' );
 /**
- * Check Documentation#24128
+ * Check Documentation#24129
  *
- * @param object|array|string $dragblock_s_queries check var-def#24128.
- * @param object|array|string $dragblock_s_current check var-def#24128.
+ * @param object|array|string $dragblock_s_queries check var-def#24129.
+ * @param object|array|string $dragblock_s_current check var-def#24129.
  */
 function dragblock_shortcode_post_image_srcset( $dragblock_s_queries, $dragblock_s_current = null ) {
 	if ( ( $dragblock_s_current ) !== 0 && ! $dragblock_s_current ) {
@@ -174,44 +175,44 @@ function dragblock_shortcode_post_image_srcset( $dragblock_s_queries, $dragblock
 	if ( ( $dragblock_s_current ) !== 0 && ! $dragblock_s_current || ! has_post_thumbnail( $dragblock_s_current ) ) {
 		return '';
 	}
-	// dev-reply#24196.
+	// dev-reply#24197.
 	$dragblock_s_image = get_post_thumbnail_id( $dragblock_s_current );
 	$dragblock_s_url = wp_get_attachment_image_srcset( $dragblock_s_image );
 	return $dragblock_s_url;
 }
 add_shortcode( 'dragblock.post.image.sizes', 'dragblock_shortcode_post_image_sizes' );
 /**
- * Check Documentation#24142
+ * Check Documentation#24143
  *
- * @param object|array|string $dragblock_s_queries check var-def#24142.
- * @param object|array|string $dragblock_s_current check var-def#24142.
+ * @param object|array|string $dragblock_s_queries check var-def#24143.
+ * @param object|array|string $dragblock_s_current check var-def#24143.
  */
 function dragblock_shortcode_post_image_sizes( $dragblock_s_queries, $dragblock_s_current ) {
 	$dragblock_s_def = isset( $dragblock_s_queries['size'] ) ? sanitize_text_field( $dragblock_s_queries['size'] ) : 'full';
-	// dev-reply#24211.
+	// dev-reply#24212.
 	if ( 'full' === $dragblock_s_def ) {
 		return '';
 	}
-	// dev-reply#24216.
+	// dev-reply#24217.
 	if ( 'large' === $dragblock_s_def ) {
 		return '75vw';
-		// dev-reply#24219.
+		// dev-reply#24220.
 	}
 	if ( 'medium' === $dragblock_s_def ) {
 		return '50vw';
-		// dev-reply#24224.
+		// dev-reply#24225.
 	}
 	if ( 'thumbnail' === $dragblock_s_def ) {
 		return '25vw';
-		// dev-reply#24229.
+		// dev-reply#24230.
 	}
 }
 add_shortcode( 'dragblock.post.date', 'dragblock_shortcode_post_date' );
 /**
- * Check Documentation#24164
+ * Check Documentation#24165
  *
- * @param object|array|string $dragblock_s_queries check var-def#24164.
- * @param object|array|string $dragblock_s_current check var-def#24164.
+ * @param object|array|string $dragblock_s_queries check var-def#24165.
+ * @param object|array|string $dragblock_s_current check var-def#24165.
  */
 function dragblock_shortcode_post_date( $dragblock_s_queries, $dragblock_s_current = null ) {
 	if ( ( $dragblock_s_current ) !== 0 && ! $dragblock_s_current ) {
@@ -220,20 +221,20 @@ function dragblock_shortcode_post_date( $dragblock_s_queries, $dragblock_s_curre
 	if ( ( $dragblock_s_current ) !== 0 && ! $dragblock_s_current ) {
 		return '';
 	}
-	// dev-reply#24245.
+	// dev-reply#24246.
 	$dragblock_s_content = get_post_field( 'post_date', $dragblock_s_current );
-	// dev-reply#24248.
+	// dev-reply#24249.
 	$dragblock_s_doc = get_option( 'date_format' );
-	// dev-reply#24251.
+	// dev-reply#24252.
 	$dragblock_s_img = date_i18n( $dragblock_s_doc, strtotime( $dragblock_s_content ) );
 	return $dragblock_s_img;
 }
 add_shortcode( 'dragblock.post.author.url', 'dragblock_shortcode_post_author_url' );
 /**
- * Check Documentation#24181
+ * Check Documentation#24182
  *
- * @param object|array|string $dragblock_s_queries check var-def#24181.
- * @param object|array|string $dragblock_s_current check var-def#24181.
+ * @param object|array|string $dragblock_s_queries check var-def#24182.
+ * @param object|array|string $dragblock_s_current check var-def#24182.
  */
 function dragblock_shortcode_post_author_url( $dragblock_s_queries, $dragblock_s_current = null ) {
 	if ( ( $dragblock_s_current ) !== 0 && ! $dragblock_s_current ) {
@@ -242,18 +243,18 @@ function dragblock_shortcode_post_author_url( $dragblock_s_queries, $dragblock_s
 	if ( ( $dragblock_s_current ) !== 0 && ! $dragblock_s_current ) {
 		return '';
 	}
-	// dev-reply#24267.
+	// dev-reply#24268.
 	$dragblock_s_tags = get_post_field( 'post_author', $dragblock_s_current );
-	// dev-reply#24270.
+	// dev-reply#24271.
 	$dragblock_s_pattern = get_author_posts_url( $dragblock_s_tags );
 	return esc_url_raw( $dragblock_s_pattern );
 }
 add_shortcode( 'dragblock.post.author.name', 'dragblock_shortcode_post_author_name' );
 /**
- * Check Documentation#24196
+ * Check Documentation#24197
  *
- * @param object|array|string $dragblock_s_queries check var-def#24196.
- * @param object|array|string $dragblock_s_current check var-def#24196.
+ * @param object|array|string $dragblock_s_queries check var-def#24197.
+ * @param object|array|string $dragblock_s_current check var-def#24197.
  */
 function dragblock_shortcode_post_author_name( $dragblock_s_queries, $dragblock_s_current = null ) {
 	if ( ( $dragblock_s_current ) !== 0 && ! $dragblock_s_current ) {
@@ -262,19 +263,19 @@ function dragblock_shortcode_post_author_name( $dragblock_s_queries, $dragblock_
 	if ( ( $dragblock_s_current ) !== 0 && ! $dragblock_s_current ) {
 		return '';
 	}
-	// dev-reply#24286.
+	// dev-reply#24287.
 	$dragblock_s_tags = get_post_field( 'post_author', $dragblock_s_current );
-	// dev-reply#24289.
+	// dev-reply#24290.
 	$dragblock_s_matches = get_the_author_meta( 'display_name', $dragblock_s_tags );
-	// dev-reply#24292.
+	// dev-reply#24293.
 	return $dragblock_s_matches;
 }
 add_shortcode( 'dragblock.post.author.avatar.src', 'dragblock_shortcode_post_author_avatar_src' );
 /**
- * Check Documentation#24212
+ * Check Documentation#24213
  *
- * @param object|array|string $dragblock_s_queries check var-def#24212.
- * @param object|array|string $dragblock_s_current check var-def#24212.
+ * @param object|array|string $dragblock_s_queries check var-def#24213.
+ * @param object|array|string $dragblock_s_current check var-def#24213.
  */
 function dragblock_shortcode_post_author_avatar_src( $dragblock_s_queries, $dragblock_s_current = null ) {
 	if ( ( $dragblock_s_current ) !== 0 && ! $dragblock_s_current ) {
@@ -283,18 +284,18 @@ function dragblock_shortcode_post_author_avatar_src( $dragblock_s_queries, $drag
 	if ( ( $dragblock_s_current ) !== 0 && ! $dragblock_s_current ) {
 		return '';
 	}
-	// dev-reply#24305.
+	// dev-reply#24306.
 	$dragblock_s_tags = get_post_field( 'post_author', $dragblock_s_current );
-	// dev-reply#24308.
+	// dev-reply#24309.
 	$dragblock_s_video = get_avatar_url( $dragblock_s_tags );
 	return esc_url_raw( $dragblock_s_video );
 }
 add_shortcode( 'dragblock.post.cat.name', 'dragblock_shortcode_post_cat_name' );
 /**
- * Check Documentation#24227
+ * Check Documentation#24228
  *
- * @param object|array|string $dragblock_s_queries check var-def#24227.
- * @param object|array|string $dragblock_s_current check var-def#24227.
+ * @param object|array|string $dragblock_s_queries check var-def#24228.
+ * @param object|array|string $dragblock_s_current check var-def#24228.
  */
 function dragblock_shortcode_post_cat_name( $dragblock_s_queries, $dragblock_s_current = null ) {
 	if ( ( $dragblock_s_current ) !== 0 && ! $dragblock_s_current ) {
@@ -311,14 +312,14 @@ function dragblock_shortcode_post_cat_name( $dragblock_s_queries, $dragblock_s_c
 			}
 		}
 	}
-	return ''; // dev-reply#24341.
+	return ''; // dev-reply#24342.
 }
 add_shortcode( 'dragblock.post.cat.url', 'dragblock_shortcode_post_cat_url' );
 /**
- * Check Documentation#24246
+ * Check Documentation#24247
  *
- * @param object|array|string $dragblock_s_queries check var-def#24246.
- * @param object|array|string $dragblock_s_current check var-def#24246.
+ * @param object|array|string $dragblock_s_queries check var-def#24247.
+ * @param object|array|string $dragblock_s_current check var-def#24247.
  */
 function dragblock_shortcode_post_cat_url( $dragblock_s_queries, $dragblock_s_current ) {
 	if ( ( $dragblock_s_current ) !== 0 && ! $dragblock_s_current ) {
@@ -335,14 +336,14 @@ function dragblock_shortcode_post_cat_url( $dragblock_s_queries, $dragblock_s_cu
 			}
 		}
 	}
-	return '#empty_cat_id'; // dev-reply#24368.
+	return '#empty_cat_id'; // dev-reply#24369.
 }
 add_shortcode( 'dragblock.post.cat.id', 'dragblock_shortcode_post_cat_id' );
 /**
- * Check Documentation#24265
+ * Check Documentation#24266
  *
- * @param object|array|string $dragblock_s_queries check var-def#24265.
- * @param object|array|string $dragblock_s_current check var-def#24265.
+ * @param object|array|string $dragblock_s_queries check var-def#24266.
+ * @param object|array|string $dragblock_s_current check var-def#24266.
  */
 function dragblock_shortcode_post_cat_id( $dragblock_s_queries, $dragblock_s_current = null ) {
 	if ( ( $dragblock_s_current ) !== 0 && ! $dragblock_s_current ) {
@@ -361,12 +362,12 @@ function dragblock_shortcode_post_cat_id( $dragblock_s_queries, $dragblock_s_cur
 	}
 	return - 1;
 }
-// dev-reply#24400.
+// dev-reply#24401.
 add_shortcode( 'dragblock.share.url.twitter', 'dragblock_shortcode_share_url_twitter' );
 /**
- * Check Documentation#24285
+ * Check Documentation#24286
  *
- * @param object|array|string $dragblock_s_queries check var-def#24285.
+ * @param object|array|string $dragblock_s_queries check var-def#24286.
  */
 function dragblock_shortcode_share_url_twitter( $dragblock_s_queries ) {
 	if ( empty( $_SERVER['REQUEST_URI'] ) ) {
@@ -376,9 +377,9 @@ function dragblock_shortcode_share_url_twitter( $dragblock_s_queries ) {
 }
 add_shortcode( 'dragblock.share.url.facebook', 'dragblock_shortcode_share_url_facebook' );
 /**
- * Check Documentation#24293
+ * Check Documentation#24294
  *
- * @param object|array|string $dragblock_s_queries check var-def#24293.
+ * @param object|array|string $dragblock_s_queries check var-def#24294.
  */
 function dragblock_shortcode_share_url_facebook( $dragblock_s_queries ) {
 	if ( empty( $_SERVER['REQUEST_URI'] ) ) {
@@ -388,9 +389,9 @@ function dragblock_shortcode_share_url_facebook( $dragblock_s_queries ) {
 }
 add_shortcode( 'dragblock.share.url.whatsapp', 'dragblock_shortcode_share_url_whatsapp' );
 /**
- * Check Documentation#24301
+ * Check Documentation#24302
  *
- * @param object|array|string $dragblock_s_queries check var-def#24301.
+ * @param object|array|string $dragblock_s_queries check var-def#24302.
  */
 function dragblock_shortcode_share_url_whatsapp( $dragblock_s_queries ) {
 	if ( empty( $_SERVER['REQUEST_URI'] ) ) {
@@ -400,9 +401,9 @@ function dragblock_shortcode_share_url_whatsapp( $dragblock_s_queries ) {
 }
 add_shortcode( 'dragblock.share.url.telegram', 'dragblock_shortcode_share_url_telegram' );
 /**
- * Check Documentation#24309
+ * Check Documentation#24310
  *
- * @param object|array|string $dragblock_s_queries check var-def#24309.
+ * @param object|array|string $dragblock_s_queries check var-def#24310.
  */
 function dragblock_shortcode_share_url_telegram( $dragblock_s_queries ) {
 	if ( empty( $_SERVER['REQUEST_URI'] ) ) {
@@ -412,9 +413,9 @@ function dragblock_shortcode_share_url_telegram( $dragblock_s_queries ) {
 }
 add_shortcode( 'dragblock.share.url.tumblr', 'dragblock_shortcode_share_url_tumblr' );
 /**
- * Check Documentation#24317
+ * Check Documentation#24318
  *
- * @param object|array|string $dragblock_s_queries check var-def#24317.
+ * @param object|array|string $dragblock_s_queries check var-def#24318.
  */
 function dragblock_shortcode_share_url_tumblr( $dragblock_s_queries ) {
 	if ( empty( $_SERVER['REQUEST_URI'] ) ) {
@@ -424,9 +425,9 @@ function dragblock_shortcode_share_url_tumblr( $dragblock_s_queries ) {
 }
 add_shortcode( 'dragblock.share.url.reddit', 'dragblock_shortcode_share_url_reddit' );
 /**
- * Check Documentation#24325
+ * Check Documentation#24326
  *
- * @param object|array|string $dragblock_s_queries check var-def#24325.
+ * @param object|array|string $dragblock_s_queries check var-def#24326.
  */
 function dragblock_shortcode_share_url_reddit( $dragblock_s_queries ) {
 	if ( empty( $_SERVER['REQUEST_URI'] ) ) {
@@ -436,9 +437,9 @@ function dragblock_shortcode_share_url_reddit( $dragblock_s_queries ) {
 }
 add_shortcode( 'dragblock.share.url.linkedin', 'dragblock_shortcode_share_url_linkedin' );
 /**
- * Check Documentation#24333
+ * Check Documentation#24334
  *
- * @param object|array|string $dragblock_s_queries check var-def#24333.
+ * @param object|array|string $dragblock_s_queries check var-def#24334.
  */
 function dragblock_shortcode_share_url_linkedin( $dragblock_s_queries ) {
 	if ( empty( $_SERVER['REQUEST_URI'] ) ) {
@@ -448,9 +449,9 @@ function dragblock_shortcode_share_url_linkedin( $dragblock_s_queries ) {
 }
 add_shortcode( 'dragblock.share.url.gmail', 'dragblock_shortcode_share_url_gmail' );
 /**
- * Check Documentation#24341
+ * Check Documentation#24342
  *
- * @param object|array|string $dragblock_s_queries check var-def#24341.
+ * @param object|array|string $dragblock_s_queries check var-def#24342.
  */
 function dragblock_shortcode_share_url_gmail( $dragblock_s_queries ) {
 	if ( empty( $_SERVER['REQUEST_URI'] ) ) {
@@ -460,9 +461,9 @@ function dragblock_shortcode_share_url_gmail( $dragblock_s_queries ) {
 }
 add_shortcode( 'dragblock.share.url.email', 'dragblock_shortcode_share_url_email' );
 /**
- * Check Documentation#24349
+ * Check Documentation#24350
  *
- * @param object|array|string $dragblock_s_queries check var-def#24349.
+ * @param object|array|string $dragblock_s_queries check var-def#24350.
  */
 function dragblock_shortcode_share_url_email( $dragblock_s_queries ) {
 	if ( empty( $_SERVER['REQUEST_URI'] ) ) {
@@ -472,18 +473,18 @@ function dragblock_shortcode_share_url_email( $dragblock_s_queries ) {
 }
 add_shortcode( 'dragblock.share.url.navigator', 'dragblock_shortcode_share_url_navigator' );
 /**
- * Check Documentation#24357
+ * Check Documentation#24358
  *
- * @param object|array|string $dragblock_s_queries check var-def#24357.
+ * @param object|array|string $dragblock_s_queries check var-def#24358.
  */
 function dragblock_shortcode_share_url_navigator( $dragblock_s_queries ) {
 	return 'javascript:navigator.share?navigator.share({url:location.href}):null';
 }
 add_filter( 'kses_allowed_protocols', 'dragblock_kses_allowed_protocols', 1 );
 /**
- * Check Documentation#24362
+ * Check Documentation#24363
  *
- * @param object|array|string $dragblock_s_format check var-def#24362.
+ * @param object|array|string $dragblock_s_format check var-def#24363.
  */
 function dragblock_kses_allowed_protocols( $dragblock_s_format ) {
 	$dragblock_s_format[] = 'data';
