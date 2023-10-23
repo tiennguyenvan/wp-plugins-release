@@ -27595,7 +27595,7 @@
       "files": {
         "regular": "https://raw.githubusercontent.com/tiennguyenvan/wp-plugins-release/main/dragblock/fonts/ps400b314bd48671746e7.woff2",
         "italic": "https://raw.githubusercontent.com/tiennguyenvan/wp-plugins-release/main/dragblock/fonts/ps400i1acdcb23bd60cdf8.woff2",
-        "100regular": "https://raw.githubusercontent.com/tiennguyenvan/wp-plugins-release/main/dragblock/fonts/ps100a167de315d6f8820c.woff2",
+        "100": "https://raw.githubusercontent.com/tiennguyenvan/wp-plugins-release/main/dragblock/fonts/ps100a167de315d6f8820c.woff2",
         "100italic": "https://raw.githubusercontent.com/tiennguyenvan/wp-plugins-release/main/dragblock/fonts/ps100i32d4f9e62509b70.woff2",
         "500": "https://raw.githubusercontent.com/tiennguyenvan/wp-plugins-release/main/dragblock/fonts/ps500e334064d2786be51.woff2",
         "500italic": "https://raw.githubusercontent.com/tiennguyenvan/wp-plugins-release/main/dragblock/fonts/ps500i6be24bfb7e9bcd79.woff2",
