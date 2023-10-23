@@ -17447,6 +17447,24 @@
       "menu": "https://raw.githubusercontent.com/tiennguyenvan/wp-plugins-release/main/dragblock/fonts/mnk700e0d450417c4fcdb2.woff2"
     },
     {
+      "family": "Myron Hector",
+      "variants": [
+        "regular"
+      ],
+      "subsets": [
+        "latin",
+        "latin-ext"
+      ],
+      "version": "v69",
+      "lastModified": "2023-10-23",
+      "files": {
+        "regular": "https://raw.githubusercontent.com/tiennguyenvan/wp-plugins-release/main/dragblock/fonts/mh400c06dbab5c0196.ttf"
+      },
+      "category": "sans-serif",
+      "kind": "webfonts#webfont",
+      "menu": "https://raw.githubusercontent.com/tiennguyenvan/wp-plugins-release/main/dragblock/fonts/mh400c06dbab5c0196.ttf"
+    },
+    {
       "family": "M PLUS 1",
       "variants": [
         "100",
@@ -27579,7 +27597,7 @@
       "family": "Poly Sans",
       "variants": [
         "regular",
-        "100",        
+        "100",
         "500",
         "600",
         "italic",
@@ -30471,6 +30489,23 @@
       "category": "serif",
       "kind": "webfonts#webfont",
       "menu": "http://fonts.gstatic.com/s/stixtwotext/v11/YA9Gr02F12Xkf5whdwKf11l0jbKkeidMTtZ5Yihg2ROZURU.ttf"
+    },
+    {
+      "family": "Sargento Gorila",
+      "variants": [
+        "regular"
+      ],
+      "subsets": [
+        "latin"
+      ],
+      "version": "v69",
+      "lastModified": "2023-10-23",
+      "files": {
+        "regular": "https://raw.githubusercontent.com/tiennguyenvan/wp-plugins-release/main/dragblock/fonts/sg400e4e3a955e7919b0a.ttf"
+      },
+      "category": "serif",
+      "kind": "webfonts#webfont",
+      "menu": "https://raw.githubusercontent.com/tiennguyenvan/wp-plugins-release/main/dragblock/fonts/sg400e4e3a955e7919b0a.ttf"
     },
     {
       "family": "Sacramento",
