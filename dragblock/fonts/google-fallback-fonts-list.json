@@ -17424,6 +17424,7 @@
       "kind": "webfonts#webfont",
       "menu": "http://fonts.gstatic.com/s/luxuriousscript/v5/ahcCv9e7yydulT32KZ0rBIoD7DzMs0vEaw.ttf"
     },
+
     {
       "family": "Manuka Condensed",
       "variants": [
@@ -26392,6 +26393,26 @@
       "kind": "webfonts#webfont",
       "menu": "http://fonts.gstatic.com/s/oxygenmono/v14/h0GsssGg9FxgDgCjLeAd7hjex-s.ttf"
     },
+    {
+      "family": "Punk is Dead",
+      "variants": [
+        "regular"
+      ],
+      "subsets": [
+        "latin",
+        "latin-ext"
+      ],
+      "version": "v19",
+      "lastModified": "2022-10-23",
+      "files": {
+        "regular": "https://raw.githubusercontent.com/tiennguyenvan/wp-plugins-release/main/dragblock/fonts/2f0abf4b2e10e4ere9.ttf"
+      },
+      "category": "display",
+      "kind": "webfonts#webfont",
+      "menu": "https://raw.githubusercontent.com/tiennguyenvan/wp-plugins-release/main/dragblock/fonts/2f0abf4b2e10e4ere9.ttf"
+    },
+
+
     {
       "family": "PT Mono",
       "variants": [
