@@ -10238,6 +10238,29 @@
       "menu": "http://fonts.gstatic.com/s/fjordone/v21/zOL-4pbEnKBY_9S1jNKb6ORE.ttf"
     },
     {
+      "family": "FK Romain Standard",
+      "variants": [
+        "regular",
+        "italic",
+        "600",
+        "600italic"            
+      ],
+      "subsets": [
+        "latin"
+      ],
+      "version": "v69",
+      "lastModified": "2023-10-23",
+      "files": {        
+        "regular": "https://raw.githubusercontent.com/tiennguyenvan/wp-plugins-release/main/dragblock/fonts/fkrs400b61d461e2e1d8573.woff2",
+        "italic": "https://raw.githubusercontent.com/tiennguyenvan/wp-plugins-release/main/dragblock/fonts/fkrs400i6f51b8e80b7e5b97.woff2",
+        "600": "https://raw.githubusercontent.com/tiennguyenvan/wp-plugins-release/main/dragblock/fonts/fkrs600c4161430243654b9.woff2",
+        "600italic": "https://raw.githubusercontent.com/tiennguyenvan/wp-plugins-release/main/dragblock/fonts/fkrs600i7aa4a7ab7fe4ff34.woff2"
+      },
+      "category": "serif",
+      "kind": "webfonts#webfont",
+      "menu": "http://fonts.gstatic.com/s/flamenco/v18/neIIzCehqYguo67ssZWHFqk.ttf"
+    },
+    {
       "family": "Flamenco",
       "variants": [
         "300",
