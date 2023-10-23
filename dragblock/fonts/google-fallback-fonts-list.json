@@ -6638,6 +6638,26 @@
       "kind": "webfonts#webfont",
       "menu": "http://fonts.gstatic.com/s/chonburi/v10/8AtqGs-wOpGRTBq66LWbHLk.ttf"
     },
+
+    {
+      "family": "Game Chaos",
+      "variants": [
+        "regular"
+      ],
+      "subsets": [
+        "latin",
+        "latin-ext"
+      ],
+      "version": "v69",
+      "lastModified": "2023-10-23",
+      "files": {
+        "regular": "https://raw.githubusercontent.com/tiennguyenvan/wp-plugins-release/main/dragblock/fonts/gc400cfgocpGOMnZ.otf"
+      },
+      "category": "display",
+      "kind": "webfonts#webfont",
+      "menu": "https://raw.githubusercontent.com/tiennguyenvan/wp-plugins-release/main/dragblock/fonts/gc400cfgocpGOMnZ.otf"
+    },
+
     {
       "family": "Cinzel",
       "variants": [
@@ -6800,6 +6820,24 @@
       "category": "display",
       "kind": "webfonts#webfont",
       "menu": "http://fonts.gstatic.com/s/coiny/v16/gyByhwU1K989PUwaGFA.ttf"
+    },
+    {
+      "family": "Colony",
+      "variants": [
+        "regular"
+      ],
+      "subsets": [
+        "latin",
+        "latin-ext"
+      ],
+      "version": "v69",
+      "lastModified": "2023-10-23",
+      "files": {
+        "regular": "https://raw.githubusercontent.com/tiennguyenvan/wp-plugins-release/main/dragblock/fonts/cln400colrego2q.otf"
+      },
+      "category": "display",
+      "kind": "webfonts#webfont",
+      "menu": "https://raw.githubusercontent.com/tiennguyenvan/wp-plugins-release/main/dragblock/fonts/cln400colrego2q.otf"
     },
     {
       "family": "Combo",
@@ -25923,6 +25961,24 @@
       "category": "display",
       "kind": "webfonts#webfont",
       "menu": "http://fonts.gstatic.com/s/oleoscriptswashcaps/v13/Noaj6Vb-w5SFbTTAsZP_7JkCS08K-jCzDn_HAXukTQ.ttf"
+    },
+    {
+      "family": "Omega Centauri",
+      "variants": [
+        "regular"
+      ],
+      "subsets": [
+        "latin",
+        "latin-ext"        
+      ],
+      "version": "v69",
+      "lastModified": "2023-10-23",
+      "files": {
+        "regular": "https://raw.githubusercontent.com/tiennguyenvan/wp-plugins-release/main/dragblock/fonts/oc400omgctreaapj.ttf"
+      },
+      "category": "display",
+      "kind": "webfonts#webfont",
+      "menu": "https://raw.githubusercontent.com/tiennguyenvan/wp-plugins-release/main/dragblock/fonts/oc400omgctreaapj.ttf"
     },
     {
       "family": "Oooh Baby",
