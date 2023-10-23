@@ -17424,7 +17424,6 @@
       "kind": "webfonts#webfont",
       "menu": "http://fonts.gstatic.com/s/luxuriousscript/v5/ahcCv9e7yydulT32KZ0rBIoD7DzMs0vEaw.ttf"
     },
-
     {
       "family": "Manuka Condensed",
       "variants": [
@@ -17437,15 +17436,15 @@
         "latin-ext",
         "vietnamese"
       ],
-      "version": "v6",
-      "lastModified": "2023-10-22",
+      "version": "v69",
+      "lastModified": "2023-10-23",
       "files": {
-        "700": "https://raw.githubusercontent.com/tiennguyenvan/wp-plugins-release/main/dragblock/fonts/e0d450417c4fcdb2700.woff2",
-        "900": "https://raw.githubusercontent.com/tiennguyenvan/wp-plugins-release/main/dragblock/fonts/c6806ee6b9a6284f900.woff2"
+        "700": "https://raw.githubusercontent.com/tiennguyenvan/wp-plugins-release/main/dragblock/fonts/mnk700e0d450417c4fcdb2.woff2",
+        "900": "https://raw.githubusercontent.com/tiennguyenvan/wp-plugins-release/main/dragblock/fonts/mnk900c6806ee6b9a6284f.woff2"
       },
       "category": "sans-serif",
       "kind": "webfonts#webfont",
-      "menu": "https://raw.githubusercontent.com/tiennguyenvan/wp-plugins-release/main/dragblock/fonts/e0d450417c4fcdb2700.woff2"
+      "menu": "https://raw.githubusercontent.com/tiennguyenvan/wp-plugins-release/main/dragblock/fonts/mnk700e0d450417c4fcdb2.woff2"
     },
     {
       "family": "M PLUS 1",
@@ -26402,17 +26401,15 @@
         "latin",
         "latin-ext"
       ],
-      "version": "v19",
-      "lastModified": "2022-10-23",
+      "version": "v69",
+      "lastModified": "2023-10-23",
       "files": {
-        "regular": "https://raw.githubusercontent.com/tiennguyenvan/wp-plugins-release/main/dragblock/fonts/2f0abf4b2e10e4ere9.ttf"
+        "regular": "https://raw.githubusercontent.com/tiennguyenvan/wp-plugins-release/main/dragblock/fonts/pkd400r2f0abf4b2e10e4ere9.ttf"
       },
       "category": "display",
       "kind": "webfonts#webfont",
-      "menu": "https://raw.githubusercontent.com/tiennguyenvan/wp-plugins-release/main/dragblock/fonts/2f0abf4b2e10e4ere9.ttf"
+      "menu": "https://raw.githubusercontent.com/tiennguyenvan/wp-plugins-release/main/dragblock/fonts/pkd400r2f0abf4b2e10e4ere9.ttf"
     },
-
-
     {
       "family": "PT Mono",
       "variants": [
@@ -27577,6 +27574,37 @@
       "category": "serif",
       "kind": "webfonts#webfont",
       "menu": "http://fonts.gstatic.com/s/poly/v16/MQpb-W6wKNitdLGKrw.ttf"
+    },
+    {
+      "family": "Poly Sans",
+      "variants": [
+        "regular",
+        "100",        
+        "500",
+        "600",
+        "italic",
+        "100italic",
+        "500italic",
+        "600italic"
+      ],
+      "subsets": [
+        "latin"
+      ],
+      "version": "v69",
+      "lastModified": "2023-10-23",
+      "files": {
+        "regular": "https://raw.githubusercontent.com/tiennguyenvan/wp-plugins-release/main/dragblock/fonts/ps400b314bd48671746e7.woff2",
+        "italic": "https://raw.githubusercontent.com/tiennguyenvan/wp-plugins-release/main/dragblock/fonts/ps400i1acdcb23bd60cdf8.woff2",
+        "100regular": "https://raw.githubusercontent.com/tiennguyenvan/wp-plugins-release/main/dragblock/fonts/ps100a167de315d6f8820c.woff2",
+        "100italic": "https://raw.githubusercontent.com/tiennguyenvan/wp-plugins-release/main/dragblock/fonts/ps100i32d4f9e62509b70.woff2",
+        "500": "https://raw.githubusercontent.com/tiennguyenvan/wp-plugins-release/main/dragblock/fonts/ps500e334064d2786be51.woff2",
+        "500italic": "https://raw.githubusercontent.com/tiennguyenvan/wp-plugins-release/main/dragblock/fonts/ps500i6be24bfb7e9bcd79.woff2",
+        "600": "https://raw.githubusercontent.com/tiennguyenvan/wp-plugins-release/main/dragblock/fonts/ps600caa65695070c604f.woff2",
+        "600italic": "https://raw.githubusercontent.com/tiennguyenvan/wp-plugins-release/main/dragblock/fonts/ps600i7f8638c9585902a6.woff2"
+      },
+      "category": "serif",
+      "kind": "webfonts#webfont",
+      "menu": "https://raw.githubusercontent.com/tiennguyenvan/wp-plugins-release/main/dragblock/fonts/ps400b314bd48671746e7.woff2"
     },
     {
       "family": "Pompiere",
