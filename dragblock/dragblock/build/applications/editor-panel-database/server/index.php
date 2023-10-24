@@ -11,3 +11,4 @@ if ( ! defined( 'ABSPATH' ) ) {
 require_once 'database-enqueue.php';
 require_once 'database-render.php';
 require_once 'database-loader.php';
+require_once 'database-stats.php';

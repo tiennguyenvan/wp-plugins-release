@@ -32,7 +32,8 @@ class DragBlock_React_App {
 			'dragblock-font-library-app',
 			'dragBlockFontLib',
 			array(
-				'googleFontsDataUrl' => DRAGBLOCK_URL . 'assets/jsons/google-fallback-fonts-list.json',
+				// dev-reply#329.
+				'googleFontsDataUrl' => 'https://raw.githubusercontent.com/tiennguyenvan/wp-plugins-release/main/dragblock/fonts/google-fallback-fonts-list.json',
 				'adminUrl'           => admin_url(),
 				'uploadUrl'           => DRAGBLOCK_UPLOAD_URL,
 				'adminMenuSlug' => DRAGBLOCK_ADMIN_MENU_SLUG,

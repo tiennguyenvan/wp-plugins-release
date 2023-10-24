@@ -65,31 +65,16 @@ add_filter( 'update_plugins_sneeit.com', 'sneeit_core_update_plugins_sneeit', 1,
  * @param object|array|string $sneeit_core_lu_stylesheet check var-def#1143.
  */
 function sneeit_core_update_plugins_sneeit( $sneeit_core_lu_update, array $sneeit_core_lu_version, string $sneeit_core_lu_matches, $sneeit_core_lu_stylesheet ) {
-	// dev-reply#1198.
-	$sneeit_core_lu_plugin = dirname( SNEEIT_CORE_PLUGIN_PATH ) . '/dragblock/dragblock.php';
-	if ( true ) {
-		$sneeit_core_lu_file = file_get_contents( $sneeit_core_lu_plugin );
-		if ( ( $sneeit_core_lu_file ) !== false && strpos( $sneeit_core_lu_file, 'Update URI:' ) === false ) {
-			// dev-reply#11108.
-			$sneeit_core_lu_dragblock = strpos( $sneeit_core_lu_file, ' * License:' );
-			if ( ( $sneeit_core_lu_dragblock ) !== false ) {
-				$sneeit_core_lu_path = " * Update URI: https://sneeit.com\n";
-				$sneeit_core_lu_content = substr_replace( $sneeit_core_lu_file, $sneeit_core_lu_path, $sneeit_core_lu_dragblock, 0 );
-				file_put_contents( $sneeit_core_lu_plugin, $sneeit_core_lu_content );
-			}
-		}
-	}
-	// dev-reply#11120.
 	if ( ! empty( $sneeit_core_lu_update ) ) {
 		return $sneeit_core_lu_update;
 	}
-	$sneeit_core_lu_insert = $sneeit_core_lu_version['TextDomain'];
-	if ( empty( $sneeit_core_lu_insert ) ) {
+	$sneeit_core_lu_plugin = $sneeit_core_lu_version['TextDomain'];
+	if ( empty( $sneeit_core_lu_plugin ) ) {
 		return;
 	}
-	// dev-reply#11135.
+	// dev-reply#11166.
 	$sneeit_core_lu_locales = wp_remote_get(
-		"https://raw.githubusercontent.com/tiennguyenvan/wp-plugins-release/main/{$sneeit_core_lu_insert}/{$sneeit_core_lu_insert}/{$sneeit_core_lu_insert}.php",
+		"https://raw.githubusercontent.com/tiennguyenvan/wp-plugins-release/main/{$sneeit_core_lu_plugin}/{$sneeit_core_lu_plugin}/{$sneeit_core_lu_plugin}.php",
 		array(
 			'user-agent' => 'tiennguyenvan',
 		)
@@ -100,7 +85,7 @@ function sneeit_core_update_plugins_sneeit( $sneeit_core_lu_update, array $sneei
 	} else {
 		$sneeit_core_lu_response = wp_remote_retrieve_body( $sneeit_core_lu_locales );
 	}
-	// dev-reply#11151.
+	// dev-reply#11182.
 	$sneeit_core_lu_output = $sneeit_core_lu_version['Version'];
 	if ( preg_match( '/Version:\s+(\S+)/', $sneeit_core_lu_response, $sneeit_core_lu_new ) ) {
 		$sneeit_core_lu_output = $sneeit_core_lu_new[1];
@@ -114,41 +99,41 @@ function sneeit_core_update_plugins_sneeit( $sneeit_core_lu_update, array $sneei
 		'slug'    => $sneeit_core_lu_version['TextDomain'],
 		'version' => $sneeit_core_lu_output,
 		'url'     => '',
-		'package' => "https://github.com/tiennguyenvan/wp-plugins-release/raw/main/{$sneeit_core_lu_insert}/{$sneeit_core_lu_insert}.zip",
+		'package' => "https://github.com/tiennguyenvan/wp-plugins-release/raw/main/{$sneeit_core_lu_plugin}/{$sneeit_core_lu_plugin}.zip",
 	);
 }
-// dev-reply#11172.
+// dev-reply#11203.
 add_action( 'activated_plugin', 'sneeit_core_refresh_theme_update_checker' );
 add_action( 'deactivated_plugin', 'sneeit_core_refresh_theme_update_checker' );
 /**
- * Check Documentation#11100
+ * Check Documentation#1185
  *
- * @param object|array|string $sneeit_core_lu_pos check var-def#11100.
+ * @param object|array|string $sneeit_core_lu_file check var-def#1185.
  */
-function sneeit_core_refresh_theme_update_checker( $sneeit_core_lu_pos ) {
+function sneeit_core_refresh_theme_update_checker( $sneeit_core_lu_file ) {
 	delete_site_transient( 'update_themes' );
 	delete_transient( 'update_themes' );
 }
 add_action( 'after_switch_theme', 'sneeit_core_refresh_plugin_update_checker' );
 /**
- * Check Documentation#11106
+ * Check Documentation#1191
  *
- * @param object|array|string $sneeit_core_lu_pos check var-def#11106.
+ * @param object|array|string $sneeit_core_lu_file check var-def#1191.
  */
-function sneeit_core_refresh_plugin_update_checker( $sneeit_core_lu_pos ) {
+function sneeit_core_refresh_plugin_update_checker( $sneeit_core_lu_file ) {
 	delete_site_transient( 'update_plugins' );
 	delete_transient( 'update_plugins' );
 }
-// dev-reply#11190.
+// dev-reply#11221.
 add_action( 'admin_footer', 'sneeit_core_refresh_update_checker' );
 /**
- * Check Documentation#11113
+ * Check Documentation#1198
  *
- * @param object|array|string $sneeit_core_lu_pos check var-def#11113.
+ * @param object|array|string $sneeit_core_lu_file check var-def#1198.
  */
-function sneeit_core_refresh_update_checker( $sneeit_core_lu_pos ) {
+function sneeit_core_refresh_update_checker( $sneeit_core_lu_file ) {
 	if ( empty( get_transient( 'sneeit_update_checker' ) ) ) {
-		set_transient( 'sneeit_update_checker', true, 60 * 60 * 24 ); // dev-reply#11195.
+		set_transient( 'sneeit_update_checker', true, 60 * 60 * 24 ); // dev-reply#11226.
 		delete_site_transient( 'update_themes' );
 		delete_transient( 'update_themes' );
 		delete_site_transient( 'update_plugins' );

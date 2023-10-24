@@ -21,7 +21,7 @@ function sneeit_core_demo_activate_plugin( $sneeit_core_ip_slug ) {
 	$sneeit_core_ip_plugin = sneeit_core_plugin_install_file( $sneeit_core_ip_slug );
 	if ( ! $sneeit_core_ip_plugin ) {
 		/* translators: see trans-note#1010 */
-		sneeit_core_ajax_error_die( sprintf( esc_html__( '"%s" has invalid file', 'sneeit-core' ), $sneeit_core_ip_slug ) );
+		sneeit_core_ajax_error_die( sprintf( esc_html__( '"%s" has invalid file to install', 'sneeit-core' ), $sneeit_core_ip_slug ) );
 	}
 	// dev-reply#1018.
 	wp_cache_delete( 'plugins', 'plugins' );

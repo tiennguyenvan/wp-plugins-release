@@ -14,22 +14,23 @@ global $dragblock_current_query_list_item_id;
 $dragblock_queries = null;
 $dragblock_current_query_list_id = null;
 $dragblock_current_query_list_item_id = null;
+// dev-reply#1022.
 add_filter( 'render_block_data', 'dragblock_database_collector', 10, 1 );
 /**
- * Check Documentation#109
+ * Check Documentation#1010
  *
- * @param object|array|string $dragblock_dr_dragblock check var-def#109.
+ * @param object|array|string $dragblock_dr_dragblock check var-def#1010.
  */
 function dragblock_database_collector( $dragblock_dr_dragblock ) {
-	// dev-reply#1037.
+	// dev-reply#1045.
 	if ( empty( $dragblock_dr_dragblock['attrs']['dragBlockClientId'] ) ) {
 		return $dragblock_dr_dragblock;
 	}
-	// dev-reply#1048.
+	// dev-reply#1056.
 	global $dragblock_queries;
 	global $dragblock_current_query_list_id;
 	global $dragblock_current_query_list_item_id;
-	// dev-reply#1054.
+	// dev-reply#1062.
 	if ( empty( $dragblock_queries ) ) {
 		global $wp_query;
 		$dragblock_current_query_list_id = 'default';
@@ -41,7 +42,7 @@ function dragblock_database_collector( $dragblock_dr_dragblock ) {
 			}
 		}
 	}
-	// dev-reply#1069.
+	// dev-reply#1077.
 	if ( ! empty( $dragblock_dr_dragblock['attrs']['dragBlockQueries'] ) ) {
 		foreach ( $dragblock_dr_dragblock['attrs']['dragBlockQueries'] as $dragblock_dr_current ) {
 			if ( ! empty( $dragblock_dr_current['disabled'] ) ) {
@@ -53,7 +54,7 @@ function dragblock_database_collector( $dragblock_dr_dragblock ) {
 				$dragblock_dr_current['params'] = array();
 			}
 			$dragblock_dr_id = $dragblock_dr_current['params'];
-			// dev-reply#1085.
+			// dev-reply#1093.
 			if ( in_array( $dragblock_dr_query, array( 'WP_Query', 'WP_Query_Default' ) ) ) {
 				$dragblock_dr_item = array(
 					'fields' => 'ids',
@@ -62,21 +63,21 @@ function dragblock_database_collector( $dragblock_dr_dragblock ) {
 					if ( ! empty( $dragblock_dr_parsed['disabled'] ) || $dragblock_dr_parsed['value'] === '' ) {
 						continue;
 					}
-					// dev-reply#1097.
+					// dev-reply#10105.
 					$dragblock_dr_block = $dragblock_dr_parsed['slug'];
 					$dragblock_dr_wp = $dragblock_dr_parsed['value'];
-					// dev-reply#10103.
+					// dev-reply#10111.
 					if ( 'ignore_loaded_posts' === $dragblock_dr_block ) {
 						if ( $dragblock_dr_wp ) {
 							$dragblock_dr_item['post__not_in'] = array_merge( ...array_values( $dragblock_queries ) );
 						}
 						continue;
 					}
-					// dev-reply#10112.
+					// dev-reply#10120.
 					if ( strpos( $dragblock_dr_wp, '[dragblock.' ) !== false ) {
 						$dragblock_dr_wp = do_shortcode( $dragblock_dr_wp );
 					}
-					// dev-reply#10117.
+					// dev-reply#10125.
 					if ( strpos( $dragblock_dr_block, '__' ) !== false ) {
 						$dragblock_dr_item[ $dragblock_dr_block ] = explode( ',', $dragblock_dr_wp );
 						continue;
@@ -87,15 +88,15 @@ function dragblock_database_collector( $dragblock_dr_dragblock ) {
 				if ( 'WP_Query' === $dragblock_dr_query ) {
 					$dragblock_queries[ $dragblock_current_query_list_id ] = new WP_Query( $dragblock_dr_item );
 					$dragblock_queries[ $dragblock_current_query_list_id ] = $dragblock_queries[ $dragblock_current_query_list_id ]->posts;
-					// dev-reply#10132.
+					// dev-reply#10140.
 					$dragblock_current_query_list_item_id = null;
 				} elseif ( 'WP_Query_Default' === $dragblock_dr_query ) {
-					// dev-reply#10135.
+					// dev-reply#10143.
 					$dragblock_current_query_list_item_id = null;
 					$dragblock_current_query_list_id = 'default';
 				}
 			}
-			// dev-reply#10141.
+			// dev-reply#10149.
 			if ( 'parse_item' === $dragblock_dr_query ) {
 				if ( ! empty( $dragblock_dr_id['query_id'] ) ) {
 					$dragblock_current_query_list_id = $dragblock_dr_id['query_id'];
