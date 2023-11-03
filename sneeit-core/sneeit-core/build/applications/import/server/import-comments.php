@@ -30,12 +30,10 @@ function sneeit_core_demo_import_comments() {
 			$sneeit_core_ic_real = array(
 				'comment_post_ID' => (int) $sneeit_core_ic_comments,
 			);
-			if ( ! empty( $sneeit_core_ic_args['email'] ) ) {
-				$sneeit_core_ic_real['comment_author_email'] = $sneeit_core_ic_args['email'];
-			}
-			if ( ! empty( $sneeit_core_ic_args['name'] ) ) {
-				$sneeit_core_ic_real['comment_author'] = $sneeit_core_ic_args['email'];
-			}
+			$sneeit_core_ic_real['comment_author_email'] = ( empty( $sneeit_core_ic_args['email'] ) ? 'nguyentien.jobs@gmail.com' : $sneeit_core_ic_args['email'] );
+			$sneeit_core_ic_real['comment_author'] = ( empty( $sneeit_core_ic_args['name'] ) ? 'Tien Nguyen' : $sneeit_core_ic_args['name'] );
+			$sneeit_core_ic_real['comment_content'] = ( empty( $sneeit_core_ic_args['content'] ) ? 'Just a comment' : $sneeit_core_ic_args['content'] );
+			// dev-reply#534.
 			$sneeit_core_ic_parent = wp_insert_comment( $sneeit_core_ic_real );
 			if ( empty( $sneeit_core_ic_parent ) ) {
 				continue;
@@ -49,6 +47,7 @@ function sneeit_core_demo_import_comments() {
 		if ( count( $sneeit_core_ic_post ) ) {
 			foreach ( $sneeit_core_ic_post as $sneeit_core_ic_comment => $sneeit_core_ic_post_data ) {
 				$sneeit_core_ic_post_post = sneeit_core_get_demo_comment_id( $sneeit_core_ic_post_data );
+				$sneeit_core_ic_post[ $sneeit_core_ic_comment ] = $sneeit_core_ic_post_post;
 				if ( empty( $sneeit_core_ic_post_post ) ) {
 					continue;
 				}
@@ -59,6 +58,6 @@ function sneeit_core_demo_import_comments() {
 			}
 		}
 	}
-	echo json_encode( 'done' );
+	echo json_encode( $sneeit_core_ic_post );
 	die();
 }

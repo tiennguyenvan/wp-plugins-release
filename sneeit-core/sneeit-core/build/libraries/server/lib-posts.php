@@ -44,21 +44,19 @@ function sneeit_core_get_demo_post_id( $sneeit_core_lp_post = null ) {
  */
 function sneeit_core_get_demo_comment_id( $sneeit_core_lp_posts ) {
 	$sneeit_core_lp_comment = get_comment( $sneeit_core_lp_posts );
-	// dev-reply#437.
-	if ( empty( $sneeit_core_lp_comment ) ) {
-		// dev-reply#439.
-		$sneeit_core_lp_comments = get_comments( array(
-			'status'      => 'approve',
-			'number' => 1,
-			'meta_key' => 'sneeit-demo-id',
-			'meta_value' => (int) $sneeit_core_lp_posts,
-			'meta_compare' => '=',
-		) );
-		// dev-reply#449.
-		if ( empty( $sneeit_core_lp_comments ) ) {
-			return null;
-		}
-		return $sneeit_core_lp_comments[0]->ID;
+	if ( $sneeit_core_lp_comment ) {
+		return $sneeit_core_lp_comment->ID;
 	}
-	return $sneeit_core_lp_posts;
+	// dev-reply#440.
+	$sneeit_core_lp_comments = get_comments( array(
+		'fields' => 'ids', // dev-reply#444.
+		'meta_key' => 'sneeit-demo-id',
+		'meta_value' => $sneeit_core_lp_posts,
+		'meta_compare' => '=',
+	) );
+	// dev-reply#451.
+	if ( empty( $sneeit_core_lp_comments ) ) {
+		return null;
+	}
+	return $sneeit_core_lp_comments[0];
 }

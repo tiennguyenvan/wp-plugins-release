@@ -38,6 +38,7 @@ require_once 'applications/editor-panel-appearance/server/index.php';
 require_once 'applications/editor-panel-attributes/server/index.php';
 require_once 'applications/editor-panel-interactions/server/index.php';
 require_once 'applications/editor-panel-renderability/server/index.php';
+require_once 'applications/tutorials/server/index.php';
 require_once 'blocks/block-register.php';
 require_once 'applications/admin-menu/server/index.php';
 require_once 'applications/form-entries/server/index.php';

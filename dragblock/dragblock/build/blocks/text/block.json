@@ -20,6 +20,10 @@
   "editorStyle": "file:./index.css",
   "style": "file:./style-index.css",
   "attributes": {
+    "dragBlockTagName": {
+      "type": "string",
+      "default": "span"
+    },
     "dragBlockText": {
       "type": "array",
       "default": ""

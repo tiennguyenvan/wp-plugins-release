@@ -1,0 +1,161 @@
+{
+   "domain": "sneeit-core",
+   "locale_data": {
+      "sneeit-core": {
+         "\"%s\" has invalid file to install": [
+            "நிறுவுவதற்கு \"%s\" தவறான கோப்பு உள்ளது"
+         ],
+         "\"%s\" has invalid slug": [
+            "\"%s\" இல் தவறான ஸ்லக் உள்ளது"
+         ],
+         "\"%s\" is activated": [
+            "\"%s\" செயல்படுத்தப்பட்டது"
+         ],
+         "Activate \"%s\"": [
+            "செயல்படுத்து \"%s\""
+         ],
+         "Activate the Theme": [
+            "தீம் செயல்படுத்தவும்"
+         ],
+         "Activating \"%s\"": [
+            "\"%s\" செயல்படுத்துகிறது"
+         ],
+         "Activating ...": [
+            "செயல்படுத்துகிறது ..."
+         ],
+         "All": [
+            "அனைத்தும்"
+         ],
+         "Cannot active \"%1$s\": file %2$s %3$s": [
+            "\"%1$s\" செயலில் இல்லை: கோப்பு %2$s %3$s"
+         ],
+         "Cannot copy font %s": [
+            "%s எழுத்துருவை நகலெடுக்க முடியாது"
+         ],
+         "Cannot create dragblock directory": [
+            "டிராக் பிளாக் கோப்பகத்தை உருவாக்க முடியாது"
+         ],
+         "Cannot create dragblock/fonts directory": [
+            "டிராக் பிளாக்/எழுத்துரு கோப்பகத்தை உருவாக்க முடியாது"
+         ],
+         "Cannot create folder of %s": [
+            "%s இன் கோப்புறையை உருவாக்க முடியாது"
+         ],
+         "Cannot download \"%1$s\": %2$s": [
+            "\"%1$s\" ஐ பதிவிறக்க முடியாது: %2$s"
+         ],
+         "Cannot download font %s": [
+            "%s எழுத்துருவைப் பதிவிறக்க முடியாது"
+         ],
+         "Cannot unzip \"%1$s\": %2$s": [
+            "\"%1$s\"ஐ அன்சிப் செய்ய முடியாது: %2$s"
+         ],
+         "Cannot upload %s": [
+            "%s ஐ பதிவேற்ற முடியாது"
+         ],
+         "Check Live Website": [
+            "நேரடி இணையதளத்தை சரிபார்க்கவும்"
+         ],
+         "Demo Details": [
+            "டெமோ விவரங்கள்"
+         ],
+         "Empty Import Content": [
+            "காலி இறக்குமதி உள்ளடக்கம்"
+         ],
+         "Failed to Import!": [
+            "இறக்குமதி செய்ய முடியவில்லை!"
+         ],
+         "Failed to activate \"%s\"": [
+            "\"%s\"ஐ செயல்படுத்துவதில் தோல்வி"
+         ],
+         "Finished": [
+            "முடிந்தது"
+         ],
+         "Import Demos": [
+            "டெமோக்களை இறக்குமதி செய்"
+         ],
+         "Imported successfully. Congratulation!": [
+            "இறக்குமதி செய்யப்பட்டது. வாழ்த்துக்கள்!"
+         ],
+         "Importing! Do not close or reload this page.": [
+            "இறக்குமதி செய்கிறது! இந்தப் பக்கத்தை மூடவோ அல்லது மீண்டும் ஏற்றவோ வேண்டாம்."
+         ],
+         "In %1$s (#%2$s/%3$s), cannot create %4$s for %5$s: %6$s": [
+            "%1$s இல் (#%2$s/%3$s), %5$sக்கு %4$s ஐ உருவாக்க முடியாது: %6$s"
+         ],
+         "In %1$s, cannot set %4$s of %5$s for #%2$s/%3$s": [
+            "%1$s இல், #%2$s/%3$sக்கு %5$s இன் %4$s ஐ அமைக்க முடியாது"
+         ],
+         "In %1$s, cannot set %4$s of %5$s for #%2$s/%3$s: %6$s": [
+            "%1$s இல், #%2$s/%3$sக்கு %5$s இன் %4$s ஐ அமைக்க முடியாது: %6$s"
+         ],
+         "Listing...": [
+            "பட்டியல்..."
+         ],
+         "Missing required field: %s": [
+            "தேவையான புலம் இல்லை: %s"
+         ],
+         "Please activate \"%s\" on your site to use premium features": [
+            "பிரீமியம் அம்சங்களைப் பயன்படுத்த உங்கள் தளத்தில் \"%s\" ஐச் செயல்படுத்தவும்"
+         ],
+         "Please activate the theme before importing demos. Thank you!": [
+            "டெமோக்களை இறக்குமதி செய்வதற்கு முன் கருப்பொருளை செயல்படுத்தவும். நன்றி!"
+         ],
+         "Please do not close or reload this tab when activating \"%s\"": [
+            " \"%s\" ஐ செயல்படுத்தும் போது இந்த தாவலை மூடவோ அல்லது மீண்டும் ஏற்றவோ வேண்டாம்"
+         ],
+         "Please do not close or reload this tab when updating \"%s\"!": [
+            "\"%s\"ஐ புதுப்பிக்கும் போது இந்த தாவலை மூடவோ அல்லது மீண்டும் ஏற்றவோ வேண்டாம்!"
+         ],
+         "Please select the content you want to import": [
+            "நீங்கள் இறக்குமதி செய்ய விரும்பும் உள்ளடக்கத்தைத் தேர்ந்தெடுக்கவும்"
+         ],
+         "Reading Demo Details ...": [
+            "டெமோ விவரங்களைப் படிக்கிறது ..."
+         ],
+         "Redirecting ...": [
+            "திசைமாற்றுகிறது ..."
+         ],
+         "Redirecting to \"%s\"'s host": [
+            " \"%s\" இன் ஹோஸ்டுக்கு திருப்பி விடப்படுகிறது"
+         ],
+         "Refresh the Activation": [
+            "செயல்படுத்தலைப் புதுப்பிக்கவும்"
+         ],
+         "Retry to Activate": [
+            "செயல்படுத்த மீண்டும் முயற்சிக்கவும்"
+         ],
+         "Timeout! Please reload the page.": [
+            "நேரம் முடிந்தது! பக்கத்தை மீண்டும் ஏற்றவும்."
+         ],
+         "Unknown Server Error": [
+            "தெரியாத சேவையகப் பிழை"
+         ],
+         "Updating \"%s\"": [
+            "\"%s\" மேம்படுத்துகிறது"
+         ],
+         "Updating ...": [
+            "புதுப்பிக்கிறது ..."
+         ],
+         "Validating": [
+            "சரிபார்த்தல்"
+         ],
+         "View the Home Page": [
+            "முகப்புப் பக்கத்தைப் பார்க்கவும்"
+         ],
+         "WordPress Server Error": [
+            "வேர்ட்பிரஸ் சர்வர் பிழை"
+         ],
+         "Wrong %1$s Args %2$s": [
+            "தவறான %1$s ஆர்க்ஸ் %2$s"
+         ],
+         "empty nonce": [
+            "வெற்று இல்லை"
+         ],
+         "": {
+            "domain": "sneeit-core",
+            "lang": "தமிழ் - Tamil (India)"
+         }
+      }
+   }
+}

@@ -1,0 +1,161 @@
+{
+   "domain": "sneeit-core",
+   "locale_data": {
+      "sneeit-core": {
+         "\"%s\" has invalid file to install": [
+            "\"%s\" có tập tin không hợp lệ để cài đặt"
+         ],
+         "\"%s\" has invalid slug": [
+            "\"%s\" có sên không hợp lệ"
+         ],
+         "\"%s\" is activated": [
+            "\"%s\" được kích hoạt"
+         ],
+         "Activate \"%s\"": [
+            "Kích hoạt \"%s\""
+         ],
+         "Activate the Theme": [
+            "Kích hoạt chủ đề"
+         ],
+         "Activating \"%s\"": [
+            "Đang kích hoạt \"%s\""
+         ],
+         "Activating ...": [
+            "Đang kích hoạt..."
+         ],
+         "All": [
+            "Tất cả"
+         ],
+         "Cannot active \"%1$s\": file %2$s %3$s": [
+            "Không thể kích hoạt \"%1$s\": tập tin %2$s %3$s"
+         ],
+         "Cannot copy font %s": [
+            "Không thể sao chép phông chữ %s"
+         ],
+         "Cannot create dragblock directory": [
+            "Không thể tạo thư mục dragblock"
+         ],
+         "Cannot create dragblock/fonts directory": [
+            "Không thể tạo thư mục dragblock/fonts"
+         ],
+         "Cannot create folder of %s": [
+            "Không thể tạo thư mục của %s"
+         ],
+         "Cannot download \"%1$s\": %2$s": [
+            "Không thể tải xuống \"%1$s\": %2$s"
+         ],
+         "Cannot download font %s": [
+            "Không thể tải xuống phông chữ %s"
+         ],
+         "Cannot unzip \"%1$s\": %2$s": [
+            "Không thể giải nén \"%1$s\": %2$s"
+         ],
+         "Cannot upload %s": [
+            "Không thể tải lên %s"
+         ],
+         "Check Live Website": [
+            "Kiểm tra trang web trực tiếp"
+         ],
+         "Demo Details": [
+            "Chi tiết demo"
+         ],
+         "Empty Import Content": [
+            "Nội dung nhập trống"
+         ],
+         "Failed to Import!": [
+            "Không thể nhập!"
+         ],
+         "Failed to activate \"%s\"": [
+            "Không kích hoạt được \"%s\""
+         ],
+         "Finished": [
+            "Hoàn tất"
+         ],
+         "Import Demos": [
+            "Nhập bản trình diễn"
+         ],
+         "Imported successfully. Congratulation!": [
+            "Đã nhập thành công. Xin chúc mừng!"
+         ],
+         "Importing! Do not close or reload this page.": [
+            "Đang nhập! Đừng đóng hoặc tải lại trang này."
+         ],
+         "In %1$s (#%2$s/%3$s), cannot create %4$s for %5$s: %6$s": [
+            "Trong %1$s (#%2$s/%3$s), không thể tạo %4$s cho %5$s: %6$s"
+         ],
+         "In %1$s, cannot set %4$s of %5$s for #%2$s/%3$s": [
+            "Trong %1$s, không thể đặt %4$s của %5$s cho #%2$s/%3$s"
+         ],
+         "In %1$s, cannot set %4$s of %5$s for #%2$s/%3$s: %6$s": [
+            "Trong %1$s, không thể đặt %4$s của %5$s cho #%2$s/%3$s: %6$s"
+         ],
+         "Listing...": [
+            "Danh sách..."
+         ],
+         "Missing required field: %s": [
+            "Thiếu trường bắt buộc: %s"
+         ],
+         "Please activate \"%s\" on your site to use premium features": [
+            "Vui lòng kích hoạt \"%s\" trên trang web của bạn để sử dụng các tính năng cao cấp"
+         ],
+         "Please activate the theme before importing demos. Thank you!": [
+            "Vui lòng kích hoạt chủ đề trước khi nhập bản demo. Cảm ơn bạn!"
+         ],
+         "Please do not close or reload this tab when activating \"%s\"": [
+            "Xin đừng đóng hoặc tải lại tab này khi kích hoạt \"%s\""
+         ],
+         "Please do not close or reload this tab when updating \"%s\"!": [
+            "Xin đừng đóng hoặc tải lại tab này khi cập nhật \"%s\"!"
+         ],
+         "Please select the content you want to import": [
+            "Hãy chọn nội dung bạn muốn nhập"
+         ],
+         "Reading Demo Details ...": [
+            "Đọc chi tiết demo ..."
+         ],
+         "Redirecting ...": [
+            "Đang chuyển hướng ..."
+         ],
+         "Redirecting to \"%s\"'s host": [
+            "Đang chuyển hướng tới máy chủ của \"%s\""
+         ],
+         "Refresh the Activation": [
+            "Làm mới kích hoạt"
+         ],
+         "Retry to Activate": [
+            "Thử kích hoạt lại"
+         ],
+         "Timeout! Please reload the page.": [
+            "Hết giờ! Vui lòng tải lại trang."
+         ],
+         "Unknown Server Error": [
+            "Lỗi máy chủ không xác định"
+         ],
+         "Updating \"%s\"": [
+            "Đang cập nhật \"%s\""
+         ],
+         "Updating ...": [
+            "Đang cập nhật..."
+         ],
+         "Validating": [
+            "Đang xác thực"
+         ],
+         "View the Home Page": [
+            "Xem trang chủ"
+         ],
+         "WordPress Server Error": [
+            "Lỗi máy chủ WordPress"
+         ],
+         "Wrong %1$s Args %2$s": [
+            "Sai %1$s Đối số %2$s"
+         ],
+         "empty nonce": [
+            "trống nonce"
+         ],
+         "": {
+            "domain": "sneeit-core",
+            "lang": "Tiếng Việt - Vietnamese"
+         }
+      }
+   }
+}

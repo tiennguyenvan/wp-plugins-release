@@ -8,7 +8,6 @@
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
-if( SNEEIT_CORE_MICROSERVICE ) :
 	define( 'SNEEIT_CORE_BUILD_URL', SNEEIT_CORE_PLUGIN_URL . 'build/' );
 	define( 'SNEEIT_CORE_BUILD_PATH', SNEEIT_CORE_PLUGIN_PATH . 'build/' );
 	define( 'SNEEIT_CORE_SRC_URL', SNEEIT_CORE_PLUGIN_URL . 'src/' );
@@ -32,5 +31,4 @@ if( SNEEIT_CORE_MICROSERVICE ) :
 	require_once SNEEIT_CORE_BUILD_PATH . 'applications/admin-menu/server/index.php';
 	require_once SNEEIT_CORE_BUILD_PATH . 'applications/import/server/index.php';
 	require_once SNEEIT_CORE_BUILD_PATH . 'applications/activate/server/index.php';
-	require_once SNEEIT_CORE_BUILD_PATH . 'applications/tutorials/server/index.php';
-endif;
+// dev-reply#437.

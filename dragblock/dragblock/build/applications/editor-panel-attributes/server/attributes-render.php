@@ -68,23 +68,15 @@ function dragblock_attributes_parsing( $dragblock_ar_parsed ) {
 		} else {
 			$dragblock_ar_block[ $dragblock_ar_renderedattrs['slug'] ] .= ', ' . $dragblock_ar_renderedattrs['value'];
 		}
-	}
-	// dev-reply#1777.
+	} // dev-reply#1775.
 	$dragblock_ar_attr = false;
 	if ( 'dragblock/image' === $dragblock_ar_parsed['blockName'] ) {
-		// dev-reply#1780.
-		if ( empty( $dragblock_ar_block['loading'] ) ) {
-			$dragblock_ar_block['loading'] = 'lazy';
-		}
-		if ( empty( $dragblock_ar_block['decoding'] ) ) {
-			$dragblock_ar_block['decoding'] = 'async';
-		}
-		// dev-reply#1788.
+		// dev-reply#1782.
 		if ( ! empty( $dragblock_ar_block['src'] ) ) {
-			// dev-reply#1790.
+			// dev-reply#1784.
 			if ( strpos( $dragblock_ar_block['src'], '[dragblock.post.image.src' ) !== false ) {
 				$dragblock_ar_attr = true;
-				// dev-reply#1793.
+				// dev-reply#1787.
 				if ( empty( $dragblock_ar_block['alt'] ) ) {
 					$dragblock_ar_block['alt'] = '[dragblock.post.title]';
 				}
@@ -102,23 +94,30 @@ function dragblock_attributes_parsing( $dragblock_ar_parsed ) {
 			$dragblock_ar_post = empty( $dragblock_ar_block['src'] ) ? '' : esc_attr( basename( $dragblock_ar_block['src'] ) );
 			$dragblock_ar_block['alt'] = empty( $dragblock_ar_post ) ? esc_html__( 'Just a placeholder', 'dragblock' ) : $dragblock_ar_post;
 		}
+		// dev-reply#17112.
+		if ( empty( $dragblock_ar_block['loading'] ) ) {
+			$dragblock_ar_block['loading'] = 'lazy';
+		}
+		if ( empty( $dragblock_ar_block['decoding'] ) ) {
+			$dragblock_ar_block['decoding'] = 'async';
+		}
 	}
-	// dev-reply#17119.
+	// dev-reply#17129.
 	if ( 'dragblock/link' === $dragblock_ar_parsed['blockName'] ) {
-		// dev-reply#17121.
+		// dev-reply#17131.
 		if ( empty( $dragblock_ar_block['aria-label'] ) ) {
 			$dragblock_ar_block['aria-label'] = esc_html__( 'DragBlock Link Block', 'dragblock' );
 		}
 	}
-	// dev-reply#17127.
+	// dev-reply#17137.
 	$dragblock_ar_image = '';
 	if ( ! empty( $dragblock_ar_block['name'] ) && dragblock_is_reseved_terms( $dragblock_ar_block['name'] ) ) {
 		$dragblock_ar_block['name'] .= '__dragblock_wp_reseved_terms';
-		// dev-reply#17144.
+		// dev-reply#17154.
 	}
 	foreach ( $dragblock_ar_block as $dragblock_ar_srcsets => $dragblock_ar_alt ) {
 		$dragblock_ar_attrstring = esc_attr( do_shortcode( $dragblock_ar_alt ) );
-		// dev-reply#17149.
+		// dev-reply#17159.
 		if ( ( $dragblock_ar_srcsets ) === 'src' && $dragblock_ar_attr && empty( $dragblock_ar_attrstring ) ) {
 			$dragblock_ar_parsed['attrs']['dragBlockParsedAttrs'] = '';
 			return $dragblock_ar_parsed;
@@ -132,14 +131,14 @@ function dragblock_attributes_parsing( $dragblock_ar_parsed ) {
 }
 add_filter( 'render_block', 'dragblock_attributes_insert', 10, 2 );
 /**
- * Check Documentation#17123
+ * Check Documentation#17122
  *
- * @param object|array|string $dragblock_ar_slug check var-def#17123.
- * @param object|array|string $dragblock_ar_parsed check var-def#17123.
+ * @param object|array|string $dragblock_ar_slug check var-def#17122.
+ * @param object|array|string $dragblock_ar_parsed check var-def#17122.
  */
 function dragblock_attributes_insert( $dragblock_ar_slug, $dragblock_ar_parsed ) {
 	if ( empty( $dragblock_ar_parsed['attrs']['dragBlockParsedAttrs'] ) ) {
-		// dev-reply#17171.
+		// dev-reply#17181.
 		if ( 'dragblock/image' === $dragblock_ar_parsed['blockName'] ) {
 			return '';
 		}

@@ -1,0 +1,161 @@
+{
+   "domain": "sneeit-core",
+   "locale_data": {
+      "sneeit-core": {
+         "\"%s\" has invalid file to install": [
+            "\"%s\" にはインストールするには無効なファイルがあります"
+         ],
+         "\"%s\" has invalid slug": [
+            "\"%s\" には無効なスラッグがあります"
+         ],
+         "\"%s\" is activated": [
+            "\"%s\"はアクティブ化されています"
+         ],
+         "Activate \"%s\"": [
+            "\"%s\"をアクティブ化します"
+         ],
+         "Activate the Theme": [
+            "テーマをアクティブ化"
+         ],
+         "Activating \"%s\"": [
+            "「%s」をアクティブ化しています"
+         ],
+         "Activating ...": [
+            "アクティブ化しています..."
+         ],
+         "All": [
+            "すべて"
+         ],
+         "Cannot active \"%1$s\": file %2$s %3$s": [
+            "\"%1$s\"をアクティブにできません: ファイル %2$s %3$s"
+         ],
+         "Cannot copy font %s": [
+            "フォント %s をコピーできません"
+         ],
+         "Cannot create dragblock directory": [
+            "ドラッグブロックディレクトリを作成できません"
+         ],
+         "Cannot create dragblock/fonts directory": [
+            "ドラッグブロック/フォントディレクトリを作成できません"
+         ],
+         "Cannot create folder of %s": [
+            "%s のフォルダーを作成できません"
+         ],
+         "Cannot download \"%1$s\": %2$s": [
+            "\"%1$s\"をダウンロードできません: %2$s"
+         ],
+         "Cannot download font %s": [
+            "フォント %s をダウンロードできません"
+         ],
+         "Cannot unzip \"%1$s\": %2$s": [
+            "\"%1$s\"を解凍できません: %2$s"
+         ],
+         "Cannot upload %s": [
+            "%sをアップロードできません"
+         ],
+         "Check Live Website": [
+            "ライブ Web サイトをチェック"
+         ],
+         "Demo Details": [
+            "デモの詳細"
+         ],
+         "Empty Import Content": [
+            "空のインポートコンテンツ"
+         ],
+         "Failed to Import!": [
+            "インポートに失敗しました!"
+         ],
+         "Failed to activate \"%s\"": [
+            "\"%s\"のアクティブ化に失敗しました"
+         ],
+         "Finished": [
+            "完了"
+         ],
+         "Import Demos": [
+            "デモのインポート"
+         ],
+         "Imported successfully. Congratulation!": [
+            "インポートは正常に完了しました。おめでとうございます!"
+         ],
+         "Importing! Do not close or reload this page.": [
+            "インポート中! このページを閉じたりリロードしたりしないでください。"
+         ],
+         "In %1$s (#%2$s/%3$s), cannot create %4$s for %5$s: %6$s": [
+            "%1$s (#%2$s/%3$s) では、%5$s の %4$s を作成できません: %6$s"
+         ],
+         "In %1$s, cannot set %4$s of %5$s for #%2$s/%3$s": [
+            "%1$s では、%5$s の %4$s を #%2$s/%3$s に設定できません"
+         ],
+         "In %1$s, cannot set %4$s of %5$s for #%2$s/%3$s: %6$s": [
+            "%1$s では、#%2$s/%3$s に %5$s の %4$s を設定できません: %6$s"
+         ],
+         "Listing...": [
+            "リスト中..."
+         ],
+         "Missing required field: %s": [
+            "必須フィールドが欠落しています: %s"
+         ],
+         "Please activate \"%s\" on your site to use premium features": [
+            "プレミアム機能を使用するには、サイトで「%s」をアクティブ化してください"
+         ],
+         "Please activate the theme before importing demos. Thank you!": [
+            "デモをインポートする前にテーマをアクティブ化してください。ありがとうございます!"
+         ],
+         "Please do not close or reload this tab when activating \"%s\"": [
+            "\"%s\"をアクティブにするときは、このタブを閉じたり再ロードしたりしないでください。"
+         ],
+         "Please do not close or reload this tab when updating \"%s\"!": [
+            "\"%s\" を更新するときは、このタブを閉じたり再ロードしたりしないでください!"
+         ],
+         "Please select the content you want to import": [
+            "インポートするコンテンツを選択してください"
+         ],
+         "Reading Demo Details ...": [
+            "デモの詳細を読んでいます..."
+         ],
+         "Redirecting ...": [
+            "リダイレクト中..."
+         ],
+         "Redirecting to \"%s\"'s host": [
+            "「%s」のホストにリダイレクトします"
+         ],
+         "Refresh the Activation": [
+            "アクティベーションを更新"
+         ],
+         "Retry to Activate": [
+            "アクティブ化を再試行"
+         ],
+         "Timeout! Please reload the page.": [
+            "タイムアウト! ページをリロードしてください。"
+         ],
+         "Unknown Server Error": [
+            "不明なサーバーエラー"
+         ],
+         "Updating \"%s\"": [
+            "\"%s\"を更新中"
+         ],
+         "Updating ...": [
+            "更新中..."
+         ],
+         "Validating": [
+            "検証中"
+         ],
+         "View the Home Page": [
+            "ホームページを表示"
+         ],
+         "WordPress Server Error": [
+            "WordPress サーバー エラー"
+         ],
+         "Wrong %1$s Args %2$s": [
+            "%1$s の引数 %2$s が間違っています"
+         ],
+         "empty nonce": [
+            "空のノンス"
+         ],
+         "": {
+            "domain": "sneeit-core",
+            "lang": "日本語 - Japanese"
+         }
+      }
+   }
+}

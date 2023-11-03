@@ -1,0 +1,161 @@
+{
+   "domain": "sneeit-core",
+   "locale_data": {
+      "sneeit-core": {
+         "\"%s\" has invalid file to install": [
+            "\"%s\" a un fichier non valide à installer"
+         ],
+         "\"%s\" has invalid slug": [
+            "\"%s\" a un slug non valide"
+         ],
+         "\"%s\" is activated": [
+            "\"%s\" est activé"
+         ],
+         "Activate \"%s\"": [
+            "Activer \"%s\""
+         ],
+         "Activate the Theme": [
+            "Activer le thème"
+         ],
+         "Activating \"%s\"": [
+            "Activation de \"%s\""
+         ],
+         "Activating ...": [
+            "Activation..."
+         ],
+         "All": [
+            "Tous"
+         ],
+         "Cannot active \"%1$s\": file %2$s %3$s": [
+            "Impossible d'activer \"%1$s\" : fichier %2$s %3$s"
+         ],
+         "Cannot copy font %s": [
+            "Impossible de copier la police %s"
+         ],
+         "Cannot create dragblock directory": [
+            "Impossible de créer le répertoire dragblock"
+         ],
+         "Cannot create dragblock/fonts directory": [
+            "Impossible de créer le répertoire dragblock/fonts"
+         ],
+         "Cannot create folder of %s": [
+            "Impossible de créer le dossier %s"
+         ],
+         "Cannot download \"%1$s\": %2$s": [
+            "Impossible de télécharger \"%1$s\": %2$s"
+         ],
+         "Cannot download font %s": [
+            "Impossible de télécharger la police %s"
+         ],
+         "Cannot unzip \"%1$s\": %2$s": [
+            "Impossible de décompresser \"%1$s\" : %2$s"
+         ],
+         "Cannot upload %s": [
+            "Impossible de télécharger %s"
+         ],
+         "Check Live Website": [
+            "Vérifier le site Web en direct"
+         ],
+         "Demo Details": [
+            "Détails de la démo"
+         ],
+         "Empty Import Content": [
+            "Contenu d'importation vide"
+         ],
+         "Failed to Import!": [
+            "Échec de l'importation !"
+         ],
+         "Failed to activate \"%s\"": [
+            "Échec de l'activation de \"%s\""
+         ],
+         "Finished": [
+            "Terminé"
+         ],
+         "Import Demos": [
+            "Importer des démos"
+         ],
+         "Imported successfully. Congratulation!": [
+            "Importé avec succès. Félicitations !"
+         ],
+         "Importing! Do not close or reload this page.": [
+            "Importation ! Ne fermez pas et ne rechargez pas cette page."
+         ],
+         "In %1$s (#%2$s/%3$s), cannot create %4$s for %5$s: %6$s": [
+            "Dans %1$s (#%2$s/%3$s), impossible de créer %4$s pour %5$s : %6$s"
+         ],
+         "In %1$s, cannot set %4$s of %5$s for #%2$s/%3$s": [
+            "Dans %1$s, impossible de définir %4$s sur %5$s pour #%2$s/%3$s"
+         ],
+         "In %1$s, cannot set %4$s of %5$s for #%2$s/%3$s: %6$s": [
+            "Dans %1$s, impossible de définir %4$s sur %5$s pour #%2$s/%3$s : %6$s"
+         ],
+         "Listing...": [
+            "Liste..."
+         ],
+         "Missing required field: %s": [
+            "Champ obligatoire manquant : %s"
+         ],
+         "Please activate \"%s\" on your site to use premium features": [
+            "Veuillez activer \"%s\" sur votre site pour utiliser les fonctionnalités premium"
+         ],
+         "Please activate the theme before importing demos. Thank you!": [
+            "Veuillez activer le thème avant d'importer des démos. Merci !"
+         ],
+         "Please do not close or reload this tab when activating \"%s\"": [
+            "Veuillez ne pas fermer ou recharger cet onglet lors de l'activation de \"%s\""
+         ],
+         "Please do not close or reload this tab when updating \"%s\"!": [
+            "Veuillez ne pas fermer ou recharger cet onglet lors de la mise à jour de \"%s\"!"
+         ],
+         "Please select the content you want to import": [
+            "Veuillez sélectionner le contenu que vous souhaitez importer"
+         ],
+         "Reading Demo Details ...": [
+            "Lecture des détails de la démo..."
+         ],
+         "Redirecting ...": [
+            "Redirection..."
+         ],
+         "Redirecting to \"%s\"'s host": [
+            "Redirection vers l'hôte de \"%s\""
+         ],
+         "Refresh the Activation": [
+            "Actualiser l'activation"
+         ],
+         "Retry to Activate": [
+            "Réessayer d'activer"
+         ],
+         "Timeout! Please reload the page.": [
+            "Timeout ! Veuillez recharger la page."
+         ],
+         "Unknown Server Error": [
+            "Erreur de serveur inconnue"
+         ],
+         "Updating \"%s\"": [
+            "Mise à jour de \"%s\""
+         ],
+         "Updating ...": [
+            "Mise à jour..."
+         ],
+         "Validating": [
+            "Validation"
+         ],
+         "View the Home Page": [
+            "Afficher la page d'accueil"
+         ],
+         "WordPress Server Error": [
+            "Erreur du serveur WordPress"
+         ],
+         "Wrong %1$s Args %2$s": [
+            "Arguments %1$s erronés %2$s"
+         ],
+         "empty nonce": [
+            "occasion vide"
+         ],
+         "": {
+            "domain": "sneeit-core",
+            "lang": "Français - French"
+         }
+      }
+   }
+}

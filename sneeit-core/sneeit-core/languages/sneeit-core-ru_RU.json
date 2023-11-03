@@ -1,0 +1,161 @@
+{
+   "domain": "sneeit-core",
+   "locale_data": {
+      "sneeit-core": {
+         "\"%s\" has invalid file to install": [
+            "У \"%s\" недопустимый файл для установки"
+         ],
+         "\"%s\" has invalid slug": [
+            "У \"%s\" неверный фрагмент"
+         ],
+         "\"%s\" is activated": [
+            "\"%s\" активирован"
+         ],
+         "Activate \"%s\"": [
+            "Активировать \"%s\""
+         ],
+         "Activate the Theme": [
+            "«Активировать тему»"
+         ],
+         "Activating \"%s\"": [
+            "Активация \"%s\""
+         ],
+         "Activating ...": [
+            "Активация..."
+         ],
+         "All": [
+            "Все"
+         ],
+         "Cannot active \"%1$s\": file %2$s %3$s": [
+            "Невозможно активировать \"%1$s\": файл %2$s %3$s"
+         ],
+         "Cannot copy font %s": [
+            "Невозможно скопировать шрифт %s"
+         ],
+         "Cannot create dragblock directory": [
+            "Невозможно создать каталог перетаскиваемых блоков"
+         ],
+         "Cannot create dragblock/fonts directory": [
+            "Невозможно создать каталог перетаскивания/шрифтов"
+         ],
+         "Cannot create folder of %s": [
+            "Невозможно создать папку %s"
+         ],
+         "Cannot download \"%1$s\": %2$s": [
+            "Невозможно загрузить \"%1$s\": %2$s"
+         ],
+         "Cannot download font %s": [
+            "Невозможно загрузить шрифт %s"
+         ],
+         "Cannot unzip \"%1$s\": %2$s": [
+            "Невозможно распаковать \"%1$s\": %2$s"
+         ],
+         "Cannot upload %s": [
+            "Невозможно загрузить %s"
+         ],
+         "Check Live Website": [
+            "Проверить действующий веб-сайт"
+         ],
+         "Demo Details": [
+            "«Подробности демо»"
+         ],
+         "Empty Import Content": [
+            "«Пустое содержимое импорта»"
+         ],
+         "Failed to Import!": [
+            "Не удалось импортировать!"
+         ],
+         "Failed to activate \"%s\"": [
+            "Не удалось активировать \"%s\""
+         ],
+         "Finished": [
+            "Завершено"
+         ],
+         "Import Demos": [
+            "«Импортировать демо»"
+         ],
+         "Imported successfully. Congratulation!": [
+            "Импортирован успешно. Поздравляем!"
+         ],
+         "Importing! Do not close or reload this page.": [
+            "Импортируется! Не закрывайте и не перезагружайте эту страницу."
+         ],
+         "In %1$s (#%2$s/%3$s), cannot create %4$s for %5$s: %6$s": [
+            "В %1$s (#%2$s/%3$s) невозможно создать %4$s для %5$s: %6$s"
+         ],
+         "In %1$s, cannot set %4$s of %5$s for #%2$s/%3$s": [
+            "В %1$s невозможно установить %4$s из %5$s для #%2$s/%3$s"
+         ],
+         "In %1$s, cannot set %4$s of %5$s for #%2$s/%3$s: %6$s": [
+            "В %1$s невозможно установить %4$s из %5$s для #%2$s/%3$s: %6$s"
+         ],
+         "Listing...": [
+            "Список..."
+         ],
+         "Missing required field: %s": [
+            "Отсутствует обязательное поле: %s"
+         ],
+         "Please activate \"%s\" on your site to use premium features": [
+            "Пожалуйста, активируйте \"%s\" на своем сайте, чтобы использовать премиум-функции"
+         ],
+         "Please activate the theme before importing demos. Thank you!": [
+            "Пожалуйста, активируйте тему перед импортом демо-версий. Спасибо!"
+         ],
+         "Please do not close or reload this tab when activating \"%s\"": [
+            "Пожалуйста, не закрывайте и не перезагружайте эту вкладку при активации \"%s\""
+         ],
+         "Please do not close or reload this tab when updating \"%s\"!": [
+            "Пожалуйста, не закрывайте и не перезагружайте эту вкладку при обновлении \"%s\"!"
+         ],
+         "Please select the content you want to import": [
+            "Пожалуйста, выберите контент, который вы хотите импортировать"
+         ],
+         "Reading Demo Details ...": [
+            "Чтение подробностей демо..."
+         ],
+         "Redirecting ...": [
+            "Перенаправление..."
+         ],
+         "Redirecting to \"%s\"'s host": [
+            "Перенаправление на хост \"%s\""
+         ],
+         "Refresh the Activation": [
+            "«Обновить активацию»"
+         ],
+         "Retry to Activate": [
+            "«Повторить попытку активации»"
+         ],
+         "Timeout! Please reload the page.": [
+            "Время ожидания истекло! Пожалуйста, перезагрузите страницу."
+         ],
+         "Unknown Server Error": [
+            "«Неизвестная ошибка сервера»"
+         ],
+         "Updating \"%s\"": [
+            "Обновление \"%s\""
+         ],
+         "Updating ...": [
+            "Обновление..."
+         ],
+         "Validating": [
+            "Проверка"
+         ],
+         "View the Home Page": [
+            "«Просмотр домашней страницы»"
+         ],
+         "WordPress Server Error": [
+            "«Ошибка сервера WordPress»"
+         ],
+         "Wrong %1$s Args %2$s": [
+            "Неверные аргументы %1$s %2$s"
+         ],
+         "empty nonce": [
+            "«пустой одноразовый номер»"
+         ],
+         "": {
+            "domain": "sneeit-core",
+            "lang": "Русский - Russian"
+         }
+      }
+   }
+}

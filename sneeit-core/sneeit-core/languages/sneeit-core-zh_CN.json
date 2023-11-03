@@ -1,0 +1,161 @@
+{
+   "domain": "sneeit-core",
+   "locale_data": {
+      "sneeit-core": {
+         "\"%s\" has invalid file to install": [
+            "\"%s\" 有无效的文件要安装"
+         ],
+         "\"%s\" has invalid slug": [
+            "\"%s\" 有无效的 slug"
+         ],
+         "\"%s\" is activated": [
+            "\"%s\" 已激活"
+         ],
+         "Activate \"%s\"": [
+            "激活\"%s\""
+         ],
+         "Activate the Theme": [
+            "激活主题"
+         ],
+         "Activating \"%s\"": [
+            "正在激活\"%s\""
+         ],
+         "Activating ...": [
+            "正在激活..."
+         ],
+         "All": [
+            "全部"
+         ],
+         "Cannot active \"%1$s\": file %2$s %3$s": [
+            "无法激活 \"%1$s\": 文件 %2$s %3$s"
+         ],
+         "Cannot copy font %s": [
+            "无法复制字体 %s"
+         ],
+         "Cannot create dragblock directory": [
+            "无法创建拖块目录"
+         ],
+         "Cannot create dragblock/fonts directory": [
+            "无法创建拖块/字体目录"
+         ],
+         "Cannot create folder of %s": [
+            "无法创建 %s 的文件夹"
+         ],
+         "Cannot download \"%1$s\": %2$s": [
+            "无法下载 \"%1$s\": %2$s"
+         ],
+         "Cannot download font %s": [
+            "无法下载字体 %s"
+         ],
+         "Cannot unzip \"%1$s\": %2$s": [
+            "无法解压缩 \"%1$s\": %2$s"
+         ],
+         "Cannot upload %s": [
+            "无法上传 %s"
+         ],
+         "Check Live Website": [
+            "检查实时网站"
+         ],
+         "Demo Details": [
+            "演示详细信息"
+         ],
+         "Empty Import Content": [
+            "导入内容为空"
+         ],
+         "Failed to Import!": [
+            "导入失败！"
+         ],
+         "Failed to activate \"%s\"": [
+            "无法激活\"%s\""
+         ],
+         "Finished": [
+            "完成"
+         ],
+         "Import Demos": [
+            "导入演示"
+         ],
+         "Imported successfully. Congratulation!": [
+            "导入成功。恭喜！"
+         ],
+         "Importing! Do not close or reload this page.": [
+            "正在导入！请勿关闭或重新加载此页面。"
+         ],
+         "In %1$s (#%2$s/%3$s), cannot create %4$s for %5$s: %6$s": [
+            "在 %1$s (#%2$s/%3$s) 中，无法为 %5$s 创建 %4$s：%6$s"
+         ],
+         "In %1$s, cannot set %4$s of %5$s for #%2$s/%3$s": [
+            "在%1$s中，无法为#%2$s/%3$s设置%5$s的%4$s"
+         ],
+         "In %1$s, cannot set %4$s of %5$s for #%2$s/%3$s: %6$s": [
+            "在 %1$s 中，无法为 #%2$s/%3$s 设置 %5$s 的 %4$s：%6$s"
+         ],
+         "Listing...": [
+            "正在列出..."
+         ],
+         "Missing required field: %s": [
+            "缺少必填字段：%s"
+         ],
+         "Please activate \"%s\" on your site to use premium features": [
+            "请在您的网站上激活\"%s\"以使用高级功能"
+         ],
+         "Please activate the theme before importing demos. Thank you!": [
+            "请在导入演示之前激活主题。谢谢！"
+         ],
+         "Please do not close or reload this tab when activating \"%s\"": [
+            "激活\"%s\"时请不要关闭或重新加载此选项卡"
+         ],
+         "Please do not close or reload this tab when updating \"%s\"!": [
+            "更新\"%s\"时请不要关闭或重新加载此选项卡！"
+         ],
+         "Please select the content you want to import": [
+            "请选择您要导入的内容"
+         ],
+         "Reading Demo Details ...": [
+            "正在阅读演示详细信息..."
+         ],
+         "Redirecting ...": [
+            "正在重定向..."
+         ],
+         "Redirecting to \"%s\"'s host": [
+            "正在重定向到\"%s\"的主机"
+         ],
+         "Refresh the Activation": [
+            "刷新激活"
+         ],
+         "Retry to Activate": [
+            "重试激活"
+         ],
+         "Timeout! Please reload the page.": [
+            "超时！请重新加载页面。"
+         ],
+         "Unknown Server Error": [
+            "未知的服务器错误"
+         ],
+         "Updating \"%s\"": [
+            "正在更新\"%s\""
+         ],
+         "Updating ...": [
+            "正在更新..."
+         ],
+         "Validating": [
+            "正在验证"
+         ],
+         "View the Home Page": [
+            "查看主页"
+         ],
+         "WordPress Server Error": [
+            "WordPress 服务器错误"
+         ],
+         "Wrong %1$s Args %2$s": [
+            "%1$s 参数 %2$s 错误"
+         ],
+         "empty nonce": [
+            "空随机数"
+         ],
+         "": {
+            "domain": "sneeit-core",
+            "lang": "简体中文 - Chinese (Simplified)"
+         }
+      }
+   }
+}

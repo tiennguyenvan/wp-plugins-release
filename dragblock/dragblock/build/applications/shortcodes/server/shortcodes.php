@@ -39,10 +39,10 @@ add_shortcode( 'dragblock.post.snippet', 'dragblock_shortcode_post_snippet' );
  * @param object|array|string $dragblock_s_current check var-def#2424.
  */
 function dragblock_shortcode_post_snippet( $dragblock_s_queries, $dragblock_s_current = null ) {
-	if ( ( $dragblock_s_current ) !== 0 && ! $dragblock_s_current ) {
+	if ( ! $dragblock_s_current ) {
 		$dragblock_s_current = dragblock_get_current_list_query_id();
 	}
-	if ( ( $dragblock_s_current ) !== 0 && ! $dragblock_s_current ) {
+	if ( ! $dragblock_s_current ) {
 		return '';
 	}
 	// dev-reply#2451.
@@ -75,10 +75,10 @@ add_shortcode( 'dragblock.post.title', 'dragblock_shortcode_post_title' );
  * @param object|array|string $dragblock_s_current check var-def#2455.
  */
 function dragblock_shortcode_post_title( $dragblock_s_queries, $dragblock_s_current = null ) {
-	if ( ( $dragblock_s_current ) !== 0 && ! $dragblock_s_current ) {
+	if ( ! $dragblock_s_current ) {
 		$dragblock_s_current = dragblock_get_current_list_query_id();
 	}
-	if ( ( $dragblock_s_current ) !== 0 && ! $dragblock_s_current ) {
+	if ( ! $dragblock_s_current ) {
 		return '';
 	}
 	return get_the_title( $dragblock_s_current );
@@ -91,10 +91,10 @@ add_shortcode( 'dragblock.post.url', 'dragblock_shortcode_post_url' );
  * @param object|array|string $dragblock_s_current check var-def#2466.
  */
 function dragblock_shortcode_post_url( $dragblock_s_queries, $dragblock_s_current = null ) {
-	if ( ( $dragblock_s_current ) !== 0 && ! $dragblock_s_current ) {
+	if ( ! $dragblock_s_current ) {
 		$dragblock_s_current = dragblock_get_current_list_query_id();
 	}
-	if ( ( $dragblock_s_current ) !== 0 && ! $dragblock_s_current ) {
+	if ( ! $dragblock_s_current ) {
 		return 'javascript:void(0)';
 	}
 	return get_the_permalink( $dragblock_s_current );
@@ -107,10 +107,10 @@ add_shortcode( 'dragblock.post.comment.number', 'dragblock_shortcode_post_commen
  * @param object|array|string $dragblock_s_current check var-def#2477.
  */
 function dragblock_shortcode_post_comment_number( $dragblock_s_queries, $dragblock_s_current = null ) {
-	if ( ( $dragblock_s_current ) !== 0 && ! $dragblock_s_current ) {
+	if ( ! $dragblock_s_current ) {
 		$dragblock_s_current = dragblock_get_current_list_query_id();
 	}
-	if ( ( $dragblock_s_current ) !== 0 && ! $dragblock_s_current ) {
+	if ( ! $dragblock_s_current ) {
 		return '';
 	}
 	return get_comments_number( $dragblock_s_current );
@@ -123,22 +123,22 @@ add_shortcode( 'dragblock.post.image.src', 'dragblock_shortcode_post_image_src' 
  * @param object|array|string $dragblock_s_current check var-def#2488.
  */
 function dragblock_shortcode_post_image_src( $dragblock_s_queries, $dragblock_s_current = null ) {
-	// dev-reply#24121.
+	// dev-reply#24120.
 	$dragblock_s_snippet = '';
-	if ( ( $dragblock_s_current ) !== 0 && ! $dragblock_s_current ) {
+	if ( ! $dragblock_s_current ) {
 		$dragblock_s_current = dragblock_get_current_list_query_id();
 	}
-	if ( ( $dragblock_s_current ) !== 0 && ! $dragblock_s_current ) {
-		// dev-reply#24127.
+	if ( ! $dragblock_s_current ) {
+		// dev-reply#24126.
 		return $dragblock_s_snippet;
 	}
 	$dragblock_s_def = isset( $dragblock_s_queries['size'] ) ? sanitize_text_field( $dragblock_s_queries['size'] ) : 'full';
-	// dev-reply#24133.
+	// dev-reply#24132.
 	if ( has_post_thumbnail( $dragblock_s_current ) ) {
 		$dragblock_s_len = get_the_post_thumbnail_url( $dragblock_s_current, $dragblock_s_def );
 		return $dragblock_s_len;
 	}
-	// dev-reply#24139.
+	// dev-reply#24138.
 	$dragblock_s_word = get_post_field( 'post_content', $dragblock_s_current );
 	if ( $dragblock_s_word ) {
 		$dragblock_s_count = new DOMDocument();
@@ -148,7 +148,7 @@ function dragblock_shortcode_post_image_src( $dragblock_s_queries, $dragblock_s_
 			$dragblock_s_len = $dragblock_s_max[0]->getAttribute( 'src' );
 			return $dragblock_s_len;
 		}
-		// dev-reply#24153.
+		// dev-reply#24152.
 		$dragblock_s_blank = '/<iframe.*?src="(https?:\/\/www\.youtube\.com\/embed\/([\w-]+))".*?><\/iframe>/i';
 		preg_match( $dragblock_s_blank, $dragblock_s_word, $dragblock_s_src );
 		if ( count( $dragblock_s_src ) > 0 ) {
@@ -157,9 +157,9 @@ function dragblock_shortcode_post_image_src( $dragblock_s_queries, $dragblock_s_
 			return $dragblock_s_len;
 		}
 	}
-	// dev-reply#24166.
+	// dev-reply#24165.
 	return $dragblock_s_snippet;
-	// dev-reply#24170.
+	// dev-reply#24169.
 }
 add_shortcode( 'dragblock.post.image.srcset', 'dragblock_shortcode_post_image_srcset' );
 /**
@@ -169,13 +169,13 @@ add_shortcode( 'dragblock.post.image.srcset', 'dragblock_shortcode_post_image_sr
  * @param object|array|string $dragblock_s_current check var-def#24129.
  */
 function dragblock_shortcode_post_image_srcset( $dragblock_s_queries, $dragblock_s_current = null ) {
-	if ( ( $dragblock_s_current ) !== 0 && ! $dragblock_s_current ) {
+	if ( ! $dragblock_s_current ) {
 		$dragblock_s_current = dragblock_get_current_list_query_id();
 	}
-	if ( ( $dragblock_s_current ) !== 0 && ! $dragblock_s_current || ! has_post_thumbnail( $dragblock_s_current ) ) {
+	if ( ! $dragblock_s_current || ! has_post_thumbnail( $dragblock_s_current ) ) {
 		return '';
 	}
-	// dev-reply#24197.
+	// dev-reply#24196.
 	$dragblock_s_image = get_post_thumbnail_id( $dragblock_s_current );
 	$dragblock_s_url = wp_get_attachment_image_srcset( $dragblock_s_image );
 	return $dragblock_s_url;
@@ -189,22 +189,22 @@ add_shortcode( 'dragblock.post.image.sizes', 'dragblock_shortcode_post_image_siz
  */
 function dragblock_shortcode_post_image_sizes( $dragblock_s_queries, $dragblock_s_current ) {
 	$dragblock_s_def = isset( $dragblock_s_queries['size'] ) ? sanitize_text_field( $dragblock_s_queries['size'] ) : 'full';
-	// dev-reply#24212.
+	// dev-reply#24211.
 	if ( 'full' === $dragblock_s_def ) {
 		return '';
 	}
-	// dev-reply#24217.
+	// dev-reply#24216.
 	if ( 'large' === $dragblock_s_def ) {
 		return '75vw';
-		// dev-reply#24220.
+		// dev-reply#24219.
 	}
 	if ( 'medium' === $dragblock_s_def ) {
 		return '50vw';
-		// dev-reply#24225.
+		// dev-reply#24224.
 	}
 	if ( 'thumbnail' === $dragblock_s_def ) {
 		return '25vw';
-		// dev-reply#24230.
+		// dev-reply#24229.
 	}
 }
 add_shortcode( 'dragblock.post.date', 'dragblock_shortcode_post_date' );
@@ -215,17 +215,17 @@ add_shortcode( 'dragblock.post.date', 'dragblock_shortcode_post_date' );
  * @param object|array|string $dragblock_s_current check var-def#24165.
  */
 function dragblock_shortcode_post_date( $dragblock_s_queries, $dragblock_s_current = null ) {
-	if ( ( $dragblock_s_current ) !== 0 && ! $dragblock_s_current ) {
+	if ( ! $dragblock_s_current ) {
 		$dragblock_s_current = dragblock_get_current_list_query_id();
 	}
-	if ( ( $dragblock_s_current ) !== 0 && ! $dragblock_s_current ) {
+	if ( ! $dragblock_s_current ) {
 		return '';
 	}
-	// dev-reply#24246.
+	// dev-reply#24245.
 	$dragblock_s_content = get_post_field( 'post_date', $dragblock_s_current );
-	// dev-reply#24249.
+	// dev-reply#24248.
 	$dragblock_s_doc = get_option( 'date_format' );
-	// dev-reply#24252.
+	// dev-reply#24251.
 	$dragblock_s_img = date_i18n( $dragblock_s_doc, strtotime( $dragblock_s_content ) );
 	return $dragblock_s_img;
 }
@@ -237,15 +237,15 @@ add_shortcode( 'dragblock.post.author.url', 'dragblock_shortcode_post_author_url
  * @param object|array|string $dragblock_s_current check var-def#24182.
  */
 function dragblock_shortcode_post_author_url( $dragblock_s_queries, $dragblock_s_current = null ) {
-	if ( ( $dragblock_s_current ) !== 0 && ! $dragblock_s_current ) {
+	if ( ! $dragblock_s_current ) {
 		$dragblock_s_current = dragblock_get_current_list_query_id();
 	}
-	if ( ( $dragblock_s_current ) !== 0 && ! $dragblock_s_current ) {
+	if ( ! $dragblock_s_current ) {
 		return '';
 	}
-	// dev-reply#24268.
+	// dev-reply#24267.
 	$dragblock_s_tags = get_post_field( 'post_author', $dragblock_s_current );
-	// dev-reply#24271.
+	// dev-reply#24270.
 	$dragblock_s_pattern = get_author_posts_url( $dragblock_s_tags );
 	return esc_url_raw( $dragblock_s_pattern );
 }
@@ -257,17 +257,17 @@ add_shortcode( 'dragblock.post.author.name', 'dragblock_shortcode_post_author_na
  * @param object|array|string $dragblock_s_current check var-def#24197.
  */
 function dragblock_shortcode_post_author_name( $dragblock_s_queries, $dragblock_s_current = null ) {
-	if ( ( $dragblock_s_current ) !== 0 && ! $dragblock_s_current ) {
+	if ( ! $dragblock_s_current ) {
 		$dragblock_s_current = dragblock_get_current_list_query_id();
 	}
-	if ( ( $dragblock_s_current ) !== 0 && ! $dragblock_s_current ) {
+	if ( ! $dragblock_s_current ) {
 		return '';
 	}
-	// dev-reply#24287.
+	// dev-reply#24286.
 	$dragblock_s_tags = get_post_field( 'post_author', $dragblock_s_current );
-	// dev-reply#24290.
+	// dev-reply#24289.
 	$dragblock_s_matches = get_the_author_meta( 'display_name', $dragblock_s_tags );
-	// dev-reply#24293.
+	// dev-reply#24292.
 	return $dragblock_s_matches;
 }
 add_shortcode( 'dragblock.post.author.avatar.src', 'dragblock_shortcode_post_author_avatar_src' );
@@ -278,15 +278,15 @@ add_shortcode( 'dragblock.post.author.avatar.src', 'dragblock_shortcode_post_aut
  * @param object|array|string $dragblock_s_current check var-def#24213.
  */
 function dragblock_shortcode_post_author_avatar_src( $dragblock_s_queries, $dragblock_s_current = null ) {
-	if ( ( $dragblock_s_current ) !== 0 && ! $dragblock_s_current ) {
+	if ( ! $dragblock_s_current ) {
 		$dragblock_s_current = dragblock_get_current_list_query_id();
 	}
-	if ( ( $dragblock_s_current ) !== 0 && ! $dragblock_s_current ) {
+	if ( ! $dragblock_s_current ) {
 		return '';
 	}
-	// dev-reply#24306.
+	// dev-reply#24305.
 	$dragblock_s_tags = get_post_field( 'post_author', $dragblock_s_current );
-	// dev-reply#24309.
+	// dev-reply#24308.
 	$dragblock_s_video = get_avatar_url( $dragblock_s_tags );
 	return esc_url_raw( $dragblock_s_video );
 }
@@ -298,10 +298,10 @@ add_shortcode( 'dragblock.post.cat.name', 'dragblock_shortcode_post_cat_name' );
  * @param object|array|string $dragblock_s_current check var-def#24228.
  */
 function dragblock_shortcode_post_cat_name( $dragblock_s_queries, $dragblock_s_current = null ) {
-	if ( ( $dragblock_s_current ) !== 0 && ! $dragblock_s_current ) {
+	if ( ! $dragblock_s_current ) {
 		$dragblock_s_current = dragblock_get_current_list_query_id();
 	}
-	if ( ( $dragblock_s_current ) !== 0 && ! $dragblock_s_current ) {
+	if ( ! $dragblock_s_current ) {
 		return '';
 	}
 	$dragblock_s_srcset = get_the_category( $dragblock_s_current );
@@ -312,7 +312,7 @@ function dragblock_shortcode_post_cat_name( $dragblock_s_queries, $dragblock_s_c
 			}
 		}
 	}
-	return ''; // dev-reply#24342.
+	return ''; // dev-reply#24341.
 }
 add_shortcode( 'dragblock.post.cat.url', 'dragblock_shortcode_post_cat_url' );
 /**
@@ -322,10 +322,10 @@ add_shortcode( 'dragblock.post.cat.url', 'dragblock_shortcode_post_cat_url' );
  * @param object|array|string $dragblock_s_current check var-def#24247.
  */
 function dragblock_shortcode_post_cat_url( $dragblock_s_queries, $dragblock_s_current ) {
-	if ( ( $dragblock_s_current ) !== 0 && ! $dragblock_s_current ) {
+	if ( ! $dragblock_s_current ) {
 		$dragblock_s_current = dragblock_get_current_list_query_id();
 	}
-	if ( ( $dragblock_s_current ) !== 0 && ! $dragblock_s_current ) {
+	if ( ! $dragblock_s_current ) {
 		return '';
 	}
 	$dragblock_s_srcset = get_the_category( $dragblock_s_current );
@@ -336,7 +336,7 @@ function dragblock_shortcode_post_cat_url( $dragblock_s_queries, $dragblock_s_cu
 			}
 		}
 	}
-	return '#empty_cat_id'; // dev-reply#24369.
+	return '#empty_cat_id'; // dev-reply#24368.
 }
 add_shortcode( 'dragblock.post.cat.id', 'dragblock_shortcode_post_cat_id' );
 /**
@@ -346,10 +346,10 @@ add_shortcode( 'dragblock.post.cat.id', 'dragblock_shortcode_post_cat_id' );
  * @param object|array|string $dragblock_s_current check var-def#24266.
  */
 function dragblock_shortcode_post_cat_id( $dragblock_s_queries, $dragblock_s_current = null ) {
-	if ( ( $dragblock_s_current ) !== 0 && ! $dragblock_s_current ) {
+	if ( ! $dragblock_s_current ) {
 		$dragblock_s_current = dragblock_get_current_list_query_id();
 	}
-	if ( ( $dragblock_s_current ) !== 0 && ! $dragblock_s_current ) {
+	if ( ! $dragblock_s_current ) {
 		return '';
 	}
 	$dragblock_s_srcset = get_the_category( $dragblock_s_current );
@@ -362,7 +362,7 @@ function dragblock_shortcode_post_cat_id( $dragblock_s_queries, $dragblock_s_cur
 	}
 	return - 1;
 }
-// dev-reply#24401.
+// dev-reply#24400.
 add_shortcode( 'dragblock.share.url.twitter', 'dragblock_shortcode_share_url_twitter' );
 /**
  * Check Documentation#24286

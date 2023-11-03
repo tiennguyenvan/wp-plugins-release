@@ -8,4 +8,4 @@
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
-require_once 'tutorials-register.php';
+require_once 'tutorials-enqueue.php';

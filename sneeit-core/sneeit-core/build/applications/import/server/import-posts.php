@@ -123,33 +123,52 @@ function sneeit_core_demo_import_posts() {
 			$sneeit_core_ip_time['post_name'] = $sneeit_core_ip_p['name'];
 		}
 		// dev-reply#24143.
-		$sneeit_core_ip_args = wp_insert_post( $sneeit_core_ip_time, true );
-		if ( is_wp_error( $sneeit_core_ip_args ) ) {
-			// dev-reply#24150.
+		if ( ! empty( $sneeit_core_ip_p['parent'] ) && is_numeric( $sneeit_core_ip_p['parent'] ) ) {
+			$sneeit_core_ip_args = get_posts( array(
+				'post_type'      => $sneeit_core_ip_post,
+				'posts_per_page' => 1,
+				'meta_query' => array(
+					array(
+						'key' => 'sneeit-demo-id',
+						'value' => (int) $sneeit_core_ip_p['parent'],
+						'compare' => '=',
+						'type' => 'NUMERIC', // dev-reply#24153.
+					),
+				),
+			) );
+			if ( $sneeit_core_ip_args ) {
+				$sneeit_core_ip_args = $sneeit_core_ip_args[0];
+				$sneeit_core_ip_time['post_parent'] = $sneeit_core_ip_args->id;
+			}
+		}
+		// dev-reply#24164.
+		$sneeit_core_ip_term = wp_insert_post( $sneeit_core_ip_time, true );
+		if ( is_wp_error( $sneeit_core_ip_term ) ) {
+			// dev-reply#24171.
 			continue;
-			// dev-reply#24152.
+			// dev-reply#24173.
 		}
 		if ( ( $sneeit_core_ip_post ) === 'page' || ( $sneeit_core_ip_post ) === 'posts' ) {
 			global $wpdb;
-			$sneeit_core_ip_term = $wpdb->prefix . 'posts';
+			$sneeit_core_ip_parent = $wpdb->prefix . 'posts';
 			if (
 				! empty( $wpdb->update(
-					$sneeit_core_ip_term,
+					$sneeit_core_ip_parent,
 					array( 'ID' => $sneeit_core_ip_duplicates ),
-					array( 'ID' => $sneeit_core_ip_args )
+					array( 'ID' => $sneeit_core_ip_term )
 				) )
 			) {
-				$sneeit_core_ip_args = $sneeit_core_ip_duplicates;
+				$sneeit_core_ip_term = $sneeit_core_ip_duplicates;
 			}
 		}
-		// dev-reply#24181.
-		update_post_meta( $sneeit_core_ip_args, 'sneeit-demo-id', $sneeit_core_ip_duplicates );
+		// dev-reply#24202.
+		update_post_meta( $sneeit_core_ip_term, 'sneeit-demo-id', $sneeit_core_ip_duplicates );
 		if ( ! empty( $sneeit_core_ip_p['meta'] ) ) {
 			foreach ( $sneeit_core_ip_p['meta'] as $sneeit_core_ip_wpdb => $sneeit_core_ip_table ) {
-				update_post_meta( $sneeit_core_ip_args, $sneeit_core_ip_wpdb, $sneeit_core_ip_table );
+				update_post_meta( $sneeit_core_ip_term, $sneeit_core_ip_wpdb, $sneeit_core_ip_table );
 			}
 		}
-		// dev-reply#24191.
+		// dev-reply#24214.
 		if ( ( $sneeit_core_ip_post ) === 'wp_template' || ( $sneeit_core_ip_post ) === 'wp_template_part' || ( $sneeit_core_ip_post ) === 'wp_global_styles' ) {
 			$sneeit_core_ip_name = array(
 				'wp_theme' => array( get_stylesheet() ),
@@ -159,15 +178,15 @@ function sneeit_core_demo_import_posts() {
 			}
 			foreach ( $sneeit_core_ip_name as $sneeit_core_ip_meta => $sneeit_core_ip_key ) {
 				foreach ( $sneeit_core_ip_key as $sneeit_core_ip_value ) {
-					// dev-reply#24217.
+					// dev-reply#24240.
 					$sneeit_core_ip_new = wp_create_term( $sneeit_core_ip_value, $sneeit_core_ip_meta );
 					if ( is_wp_error( $sneeit_core_ip_new ) ) {
 						sneeit_core_ajax_error_die(
-							/* translators: see trans-note#24154 */
+							/* translators: see trans-note#24173 */
 							sprintf(
-								esc_html__( 'In %1$s (#%2$s/%3$s), cannot create %4$s for %5$s): %6$s', 'sneeit-core' ),
+								esc_html__( 'In %1$s (#%2$s/%3$s), cannot create %4$s for %5$s: %6$s', 'sneeit-core' ),
 								$sneeit_core_ip_post,
-								$sneeit_core_ip_args,
+								$sneeit_core_ip_term,
 								$sneeit_core_ip_duplicates,
 								$sneeit_core_ip_value,
 								$sneeit_core_ip_meta,
@@ -175,17 +194,17 @@ function sneeit_core_demo_import_posts() {
 							)
 						);
 					}
-					// dev-reply#24235.
-					$sneeit_core_ip_affected = wp_set_object_terms( $sneeit_core_ip_args, array( (int) $sneeit_core_ip_new['term_id'] ), $sneeit_core_ip_meta );
+					// dev-reply#24258.
+					$sneeit_core_ip_affected = wp_set_object_terms( $sneeit_core_ip_term, array( (int) $sneeit_core_ip_new['term_id'] ), $sneeit_core_ip_meta );
 					if ( is_wp_error( $sneeit_core_ip_affected ) ) {
 						sneeit_core_ajax_error_die(
-							/* translators: see trans-note#24169 */
+							/* translators: see trans-note#24188 */
 							sprintf(
 								esc_html__( 'In %1$s, cannot set %4$s of %5$s for #%2$s/%3$s: %6$s', 'sneeit-core' ),
 								$sneeit_core_ip_post,
 								$sneeit_core_ip_value,
 								$sneeit_core_ip_meta,
-								$sneeit_core_ip_args,
+								$sneeit_core_ip_term,
 								$sneeit_core_ip_duplicates,
 								$sneeit_core_ip_new->get_error_message()
 							)
@@ -193,18 +212,18 @@ function sneeit_core_demo_import_posts() {
 					}
 					if ( empty( $sneeit_core_ip_affected ) ) {
 						sneeit_core_ajax_error_die(
-							/* translators: see trans-note#24182 */
+							/* translators: see trans-note#24201 */
 							sprintf(
 								esc_html__( 'In %1$s, cannot set %4$s of %5$s for #%2$s/%3$s', 'sneeit-core' ),
 								$sneeit_core_ip_post,
 								$sneeit_core_ip_value,
 								$sneeit_core_ip_meta,
-								$sneeit_core_ip_args,
+								$sneeit_core_ip_term,
 								$sneeit_core_ip_duplicates,
 							)
 						);
 					}
-					// dev-reply#24269.
+					// dev-reply#24292.
 				}
 			}
 		}
@@ -213,28 +232,28 @@ function sneeit_core_demo_import_posts() {
 	die();
 }
 /**
- * Check Documentation#24200
+ * Check Documentation#24219
  *
- * @param object|array|string $sneeit_core_ip_items check var-def#24200.
+ * @param object|array|string $sneeit_core_ip_items check var-def#24219.
  */
 function sneeit_core_demo_import_attachments( $sneeit_core_ip_items ) {
-	// dev-reply#24289.
+	// dev-reply#24312.
 	$sneeit_core_ip_terms = null;
 	$sneeit_core_ip_taxonomy = get_posts( array(
 		'post_type'      => 'attachment',
 		'post_status'    => 'inherit',
 		'posts_per_page' => 1,
 	) );
-	// dev-reply#24298.
+	// dev-reply#24321.
 	if ( ! empty( $sneeit_core_ip_taxonomy ) ) {
 		$sneeit_core_ip_terms = $sneeit_core_ip_taxonomy[0]->ID;
 	}
 	foreach ( $sneeit_core_ip_items as $sneeit_core_ip_duplicates => $sneeit_core_ip_p ) {
 		$sneeit_core_ip_duplicates = (int) $sneeit_core_ip_duplicates;
 		$sneeit_core_ip_tag = $sneeit_core_ip_p['name'] ? $sneeit_core_ip_p['name'] : null;
-		// dev-reply#24306.
-		$sneeit_core_ip_args = sneeit_core_get_demo_post_id( $sneeit_core_ip_p['parent'] );
-		// dev-reply#24315.
+		// dev-reply#24329.
+		$sneeit_core_ip_term = sneeit_core_get_demo_post_id( $sneeit_core_ip_p['parent'] );
+		// dev-reply#24338.
 		$sneeit_core_ip_set = get_posts( array(
 			'post_type'      => 'attachment',
 			'post_status'    => 'inherit',
@@ -244,45 +263,45 @@ function sneeit_core_demo_import_attachments( $sneeit_core_ip_items ) {
 			'meta_compare' => '=',
 		) );
 		if ( ! empty( $sneeit_core_ip_set ) ) {
-			// dev-reply#24332.
-			if ( $sneeit_core_ip_args ) {
-				set_post_thumbnail( $sneeit_core_ip_args, $sneeit_core_ip_set[0]->ID );
+			// dev-reply#24355.
+			if ( $sneeit_core_ip_term ) {
+				set_post_thumbnail( $sneeit_core_ip_term, $sneeit_core_ip_set[0]->ID );
 			}
-			// dev-reply#24337.
+			// dev-reply#24360.
 			continue;
 		}
 		$sneeit_core_ip_default = '';
 		$sneeit_core_ip_attachment = false;
 		if ( ! empty( $sneeit_core_ip_p['get'] ) ) {
-			// dev-reply#24349.
-			$sneeit_core_ip_default = sneeit_core_download_image( $sneeit_core_ip_p['get'], $sneeit_core_ip_args );
-			// dev-reply#24351.
+			// dev-reply#24372.
+			$sneeit_core_ip_default = sneeit_core_download_image( $sneeit_core_ip_p['get'], $sneeit_core_ip_term );
+			// dev-reply#24374.
 			if ( empty( $sneeit_core_ip_default ) ) {
-				// dev-reply#24354.
+				// dev-reply#24377.
 			}
 		}
 		if ( empty( $sneeit_core_ip_default ) ) {
-			// dev-reply#24359.
+			// dev-reply#24382.
 			if ( $sneeit_core_ip_tag ) {
-				$sneeit_core_ip_attachments = sneeit_core_create_attachment( SNEEIT_CORE_BLANK_IMAGE_PATH, $sneeit_core_ip_args, $sneeit_core_ip_tag );
+				$sneeit_core_ip_attachments = sneeit_core_create_attachment( SNEEIT_CORE_BLANK_IMAGE_PATH, $sneeit_core_ip_term, $sneeit_core_ip_tag );
 				if ( $sneeit_core_ip_attachments ) {
-					set_post_thumbnail( $sneeit_core_ip_args, $sneeit_core_ip_attachments );
+					set_post_thumbnail( $sneeit_core_ip_term, $sneeit_core_ip_attachments );
 					continue;
 				}
 			}
-			// dev-reply#24369.
+			// dev-reply#24392.
 			if ( ! $sneeit_core_ip_terms ) {
 				$sneeit_core_ip_terms = sneeit_core_create_attachment( SNEEIT_CORE_BLANK_IMAGE_PATH );
 			}
 			if ( $sneeit_core_ip_terms ) {
-				set_post_thumbnail( $sneeit_core_ip_args, $sneeit_core_ip_terms );
+				set_post_thumbnail( $sneeit_core_ip_term, $sneeit_core_ip_terms );
 			}
 			continue;
 		} else {
 			$sneeit_core_ip_attachment = true;
 		}
-		// dev-reply#24387.
-		$sneeit_core_ip_created = sneeit_core_create_attachment( $sneeit_core_ip_default, $sneeit_core_ip_args, $sneeit_core_ip_tag );
+		// dev-reply#24410.
+		$sneeit_core_ip_created = sneeit_core_create_attachment( $sneeit_core_ip_default, $sneeit_core_ip_term, $sneeit_core_ip_tag );
 		if ( ( $sneeit_core_ip_created ) === false ) {
 			if ( $sneeit_core_ip_attachment ) {
 				unlink( $sneeit_core_ip_default );
@@ -291,11 +310,11 @@ function sneeit_core_demo_import_attachments( $sneeit_core_ip_items ) {
 				$sneeit_core_ip_terms = sneeit_core_create_attachment( SNEEIT_CORE_BLANK_IMAGE_PATH );
 			}
 			if ( $sneeit_core_ip_terms ) {
-				set_post_thumbnail( $sneeit_core_ip_args, $sneeit_core_ip_terms );
+				set_post_thumbnail( $sneeit_core_ip_term, $sneeit_core_ip_terms );
 			}
 			continue;
 		}
-		set_post_thumbnail( $sneeit_core_ip_args, $sneeit_core_ip_created );
+		set_post_thumbnail( $sneeit_core_ip_term, $sneeit_core_ip_created );
 		update_post_meta( $sneeit_core_ip_created, 'sneeit-demo-id', $sneeit_core_ip_duplicates );
 		if ( ! empty( $sneeit_core_ip_p['get'] ) ) {
 			update_post_meta( $sneeit_core_ip_created, 'sneeit-demo', $sneeit_core_ip_p['get'] );

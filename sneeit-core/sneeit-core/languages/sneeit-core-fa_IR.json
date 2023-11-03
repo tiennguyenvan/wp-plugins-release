@@ -1,0 +1,161 @@
+{
+   "domain": "sneeit-core",
+   "locale_data": {
+      "sneeit-core": {
+         "\"%s\" has invalid file to install": [
+            "\"%s\" فایل نامعتبری برای نصب دارد"
+         ],
+         "\"%s\" has invalid slug": [
+            "\"%s\" دارای اسلاگ نامعتبر است"
+         ],
+         "\"%s\" is activated": [
+            "\"%s\" فعال شده است"
+         ],
+         "Activate \"%s\"": [
+            "\"%s\" را فعال کنید."
+         ],
+         "Activate the Theme": [
+            "فعال کردن تم"
+         ],
+         "Activating \"%s\"": [
+            "فعال کردن \"%s\""
+         ],
+         "Activating ...": [
+            "در حال فعالسازی..."
+         ],
+         "All": [
+            "همه"
+         ],
+         "Cannot active \"%1$s\": file %2$s %3$s": [
+            "\"%1$s\" فعال نیست: فایل %2$s %3$s"
+         ],
+         "Cannot copy font %s": [
+            "نمی توان از قلم %s کپی کرد"
+         ],
+         "Cannot create dragblock directory": [
+            "نمی توان دایرکتوری dragblock ایجاد کرد"
+         ],
+         "Cannot create dragblock/fonts directory": [
+            "نمی توان دایرکتوری dragblock/fonts ایجاد کرد"
+         ],
+         "Cannot create folder of %s": [
+            "نمی توان پوشه %s را ایجاد کرد"
+         ],
+         "Cannot download \"%1$s\": %2$s": [
+            "نمی توان \"%1$s\" را دانلود کرد: %2$s"
+         ],
+         "Cannot download font %s": [
+            "نمی توان فونت %s را دانلود کرد"
+         ],
+         "Cannot unzip \"%1$s\": %2$s": [
+            "نمی توان \"%1$s\" را باز کرد: %2$s"
+         ],
+         "Cannot upload %s": [
+            "%s را نمی توان آپلود کرد"
+         ],
+         "Check Live Website": [
+            "وب سایت زنده را بررسی کنید"
+         ],
+         "Demo Details": [
+            "جزئیات نمایشی"
+         ],
+         "Empty Import Content": [
+            "محتوای وارد کردن را خالی کنید"
+         ],
+         "Failed to Import!": [
+            "وارد نشد!"
+         ],
+         "Failed to activate \"%s\"": [
+            "فعال کردن \"%s\" ناموفق بود."
+         ],
+         "Finished": [
+            "تمام شد"
+         ],
+         "Import Demos": [
+            "وارد کردن دموها"
+         ],
+         "Imported successfully. Congratulation!": [
+            "با موفقیت وارد شد. تبریک میگم!"
+         ],
+         "Importing! Do not close or reload this page.": [
+            "در حال وارد کردن! این صفحه را نبندید یا دوباره بارگیری نکنید."
+         ],
+         "In %1$s (#%2$s/%3$s), cannot create %4$s for %5$s: %6$s": [
+            "در %1$s (#%2$s/%3$s)، نمی توان %4$s را برای %5$s ایجاد کرد: %6$s"
+         ],
+         "In %1$s, cannot set %4$s of %5$s for #%2$s/%3$s": [
+            "در %1$s، نمی توان %4$s از %5$s را برای #%2$s/%3$s تنظیم کرد."
+         ],
+         "In %1$s, cannot set %4$s of %5$s for #%2$s/%3$s: %6$s": [
+            "در %1$s، نمی توان %4$s از %5$s را برای #%2$s/%3$s تنظیم کرد: %6$s"
+         ],
+         "Listing...": [
+            "فهرست..."
+         ],
+         "Missing required field: %s": [
+            "فقدان فیلد الزامی: %s"
+         ],
+         "Please activate \"%s\" on your site to use premium features": [
+            "لطفا \"%s\" را در سایت خود فعال کنید تا از ویژگی های برتر استفاده کنید."
+         ],
+         "Please activate the theme before importing demos. Thank you!": [
+            "لطفا قبل از وارد کردن دمو، تم را فعال کنید. متشکرم!"
+         ],
+         "Please select the content you want to import": [
+            "لطفا محتوایی را که می خواهید وارد کنید انتخاب کنید"
+         ],
+         "Reading Demo Details ...": [
+            "خواندن جزئیات نسخه ی نمایشی..."
+         ],
+         "Redirecting ...": [
+            "در حال تغییر مسیر..."
+         ],
+         "Redirecting to \"%s\"'s host": [
+            "در حال تغییر مسیر به میزبان \"%s\""
+         ],
+         "Refresh the Activation": [
+            "فعالسازی را تازه کنید"
+         ],
+         "Retry to Activate": [
+            "تلاش مجدد برای فعالسازی"
+         ],
+         "Unknown Server Error": [
+            "خطای سرور ناشناخته"
+         ],
+         "Updating \"%s\"": [
+            "در حال به روز رسانی \"%s\""
+         ],
+         "Updating ...": [
+            "در حال به روز رسانی..."
+         ],
+         "Validating": [
+            "در حال تایید"
+         ],
+         "View the Home Page": [
+            "مشاهده صفحه اصلی"
+         ],
+         "WordPress Server Error": [
+            "خطای سرور وردپرس"
+         ],
+         "Wrong %1$s Args %2$s": [
+            "اشتباه %1$s ارگ %2$s"
+         ],
+         "empty nonce": [
+            "عدم خالی"
+         ],
+         "Please do not close or reload this tab when activating \"%s\"": [
+            "لطفاً هنگام فعال کردن \"%s\" این برگه را نبندید یا دوباره بارگیری نکنید"
+         ],
+         "Please do not close or reload this tab when updating \"%s\"!": [
+            "لطفاً هنگام به روز رسانی \"%s\" این برگه را نبندید یا دوباره بارگیری نکنید!"
+         ],
+         "Timeout! Please reload the page.": [
+            "تایم تمام شد! لطفا صفحه را دوباره بارگیری کنید."
+         ],
+         "": {
+            "domain": "sneeit-core",
+            "lang": "فارسی - Persian"
+         }
+      }
+   }
+}

@@ -1,0 +1,161 @@
+{
+   "domain": "sneeit-core",
+   "locale_data": {
+      "sneeit-core": {
+         "\"%s\" has invalid file to install": [
+            "\"%s\" heeft een ongeldig bestand om te installeren"
+         ],
+         "\"%s\" has invalid slug": [
+            "\"%s\" heeft ongeldige slug"
+         ],
+         "\"%s\" is activated": [
+            "\"%s\" is geactiveerd"
+         ],
+         "Activate \"%s\"": [
+            "Activeer \"%s\""
+         ],
+         "Activate the Theme": [
+            "Activeer het thema"
+         ],
+         "Activating \"%s\"": [
+            "\"%s\" activeren"
+         ],
+         "Activating ...": [
+            "Activeren..."
+         ],
+         "All": [
+            "Alles"
+         ],
+         "Cannot active \"%1$s\": file %2$s %3$s": [
+            "Kan \"%1$s\" niet activeren: bestand %2$s %3$s"
+         ],
+         "Cannot copy font %s": [
+            "Kan lettertype %s niet kopiëren"
+         ],
+         "Cannot create dragblock directory": [
+            "Kan dragblock-map niet aanmaken"
+         ],
+         "Cannot create dragblock/fonts directory": [
+            "Kan dragblock/fonts map niet aanmaken"
+         ],
+         "Cannot create folder of %s": [
+            "Kan map van %s niet aanmaken"
+         ],
+         "Cannot download \"%1$s\": %2$s": [
+            "Kan \"%1$s\" niet downloaden: %2$s"
+         ],
+         "Cannot download font %s": [
+            "Kan lettertype %s niet downloaden"
+         ],
+         "Cannot unzip \"%1$s\": %2$s": [
+            "Kan \"%1$s\": %2$s niet uitpakken"
+         ],
+         "Cannot upload %s": [
+            "Kan %s niet uploaden"
+         ],
+         "Check Live Website": [
+            "Live website controleren"
+         ],
+         "Demo Details": [
+            "Demodetails"
+         ],
+         "Empty Import Content": [
+            "Lege importinhoud"
+         ],
+         "Failed to Import!": [
+            "Kan niet importeren!"
+         ],
+         "Failed to activate \"%s\"": [
+            "Kan \"%s\" niet activeren"
+         ],
+         "Finished": [
+            "Voltooid"
+         ],
+         "Import Demos": [
+            "Demo's importeren"
+         ],
+         "Imported successfully. Congratulation!": [
+            "Succesvol geïmporteerd. Gefeliciteerd!"
+         ],
+         "Importing! Do not close or reload this page.": [
+            "Bezig met importeren! Sluit deze pagina niet en laad deze niet opnieuw."
+         ],
+         "In %1$s (#%2$s/%3$s), cannot create %4$s for %5$s: %6$s": [
+            "In %1$s (#%2$s/%3$s), kan %4$s niet worden aangemaakt voor %5$s: %6$s"
+         ],
+         "In %1$s, cannot set %4$s of %5$s for #%2$s/%3$s": [
+            "In %1$s kan %4$s van %5$s niet worden ingesteld voor #%2$s/%3$s"
+         ],
+         "In %1$s, cannot set %4$s of %5$s for #%2$s/%3$s: %6$s": [
+            "In %1$s kan %4$s van %5$s niet worden ingesteld voor #%2$s/%3$s: %6$s"
+         ],
+         "Listing...": [
+            "Lijst..."
+         ],
+         "Missing required field: %s": [
+            "Ontbrekend verplicht veld: %s"
+         ],
+         "Please activate \"%s\" on your site to use premium features": [
+            "Activeer \"%s\" op uw site om premiumfuncties te gebruiken"
+         ],
+         "Please activate the theme before importing demos. Thank you!": [
+            "Activeer het thema voordat u demo's importeert. Bedankt!"
+         ],
+         "Please do not close or reload this tab when activating \"%s\"": [
+            "Sluit dit tabblad niet en laad het niet opnieuw wanneer u \"%s\" activeert"
+         ],
+         "Please do not close or reload this tab when updating \"%s\"!": [
+            "Sluit dit tabblad niet en laad het niet opnieuw tijdens het updaten van \"%s\"!"
+         ],
+         "Please select the content you want to import": [
+            "Selecteer de inhoud die u wilt importeren"
+         ],
+         "Reading Demo Details ...": [
+            "Demodetails lezen..."
+         ],
+         "Redirecting ...": [
+            "Omleiden..."
+         ],
+         "Redirecting to \"%s\"'s host": [
+            "Omleiden naar de host van \"%s\""
+         ],
+         "Refresh the Activation": [
+            "Vernieuw de activering"
+         ],
+         "Retry to Activate": [
+            "Probeer opnieuw te activeren"
+         ],
+         "Timeout! Please reload the page.": [
+            "Time-out! Laad de pagina opnieuw."
+         ],
+         "Unknown Server Error": [
+            "Onbekende serverfout"
+         ],
+         "Updating \"%s\"": [
+            "\"%s\" bijwerken"
+         ],
+         "Updating ...": [
+            "Bijwerken..."
+         ],
+         "Validating": [
+            "Valideren"
+         ],
+         "View the Home Page": [
+            "Bekijk de startpagina"
+         ],
+         "WordPress Server Error": [
+            "WordPress-serverfout"
+         ],
+         "Wrong %1$s Args %2$s": [
+            "Verkeerde %1$s argumenten %2$s"
+         ],
+         "empty nonce": [
+            "lege nonce"
+         ],
+         "": {
+            "domain": "sneeit-core",
+            "lang": "Nederlands (Dutch)"
+         }
+      }
+   }
+}

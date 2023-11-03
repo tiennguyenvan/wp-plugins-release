@@ -30,7 +30,13 @@ function dragblock_renderability_render( $dragblock_rr_block, $dragblock_rr_cont
 		if ( ! empty( $dragblock_rr_user['disabled'] ) || empty( $dragblock_rr_user['slug'] ) || empty( $dragblock_rr_user['value'] ) ) {
 			continue;
 		}
-		// dev-reply#1027.
+		if ( 'render' === $dragblock_rr_user['slug'] ) {
+			if ( $dragblock_rr_user['value'] === 'never' ) {
+				return '';
+			}
+			return $dragblock_rr_block;
+		}
+		// dev-reply#1033.
 		if ( 'browser' === $dragblock_rr_user['slug'] ) {
 			if ( null === $dragblock_rr_parsed ) {
 				$dragblock_rr_parsed = false;
@@ -44,7 +50,7 @@ function dragblock_renderability_render( $dragblock_rr_block, $dragblock_rr_cont
 			}
 			continue;
 		}
-		// dev-reply#1042.
+		// dev-reply#1048.
 		if ( 'device' === $dragblock_rr_user['slug'] ) {
 			if ( null === $dragblock_rr_browsers ) {
 				$dragblock_rr_browsers = false;
@@ -58,7 +64,7 @@ function dragblock_renderability_render( $dragblock_rr_block, $dragblock_rr_cont
 			}
 			continue;
 		}
-		// dev-reply#1057.
+		// dev-reply#1063.
 		if ( 'os' === $dragblock_rr_user['slug'] ) {
 			if ( null === $dragblock_rr_devices ) {
 				$dragblock_rr_devices = false;
@@ -72,7 +78,7 @@ function dragblock_renderability_render( $dragblock_rr_block, $dragblock_rr_cont
 			}
 			continue;
 		}
-		// dev-reply#1072.
+		// dev-reply#1078.
 		if ( 'user-logged' === $dragblock_rr_user['slug'] ) {
 			if ( null === $dragblock_rr_oses ) {
 				$dragblock_rr_oses = false;
@@ -88,7 +94,7 @@ function dragblock_renderability_render( $dragblock_rr_block, $dragblock_rr_cont
 			continue;
 		}
 	}
-	// dev-reply#1089.
+	// dev-reply#1095.
 	if ( null === $dragblock_rr_parsed ) {
 		$dragblock_rr_parsed = true;
 	}
