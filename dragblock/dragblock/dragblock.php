@@ -5,7 +5,7 @@
  * Plugin URI: https://dragblock.com/
  * Requires at least: 5.9
  * Requires PHP: 7.0
- * Version: 23.11.03
+ * Version: 23.11.10
  * Author: DragBlock.Com
  * Author URI: https://dragblock.com
  * License: GPLv2 or later
@@ -16,7 +16,6 @@
  *
  * @package dragblock
  */
-
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
@@ -31,5 +30,5 @@ define(
 	strpos( DRAGBLOCK_OPENSSL_CONF, 'D:/' ) === 0 ||
 	strpos( DRAGBLOCK_OPENSSL_CONF, 'E:/' ) === 0
 );
-define( 'DRAGBLOCK_VERSION', DRAGBLOCK_IS_LOCAL ? time() : '23.11.03' );
+define( 'DRAGBLOCK_VERSION', DRAGBLOCK_IS_LOCAL ? time() : '23.11.10' );
 require_once 'build/index.php';

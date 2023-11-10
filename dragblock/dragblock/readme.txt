@@ -4,7 +4,7 @@ Donate link: https://www.paypal.me/sneeit
 Tags: gutenberg, blocks, gutenberg blocks, editor, block, site builder, drag-and-drop, visual editor
 Requires at least: 5.9
 Requires PHP: 7.4
-Stable tag: 23.11.03
+Stable tag: 23.11.10
 Tested up to: 6.3.2
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
@@ -36,22 +36,17 @@ https://www.youtube.com/watch?v=c0kgB-mBDTo&list=PLM7acJv8ZNtio0sPznKOGtxodBUOZW
 
 <strong>Define multilingual texts:</strong> to support many languages without creating separate pages and designs
 
+<h3>CREDITS AND CONTRIBUTION</h3>
+The icon feature is an improvision of <a href="https://wordpress.org/plugins/icon-block/" title="Icon Block Plugin"><strong>The Icon Block</strong></a> of <strong>Nick Diego</strong>. Thank you very much, Nick!
+
+If you want to contribute to my plugin, check it at <a href="https://github.com/tiennguyenvan/wp.org.dragblock/" title="DragBlock GitHub OpenSource">DragBlock GitHub</a>
+
 <h3>DESIGN PHILOSOPHY</h3>
 Our philosophy is "block oriented designing" (BOD) which means attaching everything related to a block to itself. By doing that, we can manage things related to an individual block easily and when removing a block, everything that is plugged into it, including server side scripts, client scripts, css and text definitions, will be completely removed as well. This will give a huge impact on improving the performance of websites and also saving the time for developers to not find and clean codes manually like before.
 
 Moreover, we also want to get rid of the era when we treat users like babies by providing them inputs for everything. In the DragBlock, we provide users with dictionaries so they can grasp their layout properties completely without being smashed by a flood of many different kinds of inputs.
 
 In summary, DragBlock empowers users to create professional-looking websites like an expert designer effortlessly with a fresh feeling of managing blocks with simplicity. Everything can be done within the Gutenberg editor, ushering in a new era of Full Site Editing with the DragBlock plugin.
-
-== Frequently Asked Questions ==
-= Why I need to use DragBlock? =
-To Build pixel perfect and responsive websites with the higest performance, SEO, and aesthetic standards.
-
-= How do I get support? =
-Please <a href="https://github.com/tiennguyenvan/wp.org.dragblock/es" title="Submit GitHub Ticket">Submit a Ticket</a> or <a href="https://wordpress.org/support/plugin/dragblock/" title="Support Forum"> Check Support Fourm</a>
-
-= How to contribute to DragBlock? =
-Let's join the revolution in changing the way the whole world working with WordPress designs by contributing to our <a href="https://github.com/tiennguyenvan/wp.org.dragblock/" title="DragBlock GitHub OpenSource">DragBlock GitHub</a>
 
 == Screenshots ==
 1. **Powerful Block Toolbars** Easily pick design layout for wrapper, font-size, rotation and other attributes for
@@ -66,6 +61,20 @@ language plugin. Saving time by not creating many different pages.
 No need Contact-Form 7 or any other form plugins.
 
 == Changelog ==
+= 23.11.10 =
+* Fix Wrapper Grid Designer
+* Generate Schema Graphs and Meta Tags automatically
+* Support tag name for the text block
+
+= 23.11.03 =
+* Support auto youtube thumbnail inserter
+* Support hotkeys to work with Appearance and Attributes properties
+* Improve show/hide for hover effect
+* Support Style Presets
+* Support form template
+* Support live content for database queries
+* Redesign panels
+
 = 23.10.24 =
 * Enhance hover effect for selected blocks
 * Support block toolbar navigator

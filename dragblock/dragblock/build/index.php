@@ -45,3 +45,4 @@ require_once 'applications/form-entries/server/index.php';
 require_once 'applications/font-library/server/index.php';
 require_once 'applications/theme-settings/server/index.php';
 require_once 'applications/shortcodes/server/index.php';
+require_once 'applications/seo/server/index.php';

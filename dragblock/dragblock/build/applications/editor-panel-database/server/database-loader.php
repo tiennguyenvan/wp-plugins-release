@@ -10,13 +10,16 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 dragblock_ajax_register( 'dragblock_database_loader', 'dragblock_database_loader' );
 /**
- * Check Documentation#33
+ * Check Documentation#43
  */
 function dragblock_database_loader() {
 	dragblock_ajax_request_verify_die( 'data' );
 	$dragblock_dl_data = json_decode( sanitize_text_field( wp_unslash( $_POST['data'] ) ), true );
 	$dragblock_dl_data['fields'] = 'ids';
-	// dev-reply#310.
+	if ( ! isset( $dragblock_dl_data['post_status'] ) ) {
+		$dragblock_dl_data['post_status'] = 'publish';
+	}
+	// dev-reply#413.
 	$dragblock_dl_post = new WP_Query( $dragblock_dl_data );
 	$dragblock_dl_query = $dragblock_dl_post->posts;
 	$dragblock_dl_posts = array();
@@ -33,6 +36,6 @@ function dragblock_database_loader() {
 		$dragblock_dl_id['cat_name'] = dragblock_shortcode_post_cat_name( null, $dragblock_dl_ids );
 		$dragblock_dl_posts[] = $dragblock_dl_id;
 	}
-	// dev-reply#329.
+	// dev-reply#432.
 	dragblock_ajax_succeed_die( $dragblock_dl_posts );
 }
