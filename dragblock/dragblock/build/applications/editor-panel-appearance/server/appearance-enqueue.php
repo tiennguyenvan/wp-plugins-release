@@ -61,19 +61,19 @@ function dragblock_appearance_collect_css( $dragblock_ae_dragblock, $dragblock_a
 			if ( empty( $dragblock_ae_user['blockName'] ) || empty( $dragblock_ae_user['attrs']['dragBlockClientId'] ) ) {
 				continue;
 			}
-			// dev-reply#17127.
+			// dev-reply#17126.
 			$dragblock_ae_block = dragblock_uid_key( $dragblock_ae_user );
 			if ( ! empty( $dragblock_css[ $dragblock_ae_block ] ) ) {
 				$dragblock_ae_json .= $dragblock_css[ $dragblock_ae_block ];
 				unset( $dragblock_css[ $dragblock_ae_block ] );
-				// dev-reply#17133.
+				// dev-reply#17132.
 			}
 		}
 	}
 	if ( $dragblock_ae_json ) {
 		$dragblock_css[ $dragblock_ae_theme ] = $dragblock_ae_json;
 	}
-// dev-reply#17146.
+// dev-reply#17145.
 	return $dragblock_ae_dragblock;
 }
 /**
@@ -88,7 +88,7 @@ function dragblock_uid_key( $dragblock_ae_css ) {
 	}
 	return $dragblock_ae_theme;
 }
-add_filter( 'wp_theme_json_data_theme', 'dragblock_appearance_collect_json_data_theme', 10 );
+add_filter( 'wp_theme_json_data_theme', 'dragblock_appearance_collect_json_data_theme', 10, 1 );
 /**
  * Check Documentation#1771
  *
@@ -99,7 +99,7 @@ function dragblock_appearance_collect_json_data_theme( $dragblock_ae_content ) {
 	$dragblock_theme_json = $dragblock_ae_content->get_data();
 	return $dragblock_ae_content;
 }
-add_filter( 'wp_theme_json_data_default', 'dragblock_appearance_collect_json_data_default', 10 );
+add_filter( 'wp_theme_json_data_default', 'dragblock_appearance_collect_json_data_default', 10, 1 );
 /**
  * Check Documentation#1778
  *
@@ -110,7 +110,7 @@ function dragblock_appearance_collect_json_data_default( $dragblock_ae_content )
 	$dragblock_default_json = $dragblock_ae_content->get_data();
 	return $dragblock_ae_content;
 }
-add_filter( 'wp_theme_json_data_user', 'dragblock_appearance_collect_json_data_user', 10 );
+add_filter( 'wp_theme_json_data_user', 'dragblock_appearance_collect_json_data_user', 10, 1 );
 /**
  * Check Documentation#1785
  *
@@ -126,21 +126,21 @@ add_action( 'wp_enqueue_scripts', 'dragblock_appearance_front_scripts' );
  * Check Documentation#1792
  */
 function dragblock_appearance_front_scripts() {
-	// dev-reply#17216.
+	// dev-reply#17215.
 	global $dragblock_css;
-	// dev-reply#17231.
+	// dev-reply#17230.
 	$dragblock_ae_parsed = implode( '', $dragblock_css );
-	// dev-reply#17234.
+	// dev-reply#17233.
 	global $dragblock_theme_json;
 	global $dragblock_default_json;
 	global $dragblock_user_json;
-	// dev-reply#17243.
+	// dev-reply#17242.
 	if (
 		! empty( $dragblock_user_json['settings']['color']['palette']['theme'] )
 	) {
 		$dragblock_theme_json['settings']['color']['palette']['theme'] = $dragblock_user_json['settings']['color']['palette']['theme'];
 	}
-	// dev-reply#17255.
+	// dev-reply#17254.
 	if (
 		! empty( $dragblock_user_json['settings']['color']['palette']['custom'] )
 	) {
@@ -148,13 +148,13 @@ function dragblock_appearance_front_scripts() {
 	}
 	if ( ! empty( $dragblock_theme_json['settings']['color']['palette']['theme'] ) ) {
 		foreach ( $dragblock_theme_json['settings']['color']['palette']['theme'] as $dragblock_ae_uid ) {
-			// dev-reply#17265.
+			// dev-reply#17264.
 			$dragblock_ae_parsed = str_replace(
 				'{c=' . $dragblock_ae_uid['slug'] . '}',
 				$dragblock_ae_uid['color'],
 				$dragblock_ae_parsed
 			);
-			// dev-reply#17272.
+			// dev-reply#17271.
 			$dragblock_ae_parsed = str_replace(
 				'{c=' . $dragblock_ae_uid['slug'] . '@}',
 				substr( $dragblock_ae_uid['color'], 0, 7 ),
@@ -164,13 +164,13 @@ function dragblock_appearance_front_scripts() {
 	}
 	if ( ! empty( $dragblock_default_json['settings']['color']['palette']['default'] ) ) {
 		foreach ( $dragblock_default_json['settings']['color']['palette']['default'] as $dragblock_ae_uid ) {
-			// dev-reply#17283.
+			// dev-reply#17282.
 			$dragblock_ae_parsed = str_replace(
 				'{c=' . $dragblock_ae_uid['slug'] . '}',
 				$dragblock_ae_uid['color'],
 				$dragblock_ae_parsed
 			);
-			// dev-reply#17290.
+			// dev-reply#17289.
 			$dragblock_ae_parsed = str_replace(
 				'{c=' . $dragblock_ae_uid['slug'] . '@}',
 				substr( $dragblock_ae_uid['color'], 0, 7 ),

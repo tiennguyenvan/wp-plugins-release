@@ -18,27 +18,29 @@ define( 'DRAGBLOCK_BUILD_PATH', DRAGBLOCK_PATH . 'build/' );
 define( 'DRAGBLOCK_APP_URL', DRAGBLOCK_BUILD_URL . 'applications/' );
 define( 'DRAGBLOCK_APP_PATH', DRAGBLOCK_BUILD_PATH . 'applications/' );
 define( 'DRAGBLOCK_NONCE_SLUG', 'dragBlockNonce' );
-// dev-reply#414.
+define( 'DRAGBLOCK_K_PATTERN_CACHE', 'dragblock_pattern_cache' );
+// dev-reply#417.
 define( 'DRAGBLOCK_CUSTOM_DEFAULT_STYLE', false );
 add_action( 'init', 'dragblock_init_defines', 1 );
 /**
- * Check Documentation#415
+ * Check Documentation#416
  */
 function dragblock_init_defines() {
 	$dragblock_b_upload = wp_upload_dir();
 	define( 'DRAGBLOCK_UPLOAD_DIR', $dragblock_b_upload['basedir'] . '/dragblock' );
 	define( 'DRAGBLOCK_UPLOAD_URL', $dragblock_b_upload['baseurl'] . '/dragblock' );
-	// dev-reply#426.
+	// dev-reply#431.
 }
 require_once 'library/server/index.php';
 require_once 'applications/editor-init/server/index.php';
-require_once 'applications/editor-panel-database/server/index.php'; // dev-reply#435.
+require_once 'applications/editor-panel-database/server/index.php'; // dev-reply#440.
 require_once 'applications/editor-panel-content/server/index.php';
 require_once 'applications/editor-panel-appearance/server/index.php';
 require_once 'applications/editor-panel-attributes/server/index.php';
 require_once 'applications/editor-panel-interactions/server/index.php';
 require_once 'applications/editor-panel-renderability/server/index.php';
 require_once 'applications/tutorials/server/index.php';
+require_once 'applications/patterns/server/index.php';
 require_once 'blocks/block-register.php';
 require_once 'applications/admin-menu/server/index.php';
 require_once 'applications/form-entries/server/index.php';

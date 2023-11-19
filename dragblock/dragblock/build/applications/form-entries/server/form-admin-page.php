@@ -22,7 +22,7 @@ function dragblock_admin_menu_form_entries() {
 		''
 	);
 }
-add_filter( 'manage_' . DRAGBLOCK_FORM_ENTRY . '_posts_columns', 'dragblock_manage_posts_columns_form_entries' );
+add_filter( 'manage_' . DRAGBLOCK_FORM_ENTRY . '_posts_columns', 'dragblock_manage_posts_columns_form_entries', 1, 1 );
 /**
  * Check Documentation#715
  *

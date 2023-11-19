@@ -44,8 +44,9 @@ function dragblock_block_init() {
  * Check Documentation#432
  *
  * @param object|array|string $dragblock_br_blocks check var-def#432.
+ * @param object|array|string $dragblock_br_block check var-def#432.
  */
-function dragblock_register_block_category( $dragblock_br_blocks ) {
+function dragblock_register_block_category( $dragblock_br_blocks, $dragblock_br_block ) {
 	array_unshift(
 		$dragblock_br_blocks,
 		array(

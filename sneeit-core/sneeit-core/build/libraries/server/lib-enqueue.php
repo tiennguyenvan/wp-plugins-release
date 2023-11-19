@@ -22,7 +22,7 @@ function sneeit_core_enqueue_single( $sneeit_core_le_file, $sneeit_core_le_dep =
 		wp_enqueue_script( $sneeit_core_le_slug, SNEEIT_CORE_BUILD_URL . $sneeit_core_le_file, $sneeit_core_le_dep, SNEEIT_CORE_VERSION, true );
 		add_filter( 'load_script_translation_file', 'sneeit_core_translate_path', 10, 3 );
 		wp_set_script_translations( $sneeit_core_le_slug, 'sneeit-core', SNEEIT_CORE_PLUGIN_PATH . '/languages/' );
-		// dev-reply#1213.
+		// dev-reply#1216.
 	}
 }
 /**
@@ -46,7 +46,7 @@ function sneeit_core_translate_path( $sneeit_core_le_file, $sneeit_core_le_handl
 function sneeit_core_enqueue_multiple( $sneeit_core_le_files ) {
 	if ( is_array( $sneeit_core_le_files ) ) {
 		foreach ( $sneeit_core_le_files as $sneeit_core_le_key => $sneeit_core_le_file ) {
-			// dev-reply#1231.
+			// dev-reply#1234.
 			if ( is_array( $sneeit_core_le_file ) ) {
 				sneeit_core_enqueue_single( $sneeit_core_le_key, $sneeit_core_le_file );
 				continue;
@@ -75,17 +75,17 @@ function sneeit_core_enqueue_app( $sneeit_core_le_slug, $sneeit_core_le_location
 		if ( strpos( $_SERVER['REQUEST_URI'], 'site-editor.php' ) === false ) {
 			return;
 		}
-		// dev-reply#1257.
+		// dev-reply#1260.
 		if ( empty( $_GET[ SNEEIT_CORE_SLUG ] ) || $_GET[ SNEEIT_CORE_SLUG ] !== $sneeit_core_le_slug ) {
 			return;
 		}
 	} else {
 		$sneeit_core_le_server = isset( $_GET['page'] ) ? $_GET['page'] : '';
-		// dev-reply#1265.
+		// dev-reply#1268.
 		if ( empty( $sneeit_core_le_server ) ) {
 			$sneeit_core_le_server = isset( $_GET['app'] ) ? $_GET['app'] : '';
 		}
-		// dev-reply#1269.
+		// dev-reply#1272.
 		if ( strpos( $sneeit_core_le_server, 'sneeit-core-' ) === false ) {
 			return;
 		}
@@ -94,7 +94,7 @@ function sneeit_core_enqueue_app( $sneeit_core_le_slug, $sneeit_core_le_location
 			return;
 		}
 	}
-	// dev-reply#1280.
+	// dev-reply#1283.
 	add_action(
 		$sneeit_core_le_hook,
 		/**
@@ -105,7 +105,7 @@ function sneeit_core_enqueue_app( $sneeit_core_le_slug, $sneeit_core_le_location
 			$sneeit_core_le_current = $sneeit_core_le_get->get( 'Name' );
 			$sneeit_core_le_page = $sneeit_core_le_get->get( 'UpdateURI' );
 			$sneeit_core_le_theme = $sneeit_core_le_get->get( 'ThemeURI' );
-			// dev-reply#1295.
+			// dev-reply#1298.
 			wp_enqueue_script( 'jquery' );
 			wp_localize_script( 'jquery', 'sneeitCore', array(
 				'ajaxUrl' => admin_url( 'admin-ajax.php' ),
@@ -122,37 +122,37 @@ function sneeit_core_enqueue_app( $sneeit_core_le_slug, $sneeit_core_le_location
 				'adminUrl' => admin_url(),
 				'uploadUrl' => wp_upload_dir()['url'],
 				'isLocalhost' => SNEEIT_CORE_IS_LOCAL,
-				// dev-reply#12115.
-				'sneeitLicenseUsername' => get_option( SNEEIT_CORE_KEY_SNEEIT_LICENSE_USERNAME, '' ), // dev-reply#12116.,
+				// dev-reply#12117.
+				'sneeitLicenseUsername' => get_option( SNEEIT_CORE_KEY_SNEEIT_LICENSE_USERNAME, '' ), // dev-reply#12118.,
 			) );
 			foreach ( $sneeit_core_le_dependencies as $sneeit_core_le_name ) {
 				wp_enqueue_style( $sneeit_core_le_name );
 				wp_enqueue_script( $sneeit_core_le_name );
 			}
-			// dev-reply#12123.
+			// dev-reply#12126.
 			if ( ( $sneeit_core_le_location ) === 'editor' ) {
 				sneeit_core_enqueue_single( "applications/{$sneeit_core_le_slug}/client/index.js", array( 'jquery' ) );
 				sneeit_core_enqueue_single( "applications/{$sneeit_core_le_slug}/client/index.css" );
-				// dev-reply#12127.
+				// dev-reply#12130.
 				return;
 			}
-			// dev-reply#12131.
+			// dev-reply#12134.
 			$sneeit_core_le_update = include SNEEIT_CORE_BUILD_PATH . 'applications/' . $sneeit_core_le_slug . '/client/index.asset.php';
-			// dev-reply#12136.
+			// dev-reply#12139.
 			foreach ( $sneeit_core_le_update['dependencies'] as $sneeit_core_le_uri ) {
 				wp_enqueue_style( $sneeit_core_le_uri );
 			}
-			// dev-reply#12140.
+			// dev-reply#12143.
 			array_push( $sneeit_core_le_update['dependencies'], 'wp-i18n' );
 			$sneeit_core_le_dependency = ( $sneeit_core_le_location ) === 'admin' ? '' : 'style-';
-			// dev-reply#12146.
+			// dev-reply#12149.
 			sneeit_core_enqueue_multiple(
 				array(
 					"applications/{$sneeit_core_le_slug}/client/{$sneeit_core_le_dependency}index.css",
 					"applications/{$sneeit_core_le_slug}/client/index.js" => $sneeit_core_le_update['dependencies'],
 				)
 			);
-			// dev-reply#12154.
+			// dev-reply#12157.
 		},
 		1
 	);

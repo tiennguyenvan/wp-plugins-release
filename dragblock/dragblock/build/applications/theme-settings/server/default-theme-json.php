@@ -244,7 +244,7 @@ define(
 		),
 	)
 );
-add_filter( 'wp_theme_json_data_theme', 'dragblock_default_theme_json', 1 );
+add_filter( 'wp_theme_json_data_theme', 'dragblock_default_theme_json', 1, 1 );
 /**
  * Check Documentation#17239
  *
