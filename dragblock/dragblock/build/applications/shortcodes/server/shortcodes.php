@@ -366,11 +366,20 @@ function dragblock_shortcode_post_cat_id( $dragblock_s_queries, $dragblock_s_cur
 	return - 1;
 }
 // dev-reply#24402.
-add_shortcode( 'dragblock.share.url.twitter', 'dragblock_shortcode_share_url_twitter' );
+add_shortcode( 'dragblock.home.url', 'dragblock_shortcode_home_url' );
 /**
  * Check Documentation#24289
  *
  * @param object|array|string $dragblock_s_queries check var-def#24289.
+ */
+function dragblock_shortcode_home_url( $dragblock_s_queries ) {
+	return get_home_url();
+}
+add_shortcode( 'dragblock.share.url.twitter', 'dragblock_shortcode_share_url_twitter' );
+/**
+ * Check Documentation#24294
+ *
+ * @param object|array|string $dragblock_s_queries check var-def#24294.
  */
 function dragblock_shortcode_share_url_twitter( $dragblock_s_queries ) {
 	if ( empty( $_SERVER['REQUEST_URI'] ) ) {
@@ -380,9 +389,9 @@ function dragblock_shortcode_share_url_twitter( $dragblock_s_queries ) {
 }
 add_shortcode( 'dragblock.share.url.facebook', 'dragblock_shortcode_share_url_facebook' );
 /**
- * Check Documentation#24297
+ * Check Documentation#24302
  *
- * @param object|array|string $dragblock_s_queries check var-def#24297.
+ * @param object|array|string $dragblock_s_queries check var-def#24302.
  */
 function dragblock_shortcode_share_url_facebook( $dragblock_s_queries ) {
 	if ( empty( $_SERVER['REQUEST_URI'] ) ) {
@@ -392,9 +401,9 @@ function dragblock_shortcode_share_url_facebook( $dragblock_s_queries ) {
 }
 add_shortcode( 'dragblock.share.url.whatsapp', 'dragblock_shortcode_share_url_whatsapp' );
 /**
- * Check Documentation#24305
+ * Check Documentation#24310
  *
- * @param object|array|string $dragblock_s_queries check var-def#24305.
+ * @param object|array|string $dragblock_s_queries check var-def#24310.
  */
 function dragblock_shortcode_share_url_whatsapp( $dragblock_s_queries ) {
 	if ( empty( $_SERVER['REQUEST_URI'] ) ) {
@@ -404,9 +413,9 @@ function dragblock_shortcode_share_url_whatsapp( $dragblock_s_queries ) {
 }
 add_shortcode( 'dragblock.share.url.telegram', 'dragblock_shortcode_share_url_telegram' );
 /**
- * Check Documentation#24313
+ * Check Documentation#24318
  *
- * @param object|array|string $dragblock_s_queries check var-def#24313.
+ * @param object|array|string $dragblock_s_queries check var-def#24318.
  */
 function dragblock_shortcode_share_url_telegram( $dragblock_s_queries ) {
 	if ( empty( $_SERVER['REQUEST_URI'] ) ) {
@@ -416,9 +425,9 @@ function dragblock_shortcode_share_url_telegram( $dragblock_s_queries ) {
 }
 add_shortcode( 'dragblock.share.url.tumblr', 'dragblock_shortcode_share_url_tumblr' );
 /**
- * Check Documentation#24321
+ * Check Documentation#24326
  *
- * @param object|array|string $dragblock_s_queries check var-def#24321.
+ * @param object|array|string $dragblock_s_queries check var-def#24326.
  */
 function dragblock_shortcode_share_url_tumblr( $dragblock_s_queries ) {
 	if ( empty( $_SERVER['REQUEST_URI'] ) ) {
@@ -428,9 +437,9 @@ function dragblock_shortcode_share_url_tumblr( $dragblock_s_queries ) {
 }
 add_shortcode( 'dragblock.share.url.reddit', 'dragblock_shortcode_share_url_reddit' );
 /**
- * Check Documentation#24329
+ * Check Documentation#24334
  *
- * @param object|array|string $dragblock_s_queries check var-def#24329.
+ * @param object|array|string $dragblock_s_queries check var-def#24334.
  */
 function dragblock_shortcode_share_url_reddit( $dragblock_s_queries ) {
 	if ( empty( $_SERVER['REQUEST_URI'] ) ) {
@@ -440,9 +449,9 @@ function dragblock_shortcode_share_url_reddit( $dragblock_s_queries ) {
 }
 add_shortcode( 'dragblock.share.url.linkedin', 'dragblock_shortcode_share_url_linkedin' );
 /**
- * Check Documentation#24337
+ * Check Documentation#24342
  *
- * @param object|array|string $dragblock_s_queries check var-def#24337.
+ * @param object|array|string $dragblock_s_queries check var-def#24342.
  */
 function dragblock_shortcode_share_url_linkedin( $dragblock_s_queries ) {
 	if ( empty( $_SERVER['REQUEST_URI'] ) ) {
@@ -452,9 +461,9 @@ function dragblock_shortcode_share_url_linkedin( $dragblock_s_queries ) {
 }
 add_shortcode( 'dragblock.share.url.gmail', 'dragblock_shortcode_share_url_gmail' );
 /**
- * Check Documentation#24345
+ * Check Documentation#24350
  *
- * @param object|array|string $dragblock_s_queries check var-def#24345.
+ * @param object|array|string $dragblock_s_queries check var-def#24350.
  */
 function dragblock_shortcode_share_url_gmail( $dragblock_s_queries ) {
 	if ( empty( $_SERVER['REQUEST_URI'] ) ) {
@@ -464,9 +473,9 @@ function dragblock_shortcode_share_url_gmail( $dragblock_s_queries ) {
 }
 add_shortcode( 'dragblock.share.url.email', 'dragblock_shortcode_share_url_email' );
 /**
- * Check Documentation#24353
+ * Check Documentation#24358
  *
- * @param object|array|string $dragblock_s_queries check var-def#24353.
+ * @param object|array|string $dragblock_s_queries check var-def#24358.
  */
 function dragblock_shortcode_share_url_email( $dragblock_s_queries ) {
 	if ( empty( $_SERVER['REQUEST_URI'] ) ) {
@@ -476,18 +485,18 @@ function dragblock_shortcode_share_url_email( $dragblock_s_queries ) {
 }
 add_shortcode( 'dragblock.share.url.navigator', 'dragblock_shortcode_share_url_navigator' );
 /**
- * Check Documentation#24361
+ * Check Documentation#24366
  *
- * @param object|array|string $dragblock_s_queries check var-def#24361.
+ * @param object|array|string $dragblock_s_queries check var-def#24366.
  */
 function dragblock_shortcode_share_url_navigator( $dragblock_s_queries ) {
 	return 'javascript:navigator.share?navigator.share({url:location.href}):null';
 }
 add_filter( 'kses_allowed_protocols', 'dragblock_kses_allowed_protocols', 1 );
 /**
- * Check Documentation#24366
+ * Check Documentation#24371
  *
- * @param object|array|string $dragblock_s_format check var-def#24366.
+ * @param object|array|string $dragblock_s_format check var-def#24371.
  */
 function dragblock_kses_allowed_protocols( $dragblock_s_format ) {
 	$dragblock_s_format[] = 'data';

@@ -8,7 +8,7 @@
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
-dragblock_ajax_register( 'dragblock_database_loader', 'dragblock_database_loader' );
+dragblock_ajax_register( 'dragblock_database_loader' );
 /**
  * Check Documentation#43
  */

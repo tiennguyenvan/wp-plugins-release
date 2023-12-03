@@ -2,10 +2,10 @@
 /**
  * DragBlock's Applications.
  *
- * @package Example
+ * @package Editor toolbars
  */
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
-require_once '___-register.php';
+require_once 'editor-toolbars-enqueue.php';
