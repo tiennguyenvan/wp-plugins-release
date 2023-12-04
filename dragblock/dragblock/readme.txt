@@ -4,7 +4,7 @@ Donate link: https://www.paypal.me/sneeit
 Tags: gutenberg, blocks, gutenberg blocks, editor, block, site builder, drag-and-drop, visual editor
 Requires at least: 5.9
 Requires PHP: 7.4
-Stable tag: 23.12.03
+Stable tag: 23.12.04
 Tested up to: 6.4.1
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
@@ -61,6 +61,10 @@ language plugin. Saving time by not creating many different pages.
 No need Contact-Form 7 or any other form plugins.
 
 == Changelog ==
+= 23.12.04 =
+* Fixed background toolbar not update background image
+* Fixed Pattern library not load if cache timeout
+
 = 23.12.03 =
 * Enhanced block toolbars
 
@@ -136,5 +140,5 @@ No need Contact-Form 7 or any other form plugins.
 * Fixed: verify nonce before processing form data
 
 == Upgrade Notice ==
-= 23.10.07 =
+= 23.07.10 =
 First release with the most stable features
