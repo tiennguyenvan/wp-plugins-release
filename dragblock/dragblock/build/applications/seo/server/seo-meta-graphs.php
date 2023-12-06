@@ -123,13 +123,14 @@ function dragblock_meta_graphs() {
 		$dragblock_smg_meta = get_the_content();
 		$dragblock_smg_tag = ceil( str_word_count( $dragblock_smg_meta ) / 200 ); // dev-reply#24129.
 	}
+	do_action( 'dragblock_seo_meta_graphs' );
 	$dragblock_smg_class = "class='dragblock-seo-meta-tag'";
 	$dragblock_smg_eol = DRAGBLOCK_IS_LOCAL ? "\n" : '';
 	$dragblock_smg_label1 = esc_attr( $dragblock_smg_image ? $dragblock_smg_src : ( is_archive() ? $dragblock_smg_root : $dragblock_smg_site ) );
 	$dragblock_smg_label2 = ( is_singular() || is_archive() ) ? 'article' : 'wesbite';
 	$dragblock_smg_data2 = $dragblock_smg_image ? $dragblock_smg_properties : ( is_archive() ? $dragblock_smg_archive : '' );
 	if ( is_archive() ) {
-		/* translators: see trans-note#24106 */
+		/* translators: see trans-note#24107 */
 		$dragblock_smg_data2 = sprintf( esc_html__( '%s Archives', 'dragblock' ), $dragblock_smg_data2 );
 	}
 	$dragblock_smg_data2 = esc_attr( $dragblock_smg_data2 ? $dragblock_smg_data2 . ' - ' . $dragblock_smg_url : $dragblock_smg_url );
@@ -149,7 +150,7 @@ function dragblock_meta_graphs() {
 		$dragblock_smg_article = esc_attr( esc_html__( 'Written by', 'dragblock' ) );
 		$dragblock_smg_json = esc_attr( esc_html__( 'Est. reading time', 'dragblock' ) );
 		$dragblock_smg_webpage = esc_attr( esc_html__( '%s minutes', 'dragblock' ) );
-		/* translators: see trans-note#24125 */
+		/* translators: see trans-note#24126 */
 		$dragblock_smg_collection = sprintf( $dragblock_smg_webpage, $dragblock_smg_tag );
 		echo "<meta property='article:published_time' content='$dragblock_smg_modified' $dragblock_smg_class />$dragblock_smg_eol";
 		echo "<meta property='article:modified_time' content='$dragblock_smg_author' $dragblock_smg_class />$dragblock_smg_eol";
@@ -319,7 +320,7 @@ function dragblock_meta_graphs() {
 			'@type' => 'ListItem',
 			'position' => count( $dragblock_smg_person ) + 1,
 			'name' => $dragblock_smg_properties,
-			// dev-reply#24391.,
+			// dev-reply#24392.,
 		) );
 	}
 	if ( $dragblock_smg_network ) {
@@ -327,7 +328,7 @@ function dragblock_meta_graphs() {
 			'@type' => 'ListItem',
 			'position' => count( $dragblock_smg_person ) + 1,
 			'name' => $dragblock_smg_archive,
-			// dev-reply#24399.,
+			// dev-reply#24400.,
 		) );
 	}
 	$dragblock_smg_url_url = array(

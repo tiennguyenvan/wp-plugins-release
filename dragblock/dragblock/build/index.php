@@ -32,20 +32,21 @@ function dragblock_init_defines() {
 	// dev-reply#431.
 }
 require_once 'library/server/index.php';
+require_once 'applications/admin-menu/server/index.php';
+require_once 'blocks/block-register.php';
+require_once 'applications/tutorials/server/index.php';
+require_once 'applications/patterns/server/index.php';
+require_once 'applications/form-entries/server/index.php';
+require_once 'applications/font-library/server/index.php';
+require_once 'applications/theme-settings/server/index.php';
+require_once 'applications/shortcodes/server/index.php';
+require_once 'applications/site-settings/server/index.php';
+require_once 'applications/seo/server/index.php';
 require_once 'applications/editor-init/server/index.php';
-require_once 'applications/editor-panel-database/server/index.php'; // dev-reply#440.
+require_once 'applications/editor-panel-database/server/index.php'; // dev-reply#451.
 require_once 'applications/editor-panel-content/server/index.php';
 require_once 'applications/editor-panel-appearance/server/index.php';
 require_once 'applications/editor-panel-attributes/server/index.php';
 require_once 'applications/editor-panel-interactions/server/index.php';
 require_once 'applications/editor-panel-renderability/server/index.php';
 require_once 'applications/editor-toolbars/server/index.php';
-require_once 'applications/tutorials/server/index.php';
-require_once 'applications/patterns/server/index.php';
-require_once 'blocks/block-register.php';
-require_once 'applications/admin-menu/server/index.php';
-require_once 'applications/form-entries/server/index.php';
-require_once 'applications/font-library/server/index.php';
-require_once 'applications/theme-settings/server/index.php';
-require_once 'applications/shortcodes/server/index.php';
-require_once 'applications/seo/server/index.php';

@@ -1,10 +1,10 @@
-=== DragBlock - Advanced WordPress Gutenberg Full Site Editor ===
+=== DragBlock - WordPress Site & Page Builder with Advanced Blocks ===
 Contributors: dragblock, sneeit, Tien Nguyen
 Donate link: https://www.paypal.me/sneeit
 Tags: gutenberg, blocks, gutenberg blocks, editor, block, site builder, drag-and-drop, visual editor
 Requires at least: 5.9
 Requires PHP: 7.4
-Stable tag: 23.12.04
+Stable tag: 23.12.06
 Tested up to: 6.4.1
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
@@ -61,6 +61,11 @@ language plugin. Saving time by not creating many different pages.
 No need Contact-Form 7 or any other form plugins.
 
 == Changelog ==
+= 23.12.06 =
+* Support uploading site favicon
+* Improve property popover design
+* Add more patterns to the pattern library
+
 = 23.12.04 =
 * Fixed background toolbar not update background image
 * Fixed Pattern library not load if cache timeout
