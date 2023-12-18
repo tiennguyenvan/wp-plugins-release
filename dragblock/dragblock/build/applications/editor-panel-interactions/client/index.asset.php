@@ -1,1 +1,1 @@
-<?php return array('dependencies' => array('lodash', 'wp-block-editor', 'wp-block-editor/build/components', 'wp-components', 'wp-components/build/panel/body', 'wp-compose', 'wp-data', 'wp-element', 'wp-i18n'), 'version' => 'b7badfaa49ba44ec1686');
+<?php return array('dependencies' => array('lodash', 'wp-block-editor', 'wp-block-editor/build/components', 'wp-components', 'wp-components/build/panel/body', 'wp-compose', 'wp-data', 'wp-element', 'wp-i18n'), 'version' => 'c309fe6681c9de8b9eb9');

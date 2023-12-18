@@ -21,7 +21,7 @@ function sneeit_core_load_all_demos() {
 	// dev-reply#518.
 	$sneeit_core_lad_post = wp_remote_get( $sneeit_core_lad_url );
 	if ( is_wp_error( $sneeit_core_lad_post ) ) {
-		sneeit_core_ajax_error_die( 'Error fetching JSON data: ' . $sneeit_core_lad_post->get_error_message() );
+		sneeit_core_ajax_error_die( 'Error fetching JSON data' );
 	}
 	$sneeit_core_lad_response = wp_remote_retrieve_body( $sneeit_core_lad_post );
 	$sneeit_core_lad_body = json_decode( $sneeit_core_lad_response, true );

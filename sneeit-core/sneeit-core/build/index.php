@@ -32,4 +32,5 @@ if ( ! defined( 'ABSPATH' ) ) {
 	require_once SNEEIT_CORE_BUILD_PATH . 'applications/import/server/index.php';
 	require_once SNEEIT_CORE_BUILD_PATH . 'applications/activate/server/index.php';
 	require_once SNEEIT_CORE_BUILD_PATH . 'applications/patterns/server/index.php';
-// dev-reply#440.
+	require_once SNEEIT_CORE_BUILD_PATH . 'applications/seo/server/index.php';
+// dev-reply#441.

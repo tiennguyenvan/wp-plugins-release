@@ -56,7 +56,7 @@ function dragblock_patterns_rest_api_init() {
 			register_block_pattern_category( $dragblock_pl_api, $dragblock_pl_url );
 		}
 	}
-	// dev-reply#568.
+	// dev-reply#566.
 	foreach ( $dragblock_pl_timer['patterns'] as $dragblock_pl_response => $dragblock_pl_cat ) {
 		if ( empty( $dragblock_pl_cat['name'] ) ) {
 			continue;

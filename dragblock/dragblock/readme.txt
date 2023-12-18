@@ -4,7 +4,7 @@ Donate link: https://www.paypal.me/sneeit
 Tags: gutenberg, blocks, gutenberg blocks, editor, block, site builder, drag-and-drop, visual editor
 Requires at least: 5.9
 Requires PHP: 7.4
-Stable tag: 23.12.06
+Stable tag: 23.12.18
 Tested up to: 6.4.1
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
@@ -61,7 +61,9 @@ language plugin. Saving time by not creating many different pages.
 No need Contact-Form 7 or any other form plugins.
 
 == Changelog ==
-= 23.12.06 =
+= 23.12.18 =
+* Fixed woo shop page does not show properly
+* Remove SEO meta and graphs to not conflict with this plugin scope
 * Support uploading site favicon
 * Improve property popover design
 * Add more patterns to the pattern library
