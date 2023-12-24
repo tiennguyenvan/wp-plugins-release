@@ -10,3 +10,4 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 require_once 'site-settings-enqueue.php';
 require_once 'site-settings-favicon.php';
+require_once 'site-settings-theme-color.php';

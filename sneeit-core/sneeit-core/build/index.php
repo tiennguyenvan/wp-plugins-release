@@ -18,6 +18,8 @@ if ( ! defined( 'ABSPATH' ) ) {
 	define( 'SNEEIT_CORE_BLANK_IMAGE_URL', SNEEIT_CORE_IMAGE_URL . 'blank.png' );
 	define( 'SNEEIT_CORE_SLUG', 'sneeit-core' );
 	define( 'SNEEIT_CORE_KEY_NONCE', 'sneeit-core-nonce' );
+	define( 'SNEEIT_CORE_SITE_FAVICON_META_KEY', 'sneeit_core_site_favicon' );
+	define( 'SNEEIT_CORE_SITE_THEME_COLOR_META_KEY', 'sneeit_core_theme_color' );
 	define( 'SNEEIT_CORE_KEY_SNEEIT_LICENSE_USERNAME', 'sneeit_license_username' );
 	define(
 		'SNEEIT_CORE_IS_LOCAL',
@@ -33,4 +35,5 @@ if ( ! defined( 'ABSPATH' ) ) {
 	require_once SNEEIT_CORE_BUILD_PATH . 'applications/activate/server/index.php';
 	require_once SNEEIT_CORE_BUILD_PATH . 'applications/patterns/server/index.php';
 	require_once SNEEIT_CORE_BUILD_PATH . 'applications/seo/server/index.php';
-// dev-reply#441.
+	require_once SNEEIT_CORE_BUILD_PATH . 'applications/site-settings/server/index.php';
+// dev-reply#444.
