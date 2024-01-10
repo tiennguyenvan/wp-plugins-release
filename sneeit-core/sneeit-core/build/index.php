@@ -21,12 +21,12 @@ if ( ! defined( 'ABSPATH' ) ) {
 	define( 'SNEEIT_CORE_SITE_FAVICON_META_KEY', 'sneeit_core_site_favicon' );
 	define( 'SNEEIT_CORE_SITE_THEME_COLOR_META_KEY', 'sneeit_core_theme_color' );
 	define( 'SNEEIT_CORE_KEY_SNEEIT_LICENSE_USERNAME', 'sneeit_license_username' );
+	if ( ! defined( 'WP_ENVIRONMENT_TYPE' ) ) {
+		define( 'WP_ENVIRONMENT_TYPE', 'live' );
+	}
 	define(
 		'SNEEIT_CORE_IS_LOCAL',
-		! empty( $_SERVER['OPENSSL_CONF'] ) && ( strpos( $_SERVER['OPENSSL_CONF'], 'C:/' ) === 0 ||
-			strpos( $_SERVER['OPENSSL_CONF'], 'D:/' ) === 0 ||
-			strpos( $_SERVER['OPENSSL_CONF'], 'E:/' ) === 0
-		)
+		defined( 'WP_ENVIRONMENT_TYPE' ) && WP_ENVIRONMENT_TYPE === 'local'
 	);
 	define( 'SNEEIT_CORE_VERSION', SNEEIT_CORE_IS_LOCAL ? time() : '23.10.14' );
 	require_once SNEEIT_CORE_BUILD_PATH . 'libraries/server/index.php';

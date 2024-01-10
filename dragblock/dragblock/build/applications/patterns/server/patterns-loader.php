@@ -35,8 +35,9 @@ function dragblock_patterns_rest_api_init() {
 		) );
 		if ( ! is_wp_error( $dragblock_pl_time ) ) {
 			$dragblock_pl_timer = json_decode( wp_remote_retrieve_body( $dragblock_pl_time ), true );
+			// dev-reply#535.
 			if ( ! empty( $dragblock_pl_timer['error'] ) || empty( $dragblock_pl_timer['patterns'] ) ) {
-				// dev-reply#536.
+				// dev-reply#538.
 				$dragblock_pl_timer = get_transient( DRAGBLOCK_K_PATTERN_CACHE );
 			} else {
 				// dev-reply#541.
@@ -56,7 +57,7 @@ function dragblock_patterns_rest_api_init() {
 			register_block_pattern_category( $dragblock_pl_api, $dragblock_pl_url );
 		}
 	}
-	// dev-reply#566.
+	// dev-reply#568.
 	foreach ( $dragblock_pl_timer['patterns'] as $dragblock_pl_response => $dragblock_pl_cat ) {
 		if ( empty( $dragblock_pl_cat['name'] ) ) {
 			continue;

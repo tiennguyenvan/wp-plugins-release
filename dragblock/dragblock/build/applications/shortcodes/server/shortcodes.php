@@ -293,12 +293,13 @@ function dragblock_shortcode_post_author_avatar_src( $dragblock_s_queries, $drag
 	// dev-reply#24313.
 	return esc_url_raw( $dragblock_s_video );
 }
+// dev-reply#24317.
 add_shortcode( 'dragblock.post.cat.name', 'dragblock_shortcode_post_cat_name' );
 /**
- * Check Documentation#24231
+ * Check Documentation#24232
  *
- * @param object|array|string $dragblock_s_queries check var-def#24231.
- * @param object|array|string $dragblock_s_current check var-def#24231.
+ * @param object|array|string $dragblock_s_queries check var-def#24232.
+ * @param object|array|string $dragblock_s_current check var-def#24232.
  */
 function dragblock_shortcode_post_cat_name( $dragblock_s_queries, $dragblock_s_current = null ) {
 	if ( ! $dragblock_s_current ) {
@@ -319,14 +320,14 @@ function dragblock_shortcode_post_cat_name( $dragblock_s_queries, $dragblock_s_c
 			}
 		}
 	}
-	return $dragblock_s_date; // dev-reply#24348.
+	return $dragblock_s_date; // dev-reply#24370.
 }
 add_shortcode( 'dragblock.post.cat.url', 'dragblock_shortcode_post_cat_url' );
 /**
- * Check Documentation#24254
+ * Check Documentation#24255
  *
- * @param object|array|string $dragblock_s_queries check var-def#24254.
- * @param object|array|string $dragblock_s_current check var-def#24254.
+ * @param object|array|string $dragblock_s_queries check var-def#24255.
+ * @param object|array|string $dragblock_s_current check var-def#24255.
  */
 function dragblock_shortcode_post_cat_url( $dragblock_s_queries, $dragblock_s_current ) {
 	if ( ! $dragblock_s_current ) {
@@ -347,14 +348,14 @@ function dragblock_shortcode_post_cat_url( $dragblock_s_queries, $dragblock_s_cu
 			}
 		}
 	}
-	return $dragblock_s_formatted ? $dragblock_s_formatted : '#empty_cat_id'; // dev-reply#24378.
+	return $dragblock_s_formatted ? $dragblock_s_formatted : '#empty_cat_id'; // dev-reply#24400.
 }
 add_shortcode( 'dragblock.post.cat.id', 'dragblock_shortcode_post_cat_id' );
 /**
- * Check Documentation#24277
+ * Check Documentation#24278
  *
- * @param object|array|string $dragblock_s_queries check var-def#24277.
- * @param object|array|string $dragblock_s_current check var-def#24277.
+ * @param object|array|string $dragblock_s_queries check var-def#24278.
+ * @param object|array|string $dragblock_s_current check var-def#24278.
  */
 function dragblock_shortcode_post_cat_id( $dragblock_s_queries, $dragblock_s_current = null ) {
 	if ( ! $dragblock_s_current ) {
@@ -373,21 +374,21 @@ function dragblock_shortcode_post_cat_id( $dragblock_s_queries, $dragblock_s_cur
 	}
 	return - 1;
 }
-// dev-reply#24410.
+// dev-reply#24432.
 add_shortcode( 'dragblock.home.url', 'dragblock_shortcode_home_url' );
 /**
- * Check Documentation#24297
+ * Check Documentation#24298
  *
- * @param object|array|string $dragblock_s_queries check var-def#24297.
+ * @param object|array|string $dragblock_s_queries check var-def#24298.
  */
 function dragblock_shortcode_home_url( $dragblock_s_queries ) {
 	return get_home_url();
 }
 add_shortcode( 'dragblock.share.url.twitter', 'dragblock_shortcode_share_url_twitter' );
 /**
- * Check Documentation#24302
+ * Check Documentation#24303
  *
- * @param object|array|string $dragblock_s_queries check var-def#24302.
+ * @param object|array|string $dragblock_s_queries check var-def#24303.
  */
 function dragblock_shortcode_share_url_twitter( $dragblock_s_queries ) {
 	if ( empty( $_SERVER['REQUEST_URI'] ) ) {
@@ -397,9 +398,9 @@ function dragblock_shortcode_share_url_twitter( $dragblock_s_queries ) {
 }
 add_shortcode( 'dragblock.share.url.facebook', 'dragblock_shortcode_share_url_facebook' );
 /**
- * Check Documentation#24310
+ * Check Documentation#24311
  *
- * @param object|array|string $dragblock_s_queries check var-def#24310.
+ * @param object|array|string $dragblock_s_queries check var-def#24311.
  */
 function dragblock_shortcode_share_url_facebook( $dragblock_s_queries ) {
 	if ( empty( $_SERVER['REQUEST_URI'] ) ) {
@@ -409,9 +410,9 @@ function dragblock_shortcode_share_url_facebook( $dragblock_s_queries ) {
 }
 add_shortcode( 'dragblock.share.url.whatsapp', 'dragblock_shortcode_share_url_whatsapp' );
 /**
- * Check Documentation#24318
+ * Check Documentation#24319
  *
- * @param object|array|string $dragblock_s_queries check var-def#24318.
+ * @param object|array|string $dragblock_s_queries check var-def#24319.
  */
 function dragblock_shortcode_share_url_whatsapp( $dragblock_s_queries ) {
 	if ( empty( $_SERVER['REQUEST_URI'] ) ) {
@@ -421,9 +422,9 @@ function dragblock_shortcode_share_url_whatsapp( $dragblock_s_queries ) {
 }
 add_shortcode( 'dragblock.share.url.telegram', 'dragblock_shortcode_share_url_telegram' );
 /**
- * Check Documentation#24326
+ * Check Documentation#24327
  *
- * @param object|array|string $dragblock_s_queries check var-def#24326.
+ * @param object|array|string $dragblock_s_queries check var-def#24327.
  */
 function dragblock_shortcode_share_url_telegram( $dragblock_s_queries ) {
 	if ( empty( $_SERVER['REQUEST_URI'] ) ) {
@@ -433,9 +434,9 @@ function dragblock_shortcode_share_url_telegram( $dragblock_s_queries ) {
 }
 add_shortcode( 'dragblock.share.url.tumblr', 'dragblock_shortcode_share_url_tumblr' );
 /**
- * Check Documentation#24334
+ * Check Documentation#24335
  *
- * @param object|array|string $dragblock_s_queries check var-def#24334.
+ * @param object|array|string $dragblock_s_queries check var-def#24335.
  */
 function dragblock_shortcode_share_url_tumblr( $dragblock_s_queries ) {
 	if ( empty( $_SERVER['REQUEST_URI'] ) ) {
@@ -445,9 +446,9 @@ function dragblock_shortcode_share_url_tumblr( $dragblock_s_queries ) {
 }
 add_shortcode( 'dragblock.share.url.reddit', 'dragblock_shortcode_share_url_reddit' );
 /**
- * Check Documentation#24342
+ * Check Documentation#24343
  *
- * @param object|array|string $dragblock_s_queries check var-def#24342.
+ * @param object|array|string $dragblock_s_queries check var-def#24343.
  */
 function dragblock_shortcode_share_url_reddit( $dragblock_s_queries ) {
 	if ( empty( $_SERVER['REQUEST_URI'] ) ) {
@@ -457,9 +458,9 @@ function dragblock_shortcode_share_url_reddit( $dragblock_s_queries ) {
 }
 add_shortcode( 'dragblock.share.url.linkedin', 'dragblock_shortcode_share_url_linkedin' );
 /**
- * Check Documentation#24350
+ * Check Documentation#24351
  *
- * @param object|array|string $dragblock_s_queries check var-def#24350.
+ * @param object|array|string $dragblock_s_queries check var-def#24351.
  */
 function dragblock_shortcode_share_url_linkedin( $dragblock_s_queries ) {
 	if ( empty( $_SERVER['REQUEST_URI'] ) ) {
@@ -469,9 +470,9 @@ function dragblock_shortcode_share_url_linkedin( $dragblock_s_queries ) {
 }
 add_shortcode( 'dragblock.share.url.gmail', 'dragblock_shortcode_share_url_gmail' );
 /**
- * Check Documentation#24358
+ * Check Documentation#24359
  *
- * @param object|array|string $dragblock_s_queries check var-def#24358.
+ * @param object|array|string $dragblock_s_queries check var-def#24359.
  */
 function dragblock_shortcode_share_url_gmail( $dragblock_s_queries ) {
 	if ( empty( $_SERVER['REQUEST_URI'] ) ) {
@@ -481,9 +482,9 @@ function dragblock_shortcode_share_url_gmail( $dragblock_s_queries ) {
 }
 add_shortcode( 'dragblock.share.url.email', 'dragblock_shortcode_share_url_email' );
 /**
- * Check Documentation#24366
+ * Check Documentation#24367
  *
- * @param object|array|string $dragblock_s_queries check var-def#24366.
+ * @param object|array|string $dragblock_s_queries check var-def#24367.
  */
 function dragblock_shortcode_share_url_email( $dragblock_s_queries ) {
 	if ( empty( $_SERVER['REQUEST_URI'] ) ) {
@@ -493,18 +494,18 @@ function dragblock_shortcode_share_url_email( $dragblock_s_queries ) {
 }
 add_shortcode( 'dragblock.share.url.navigator', 'dragblock_shortcode_share_url_navigator' );
 /**
- * Check Documentation#24374
+ * Check Documentation#24375
  *
- * @param object|array|string $dragblock_s_queries check var-def#24374.
+ * @param object|array|string $dragblock_s_queries check var-def#24375.
  */
 function dragblock_shortcode_share_url_navigator( $dragblock_s_queries ) {
 	return 'javascript:navigator.share?navigator.share({url:location.href}):null';
 }
 add_filter( 'kses_allowed_protocols', 'dragblock_kses_allowed_protocols', 1 );
 /**
- * Check Documentation#24379
+ * Check Documentation#24380
  *
- * @param object|array|string $dragblock_s_author check var-def#24379.
+ * @param object|array|string $dragblock_s_author check var-def#24380.
  */
 function dragblock_kses_allowed_protocols( $dragblock_s_author ) {
 	$dragblock_s_author[] = 'data';
