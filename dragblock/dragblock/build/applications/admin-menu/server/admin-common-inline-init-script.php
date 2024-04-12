@@ -17,7 +17,7 @@ function dragblock_admin_common_inline_init_script( $dragblock_aciis_extra = arr
 	// dev-reply#15.
 	return array_merge( array(
 		'blankDemoImgUrl' => DRAGBLOCK_URL . 'assets/images/demo/blank.png',
-		'siteLocale' => DRAGBLOCK_SITE_LOCALE,
+		'siteLocale' => get_locale(),
 		'homeUrl' => get_home_url(),
 		'ajaxUrl' => admin_url( 'admin-ajax.php' ),
 		'nonce'   => wp_create_nonce( DRAGBLOCK_NONCE_SLUG ),

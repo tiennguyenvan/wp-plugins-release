@@ -10,5 +10,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 require_once 'database-enqueue.php';
 require_once 'database-render.php';
+require_once 'database-tax-query.php';
 require_once 'database-loader.php';
 require_once 'database-stats.php';
+// dev-reply#18.

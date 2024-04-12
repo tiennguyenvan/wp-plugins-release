@@ -19,8 +19,8 @@ function dragblock_database_loader() {
 	if ( ! isset( $dragblock_dl_data['post_status'] ) ) {
 		$dragblock_dl_data['post_status'] = 'publish';
 	}
-	// dev-reply#413.
-	$dragblock_dl_post = new WP_Query( $dragblock_dl_data );
+	// dev-reply#414.
+	$dragblock_dl_post = new WP_Query( dragblock_wp_query_args_processor( $dragblock_dl_data ) );
 	$dragblock_dl_query = $dragblock_dl_post->posts;
 	$dragblock_dl_posts = array();
 	foreach ( $dragblock_dl_query as $dragblock_dl_ids ) {
@@ -33,9 +33,10 @@ function dragblock_database_loader() {
 		$dragblock_dl_id['date'] = dragblock_shortcode_post_date( null, $dragblock_dl_ids );
 		$dragblock_dl_id['author_name'] = dragblock_shortcode_post_author_name( null, $dragblock_dl_ids );
 		$dragblock_dl_id['author_avatar_src'] = dragblock_shortcode_post_author_avatar_src( null, $dragblock_dl_ids );
+		$dragblock_dl_id['author_bio'] = dragblock_shortcode_post_author_bio( null, $dragblock_dl_ids );
 		$dragblock_dl_id['cat_name'] = dragblock_shortcode_post_cat_name( null, $dragblock_dl_ids );
 		$dragblock_dl_posts[] = $dragblock_dl_id;
 	}
-	// dev-reply#432.
+	// dev-reply#434.
 	dragblock_ajax_succeed_die( $dragblock_dl_posts );
 }

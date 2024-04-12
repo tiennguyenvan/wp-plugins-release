@@ -4,8 +4,8 @@ Donate link: https://www.paypal.me/sneeit
 Tags: gutenberg, blocks, gutenberg blocks, editor, block, site builder, drag-and-drop, visual editor
 Requires at least: 5.9
 Requires PHP: 7.4
-Stable tag: 24.01.09
-Tested up to: 6.4.2
+Stable tag: 24.04.12
+Tested up to: 6.5.2
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -61,6 +61,23 @@ language plugin. Saving time by not creating many different pages.
 No need Contact-Form 7 or any other form plugins.
 
 == Changelog ==
+= 24.04.12 = 
+* Support changing plugin front-end display language via the 'locale' hook.
+* Fixed font-style field.
+
+= 24.02.16 = 
+* Support custom taxonomy for Get_Post filter for administrator
+
+= 24.02.11 = 
+* Support custom taxonomy for Get_Post filter on the Database panel
+
+= 24.01.30 = 
+* Fixed non-negative values for x,y of box-shadow and text-shadow property
+
+= 24.01.18 = 
+* Support showing author bio for author boxes
+* Fixed error loading invalid parameters for WooCommerce blocks
+
 = 23.12.24 =
 * Avoid render the empty parse_item query blocks
 * Fixed: Ignore loaded posts does not work
