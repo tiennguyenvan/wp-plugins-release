@@ -1,10 +1,10 @@
 === DragBlock - WordPress Site & Page Builder with Advanced Blocks ===
 Contributors: dragblock, sneeit, Tien Nguyen
 Donate link: https://www.paypal.me/sneeit
-Tags: gutenberg, blocks, gutenberg blocks, editor, block, site builder, drag-and-drop, visual editor
+Tags: gutenberg, gutenberg blocks, site builder, drag-and-drop, visual editor
 Requires at least: 5.9
 Requires PHP: 7.4
-Stable tag: 24.04.12
+Stable tag: 24.04.25
 Tested up to: 6.5.2
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
@@ -61,6 +61,11 @@ language plugin. Saving time by not creating many different pages.
 No need Contact-Form 7 or any other form plugins.
 
 == Changelog ==
+= 24.04.25 =
+* Support new essential appearance styles (text-underline-offset, box-sizing, resize, pointer-event)
+* Support stripping title appearance preset
+* Fixed: share links does not work
+
 = 24.04.12 = 
 * Support changing plugin front-end display language via the 'locale' hook.
 * Fixed font-style field.
