@@ -5,7 +5,7 @@
  * Plugin URI: https://dragblock.com/
  * Requires at least: 5.9
  * Requires PHP: 7.0
- * Version: 24.04.25
+ * Version: 24.05.12
  * Author: DragBlock.Com
  * Author URI: https://dragblock.com
  * License: GPLv2 or later
@@ -31,5 +31,7 @@ define(
 	'DRAGBLOCK_IS_LOCAL',
 	defined('WP_ENVIRONMENT_TYPE') && WP_ENVIRONMENT_TYPE === 'local'
 );
-define( 'DRAGBLOCK_VERSION', DRAGBLOCK_IS_LOCAL ? time() : '24.04.25' );
+define( 'DRAGBLOCK_VERSION', DRAGBLOCK_IS_LOCAL ? time() : '24.05.12' );
 require_once 'build/index.php';
+
+

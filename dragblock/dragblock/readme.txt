@@ -4,7 +4,7 @@ Donate link: https://www.paypal.me/sneeit
 Tags: gutenberg, gutenberg blocks, site builder, drag-and-drop, visual editor
 Requires at least: 5.9
 Requires PHP: 7.4
-Stable tag: 24.04.25
+Stable tag: 24.05.12
 Tested up to: 6.5.2
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
@@ -61,6 +61,19 @@ language plugin. Saving time by not creating many different pages.
 No need Contact-Form 7 or any other form plugins.
 
 == Changelog ==
+= 24.05.12 =
+* Support background image gradient picker
+* Support fallback color when removing global colors
+* Support URL_QUERY renderability/visibility conditions
+* Support LANGUAGE renderability/visibility conditions
+
+= 24.04.30 =
+* Fixed: cannot modify the grid builder
+* Support managing pattern sets
+* Fixed: cannot select default layout values
+* Fixed: cannot change border for A tag from the toolbar
+* Fixed: cannot change box-shadow fields
+
 = 24.04.25 =
 * Support new essential appearance styles (text-underline-offset, box-sizing, resize, pointer-event)
 * Support stripping title appearance preset

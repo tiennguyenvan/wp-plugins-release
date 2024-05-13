@@ -10,7 +10,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 add_action( 'enqueue_block_editor_assets', 'dragblock_appearance_panel_editor_assets' );
 /**
- * Check Documentation#173
+ * Check Documentation#243
  */
 function dragblock_appearance_panel_editor_assets() {
 	$dragblock_ae_panel = 'appearance';
@@ -24,13 +24,13 @@ global $dragblock_default_json;
 global $dragblock_user_json;
 add_filter( 'render_block', 'dragblock_appearance_collect_css', 10, 2 );
 /**
- * Check Documentation#1715
+ * Check Documentation#2415
  *
- * @param object|array|string $dragblock_ae_dragblock check var-def#1715.
- * @param object|array|string $dragblock_ae_css check var-def#1715.
+ * @param object|array|string $dragblock_ae_dragblock check var-def#2415.
+ * @param object|array|string $dragblock_ae_css check var-def#2415.
  */
 function dragblock_appearance_collect_css( $dragblock_ae_dragblock, $dragblock_ae_css ) {
-	// dev-reply#1756.
+	// dev-reply#2456.
 	if (
 		'core/null' === $dragblock_ae_css['blockName'] ||
 		empty( $dragblock_ae_css['attrs']['dragBlockClientId'] )
@@ -39,7 +39,7 @@ function dragblock_appearance_collect_css( $dragblock_ae_dragblock, $dragblock_a
 	}
 	$dragblock_ae_theme = dragblock_uid_key( $dragblock_ae_css );
 	global $dragblock_css;
-	// dev-reply#1795.
+	// dev-reply#2495.
 	if ( ! empty( $dragblock_css[ $dragblock_ae_theme ] ) ) {
 		return $dragblock_ae_dragblock;
 	}
@@ -61,25 +61,25 @@ function dragblock_appearance_collect_css( $dragblock_ae_dragblock, $dragblock_a
 			if ( empty( $dragblock_ae_user['blockName'] ) || empty( $dragblock_ae_user['attrs']['dragBlockClientId'] ) ) {
 				continue;
 			}
-			// dev-reply#17126.
+			// dev-reply#24126.
 			$dragblock_ae_block = dragblock_uid_key( $dragblock_ae_user );
 			if ( ! empty( $dragblock_css[ $dragblock_ae_block ] ) ) {
 				$dragblock_ae_json .= $dragblock_css[ $dragblock_ae_block ];
 				unset( $dragblock_css[ $dragblock_ae_block ] );
-				// dev-reply#17132.
+				// dev-reply#24132.
 			}
 		}
 	}
 	if ( $dragblock_ae_json ) {
 		$dragblock_css[ $dragblock_ae_theme ] = $dragblock_ae_json;
 	}
-// dev-reply#17145.
+	// dev-reply#24145.
 	return $dragblock_ae_dragblock;
 }
 /**
- * Check Documentation#1763
+ * Check Documentation#2463
  *
- * @param object|array|string $dragblock_ae_css check var-def#1763.
+ * @param object|array|string $dragblock_ae_css check var-def#2463.
  */
 function dragblock_uid_key( $dragblock_ae_css ) {
 	$dragblock_ae_theme = $dragblock_ae_css['blockName'] . '__' . $dragblock_ae_css['attrs']['dragBlockClientId'];
@@ -90,9 +90,9 @@ function dragblock_uid_key( $dragblock_ae_css ) {
 }
 add_filter( 'wp_theme_json_data_theme', 'dragblock_appearance_collect_json_data_theme', 10, 1 );
 /**
- * Check Documentation#1771
+ * Check Documentation#2472
  *
- * @param object|array|string $dragblock_ae_content check var-def#1771.
+ * @param object|array|string $dragblock_ae_content check var-def#2472.
  */
 function dragblock_appearance_collect_json_data_theme( $dragblock_ae_content ) {
 	global $dragblock_theme_json;
@@ -101,9 +101,9 @@ function dragblock_appearance_collect_json_data_theme( $dragblock_ae_content ) {
 }
 add_filter( 'wp_theme_json_data_default', 'dragblock_appearance_collect_json_data_default', 10, 1 );
 /**
- * Check Documentation#1778
+ * Check Documentation#2479
  *
- * @param object|array|string $dragblock_ae_content check var-def#1778.
+ * @param object|array|string $dragblock_ae_content check var-def#2479.
  */
 function dragblock_appearance_collect_json_data_default( $dragblock_ae_content ) {
 	global $dragblock_default_json;
@@ -112,9 +112,9 @@ function dragblock_appearance_collect_json_data_default( $dragblock_ae_content )
 }
 add_filter( 'wp_theme_json_data_user', 'dragblock_appearance_collect_json_data_user', 10, 1 );
 /**
- * Check Documentation#1785
+ * Check Documentation#2486
  *
- * @param object|array|string $dragblock_ae_content check var-def#1785.
+ * @param object|array|string $dragblock_ae_content check var-def#2486.
  */
 function dragblock_appearance_collect_json_data_user( $dragblock_ae_content ) {
 	global $dragblock_user_json;
@@ -123,67 +123,147 @@ function dragblock_appearance_collect_json_data_user( $dragblock_ae_content ) {
 }
 add_action( 'wp_enqueue_scripts', 'dragblock_appearance_front_scripts' );
 /**
- * Check Documentation#1792
+ * Check Documentation#2493
  */
 function dragblock_appearance_front_scripts() {
-	// dev-reply#17215.
+	// dev-reply#24216.
 	global $dragblock_css;
-	// dev-reply#17230.
+	// dev-reply#24231.
 	$dragblock_ae_parsed = implode( '', $dragblock_css );
-	// dev-reply#17233.
+	// dev-reply#24234.
 	global $dragblock_theme_json;
 	global $dragblock_default_json;
 	global $dragblock_user_json;
-	// dev-reply#17242.
+	// dev-reply#24243.
 	if (
 		! empty( $dragblock_user_json['settings']['color']['palette']['theme'] )
 	) {
 		$dragblock_theme_json['settings']['color']['palette']['theme'] = $dragblock_user_json['settings']['color']['palette']['theme'];
 	}
-	// dev-reply#17254.
-	if (
-		! empty( $dragblock_user_json['settings']['color']['palette']['custom'] )
-	) {
-		$dragblock_theme_json['settings']['color']['palette']['theme'] = array_merge( $dragblock_theme_json['settings']['color']['palette']['theme'], $dragblock_user_json['settings']['color']['palette']['custom'] );
-	}
+	// dev-reply#24255.
+	$dragblock_ae_uid = array();
 	if ( ! empty( $dragblock_theme_json['settings']['color']['palette']['theme'] ) ) {
-		foreach ( $dragblock_theme_json['settings']['color']['palette']['theme'] as $dragblock_ae_uid ) {
-			if ( empty( $dragblock_ae_uid['slug'] ) ) {
-				continue;
-			}
-			// dev-reply#17267.
-			$dragblock_ae_parsed = str_replace(
-				'{c=' . $dragblock_ae_uid['slug'] . '}',
-				$dragblock_ae_uid['color'],
-				$dragblock_ae_parsed
-			);
-			// dev-reply#17274.
-			$dragblock_ae_parsed = str_replace(
-				'{c=' . $dragblock_ae_uid['slug'] . '@}',
-				substr( $dragblock_ae_uid['color'], 0, 7 ),
-				$dragblock_ae_parsed
-			);
-		}
+		$dragblock_ae_uid = array_merge( $dragblock_ae_uid, $dragblock_theme_json['settings']['color']['palette']['theme'] );
+	}
+	if ( ! empty( $dragblock_user_json['settings']['color']['palette']['custom'] ) ) {
+		$dragblock_ae_uid = array_merge( $dragblock_ae_uid, $dragblock_user_json['settings']['color']['palette']['custom'] );
 	}
 	if ( ! empty( $dragblock_default_json['settings']['color']['palette']['default'] ) ) {
-		foreach ( $dragblock_default_json['settings']['color']['palette']['default'] as $dragblock_ae_uid ) {
-			if ( empty( $dragblock_ae_uid['slug'] ) ) {
-				continue;
-			}
-			// dev-reply#17289.
-			$dragblock_ae_parsed = str_replace(
-				'{c=' . $dragblock_ae_uid['slug'] . '}',
-				$dragblock_ae_uid['color'],
-				$dragblock_ae_parsed
-			);
-			// dev-reply#17296.
-			$dragblock_ae_parsed = str_replace(
-				'{c=' . $dragblock_ae_uid['slug'] . '@}',
-				substr( $dragblock_ae_uid['color'], 0, 7 ),
-				$dragblock_ae_parsed
-			);
+		$dragblock_ae_uid = array_merge( $dragblock_ae_uid, $dragblock_default_json['settings']['color']['palette']['default'] );
+	}
+	// dev-reply#24270.
+	foreach ( $dragblock_ae_uid as $dragblock_ae_key ) {
+		if ( empty( $dragblock_ae_key['slug'] ) ) {
+			continue;
+		}
+		// dev-reply#24285.
+		$dragblock_ae_parsed = str_replace(
+			ColorVarStart . $dragblock_ae_key['slug'] . ColorVarEnd,
+			$dragblock_ae_key['color'],
+			$dragblock_ae_parsed
+		);
+		// dev-reply#24292.
+		$dragblock_ae_parsed = str_replace(
+			ColorVarStart . $dragblock_ae_key['slug'] . ColorVarAlphaSep . ColorVarEnd,
+			substr( $dragblock_ae_key['color'], 0, 7 ),
+			$dragblock_ae_parsed
+		);
+	}
+	// dev-reply#24300.
+	foreach ( $dragblock_ae_uid as $dragblock_ae_block => $dragblock_ae_uids ) {
+		if ( empty( $dragblock_ae_uids['slug'] ) || empty( $dragblock_ae_uids['color'] ) ) {
+			unset( $dragblock_ae_uid[ $dragblock_ae_block ] );
+			continue;
 		}
 	}
+	// dev-reply#24309.
+	$dragblock_ae_json = explode( ColorVarStartNew, $dragblock_ae_parsed );
+	for ( $dragblock_ae_selector = 1; $dragblock_ae_selector < count( $dragblock_ae_json ); $dragblock_ae_selector++ ) {
+		$dragblock_ae_inner = explode( ColorVarEndNew, $dragblock_ae_json[ $dragblock_ae_selector ] );
+		if ( count( $dragblock_ae_inner ) < 2 ) continue; // dev-reply#24315.
+		if ( strpos( $dragblock_ae_inner[0], '{' ) !== false ) continue; // dev-reply#24316.
+		$dragblock_ae_save = explode( ColorVarBackupSep, $dragblock_ae_inner[0] );
+		$dragblock_ae_colors = $dragblock_ae_save[0];
+		$dragblock_ae_color = strpos( $dragblock_ae_colors, ColorVarAlphaSepNew ) !== false;
+		if ( $dragblock_ae_color ) {
+			$dragblock_ae_colors = explode( ColorVarAlphaSepNew, $dragblock_ae_colors )[0];
+		}
+		$dragblock_ae_c = count( $dragblock_ae_save ) > 1 ? $dragblock_ae_save[1] : ''; // dev-reply#24327.
+		foreach ( $dragblock_ae_uid as $dragblock_ae_uids ) {
+			if ( ( $dragblock_ae_colors ) !== $dragblock_ae_uids['slug'] ) continue;
+			$dragblock_ae_c = $dragblock_ae_uids['color'];
+			break;
+		}
+		// dev-reply#24334.
+		if ( empty( $dragblock_ae_c ) || strlen( $dragblock_ae_c ) > 36 ) continue;
+		// dev-reply#24338.
+		if ( $dragblock_ae_color ) {
+			$dragblock_ae_c = substr( $dragblock_ae_c, 0, 7 );
+		}
+		unset( $dragblock_ae_inner[0] );
+		$dragblock_ae_json[ $dragblock_ae_selector ] = $dragblock_ae_c . implode( ColorVarEndNew, $dragblock_ae_inner );
+	}
+	$dragblock_ae_parsed = implode( '', $dragblock_ae_json );
+	// dev-reply#24349.
+	$dragblock_ae_i = array();
+	if ( ! empty( $dragblock_theme_json['settings']['color']['gradients']['theme'] ) ) {
+		$dragblock_ae_i = array_merge( $dragblock_ae_i, $dragblock_theme_json['settings']['color']['gradients']['theme'] );
+	}
+	if ( ! empty( $dragblock_theme_json['settings']['color']['duotone']['theme'] ) ) {
+		$dragblock_ae_i = array_merge( $dragblock_ae_i, $dragblock_theme_json['settings']['color']['duotone']['theme'] );
+	}
+	if ( ! empty( $dragblock_user_json['settings']['color']['gradients']['default'] ) ) {
+		$dragblock_ae_i = array_merge( $dragblock_ae_i, $dragblock_user_json['settings']['color']['gradients']['default'] );
+	}
+	if ( ! empty( $dragblock_user_json['settings']['color']['gradients']['custom'] ) ) {
+		$dragblock_ae_i = array_merge( $dragblock_ae_i, $dragblock_user_json['settings']['color']['gradients']['custom'] );
+	}
+	if ( ! empty( $dragblock_default_json['settings']['color']['duotone']['default'] ) ) {
+		$dragblock_ae_i = array_merge( $dragblock_ae_i, $dragblock_default_json['settings']['color']['duotone']['default'] );
+	}
+	// dev-reply#24385.
+	foreach ( $dragblock_ae_i as $dragblock_ae_block => $dragblock_ae_parts ) {
+		if ( empty( $dragblock_ae_parts['slug'] ) ) {
+			unset( $dragblock_ae_i[ $dragblock_ae_block ] );
+			continue;
+		}
+		// dev-reply#24397.
+		if ( empty( $dragblock_ae_parts['gradient'] ) ) {
+			if ( empty( $dragblock_ae_parts['colors'] ) || count( $dragblock_ae_parts['colors'] ) < 2 ) {
+				unset( $dragblock_ae_i[ $dragblock_ae_block ] );
+				continue;
+			}
+			$dragblock_ae_parts['colors'][0] .= ' 50%';
+			$dragblock_ae_parts['colors'][1] .= ' 50%';
+			$dragblock_ae_parts['gradient'] = 'linear-gradient(135deg,' . implode( ',', $dragblock_ae_parts['colors'] ) . ')';
+			unset( $dragblock_ae_parts['colors'] );
+			$dragblock_ae_i[ $dragblock_ae_block ] = $dragblock_ae_parts;
+		}
+	}
+	// dev-reply#24412.
+	$dragblock_ae_var = '⮕g=';
+	$dragblock_ae_slug = '⬇g='; // dev-reply#24414.
+	$dragblock_ae_has = 'g⬅';
+	$dragblock_ae_json = explode( GradientVarStart, $dragblock_ae_parsed );
+	for ( $dragblock_ae_selector = 1; $dragblock_ae_selector < count( $dragblock_ae_json ); $dragblock_ae_selector++ ) {
+		$dragblock_ae_inner = explode( GradientVarEnd, $dragblock_ae_json[ $dragblock_ae_selector ] );
+		if ( count( $dragblock_ae_inner ) < 2 ) continue; // dev-reply#24421.
+		if ( strpos( $dragblock_ae_inner[0], '{' ) !== false ) continue; // dev-reply#24422.
+		$dragblock_ae_alpha = explode( GradientVarBackup, $dragblock_ae_inner[0] );
+		// dev-reply#24426.
+		if ( count( $dragblock_ae_alpha ) < 2 ) continue;
+		$dragblock_ae_colors = $dragblock_ae_alpha[0];
+		$dragblock_ae_c = $dragblock_ae_alpha[1]; // dev-reply#24430.
+		if ( ! str_ends_with( $dragblock_ae_c, ')' ) ) continue;
+		foreach ( $dragblock_ae_i as $dragblock_ae_parts ) {
+			if ( ( $dragblock_ae_colors ) !== $dragblock_ae_parts['slug'] ) continue;
+			$dragblock_ae_c = $dragblock_ae_parts['gradient'];
+			break;
+		}
+		unset( $dragblock_ae_inner[0] );
+		$dragblock_ae_json[ $dragblock_ae_selector ] = $dragblock_ae_c . implode( GradientVarEnd, $dragblock_ae_inner );
+	}
+	$dragblock_ae_parsed = implode( '', $dragblock_ae_json );
 	if ( $dragblock_ae_parsed ) {
 		wp_add_inline_style( DRAGBLOCK_EDITOR_INIT_SLUG, $dragblock_ae_parsed );
 		if ( strpos( $dragblock_ae_parsed, 'animation-name' ) !== false ) {

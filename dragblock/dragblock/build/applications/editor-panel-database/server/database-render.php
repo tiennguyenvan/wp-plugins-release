@@ -44,7 +44,7 @@ function dragblock_database_collector( $dragblock_dr_dragblock ) {
 			}
 		}
 	}
-	// dev-reply#1587.
+	// dev-reply#1588.
 	if ( ! empty( $dragblock_dr_dragblock['attrs']['dragBlockQueries'] ) ) {
 		foreach ( $dragblock_dr_dragblock['attrs']['dragBlockQueries'] as $dragblock_dr_current ) {
 			if ( ! empty( $dragblock_dr_current['disabled'] ) ) {
@@ -56,36 +56,36 @@ function dragblock_database_collector( $dragblock_dr_dragblock ) {
 				$dragblock_dr_current['params'] = array();
 			}
 			$dragblock_dr_id = $dragblock_dr_current['params'];
-			// dev-reply#15103.
+			// dev-reply#15104.
 			if ( in_array( $dragblock_dr_query, array( 'WP_Query', 'WP_Query_Default' ) ) ) {
 				$dragblock_dr_item = array(
 					'fields' => 'ids',
 				);
 				$dragblock_dr_loaded = '';
 				$dragblock_dr_posts = false;
-				// dev-reply#15111.
+				// dev-reply#15112.
 				foreach ( $dragblock_dr_current['params'] as $dragblock_dr_parsed ) {
 					if ( ! empty( $dragblock_dr_parsed['disabled'] ) || $dragblock_dr_parsed['value'] === '' ) {
 						continue;
 					}
-					// dev-reply#15117.
+					// dev-reply#15118.
 					$dragblock_dr_block = $dragblock_dr_parsed['slug'];
 					$dragblock_dr_wp = $dragblock_dr_parsed['value'];
-					// dev-reply#15121.
+					// dev-reply#15122.
 					if ( ! in_array( $dragblock_dr_block, array( 'posts_per_page', 'ignore_loaded_posts' ) ) ) {
 						$dragblock_dr_loaded .= $dragblock_dr_block . ':' . $dragblock_dr_wp;
 					}
-					// dev-reply#15130.
+					// dev-reply#15131.
 					if ( 'ignore_loaded_posts' === $dragblock_dr_block ) {
 						$dragblock_dr_posts = true;
-						// dev-reply#15133.
+						// dev-reply#15134.
 						continue;
 					}
-					// dev-reply#15139.
+					// dev-reply#15140.
 					if ( strpos( $dragblock_dr_wp, '[dragblock.' ) !== false ) {
 						$dragblock_dr_wp = do_shortcode( $dragblock_dr_wp );
 					}
-					// dev-reply#15144.
+					// dev-reply#15145.
 					if ( strpos( $dragblock_dr_block, '__' ) !== false ) {
 						$dragblock_dr_item[ $dragblock_dr_block ] = explode( ',', $dragblock_dr_wp );
 						continue;
@@ -109,15 +109,15 @@ function dragblock_database_collector( $dragblock_dr_dragblock ) {
 						array_push( $dragblock_loaded_posts[ $dragblock_dr_loaded ], $dragblock_dr_slug );
 					}
 					$dragblock_queries[ $dragblock_current_query_list_id ] = $dragblock_dr_post;
-					// dev-reply#15177.
+					// dev-reply#15178.
 					$dragblock_current_query_list_item_id = null;
 				} elseif ( 'WP_Query_Default' === $dragblock_dr_query ) {
-					// dev-reply#15182.
+					// dev-reply#15183.
 					$dragblock_current_query_list_item_id = null;
 					$dragblock_current_query_list_id = 'default';
 				}
 			}
-			// dev-reply#15188.
+			// dev-reply#15189.
 			if ( 'parse_item' === $dragblock_dr_query ) {
 				if ( ! empty( $dragblock_dr_id['query_id'] ) ) {
 					$dragblock_current_query_list_id = $dragblock_dr_id['query_id'];
@@ -129,7 +129,7 @@ function dragblock_database_collector( $dragblock_dr_dragblock ) {
 				} else {
 					$dragblock_current_query_list_item_id++;
 				}
-				// dev-reply#15201.
+				// dev-reply#15202.
 				if (
 					! isset( $dragblock_queries[ $dragblock_current_query_list_id ] ) ||
 					! isset( $dragblock_queries[ $dragblock_current_query_list_id ][ $dragblock_current_query_list_item_id ] )
@@ -152,29 +152,29 @@ function dragblock_database_collector( $dragblock_dr_dragblock ) {
  * @param object|array|string $dragblock_dr_item check var-def#15136.
  */
 function dragblock_wp_query_args_processor( $dragblock_dr_item ) {
-	// dev-reply#15221.
+	// dev-reply#15222.
 	$dragblock_dr_params = array();
 	foreach ( $dragblock_dr_item as $dragblock_dr_block => $dragblock_dr_args ) {
-		// dev-reply#15224.
+		// dev-reply#15225.
 		if ( strpos( $dragblock_dr_block, DRAGBLOCK_START_TAX_QUERY_KEY ) === 0 ) {
-			// dev-reply#15226.
+			// dev-reply#15227.
 			$dragblock_dr_param = str_replace( DRAGBLOCK_START_TAX_QUERY_KEY, '', $dragblock_dr_block );
 			$dragblock_dr_param = str_replace( '__in', '', $dragblock_dr_param );
-			// dev-reply#15229.
+			// dev-reply#15230.
 			$dragblock_dr_params[] = array(
 				'taxonomy' => $dragblock_dr_param,
 				'field'    => 'term_id',
 				'terms'    => $dragblock_dr_args,
 			);
-			// dev-reply#15235.
+			// dev-reply#15236.
 			unset( $dragblock_dr_item[ $dragblock_dr_block ] );
 		}
 	}
-	// dev-reply#15240.
+	// dev-reply#15241.
 	if ( ! empty( $dragblock_dr_params ) ) {
 		$dragblock_dr_item['tax_query'] = $dragblock_dr_params;
 	}
-	// dev-reply#15245.
+	// dev-reply#15246.
 	return $dragblock_dr_item;
 }
-// dev-reply#15251.
+// dev-reply#15252.

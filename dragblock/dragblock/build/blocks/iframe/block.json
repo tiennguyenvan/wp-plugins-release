@@ -1,16 +1,14 @@
 {
   "$schema": "https://schemas.wp.org/trunk/block.json",
   "apiVersion": 2,
-  "name": "dragblock/image",
+  "name": "dragblock/iframe",
   "version": "0.1.0",
-  "title": "Image",
+  "title": "Iframe",
   "category": "dragblock-basic",
-  "icon": "camera",
-  "description": "Insert a flexible image",
+  "icon": "embed-generic",
+  "description": "Insert a flexible iframe",
   "keywords": [
-    "image",
-    "media",
-    "picture"
+    "iframe"
   ],
   "textdomain": "dragblock",
   "editorScript": "file:./index.js",

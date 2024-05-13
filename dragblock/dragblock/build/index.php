@@ -255,17 +255,17 @@ define(
 		),
 	)
 );
-// dev-reply#19271.
+// dev-reply#20269.
 define( 'DRAGBLOCK_CUSTOM_DEFAULT_STYLE', false );
 add_action( 'init', 'dragblock_init_defines', 1 );
 /**
- * Check Documentation#19252
+ * Check Documentation#20252
  */
 function dragblock_init_defines() {
 	$dragblock_b_upload = wp_upload_dir();
 	define( 'DRAGBLOCK_UPLOAD_DIR', $dragblock_b_upload['basedir'] . '/dragblock' );
 	define( 'DRAGBLOCK_UPLOAD_URL', $dragblock_b_upload['baseurl'] . '/dragblock' );
-	// dev-reply#19285.
+	// dev-reply#20283.
 }
 require_once 'library/server/index.php';
 require_once 'applications/admin-menu/server/index.php';
@@ -277,7 +277,7 @@ require_once 'applications/font-library/server/index.php';
 require_once 'applications/theme-settings/server/index.php';
 require_once 'applications/shortcodes/server/index.php';
 require_once 'applications/editor-init/server/index.php';
-require_once 'applications/editor-panel-database/server/index.php'; // dev-reply#19303.
+require_once 'applications/editor-panel-database/server/index.php'; // dev-reply#20300.
 require_once 'applications/editor-panel-content/server/index.php';
 require_once 'applications/editor-panel-appearance/server/index.php';
 require_once 'applications/editor-panel-attributes/server/index.php';
@@ -308,3 +308,4 @@ $dragblock_b_dir = array(
 		),
 	),
 );
+// dev-reply#20337.
