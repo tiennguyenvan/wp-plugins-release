@@ -30,7 +30,7 @@ add_filter( 'render_block', 'dragblock_appearance_collect_css', 10, 2 );
  * @param object|array|string $dragblock_ae_css check var-def#2415.
  */
 function dragblock_appearance_collect_css( $dragblock_ae_dragblock, $dragblock_ae_css ) {
-	// dev-reply#2456.
+	// dev-reply#2457.
 	if (
 		'core/null' === $dragblock_ae_css['blockName'] ||
 		empty( $dragblock_ae_css['attrs']['dragBlockClientId'] )
@@ -39,7 +39,7 @@ function dragblock_appearance_collect_css( $dragblock_ae_dragblock, $dragblock_a
 	}
 	$dragblock_ae_theme = dragblock_uid_key( $dragblock_ae_css );
 	global $dragblock_css;
-	// dev-reply#2495.
+	// dev-reply#2496.
 	if ( ! empty( $dragblock_css[ $dragblock_ae_theme ] ) ) {
 		return $dragblock_ae_dragblock;
 	}
@@ -61,19 +61,19 @@ function dragblock_appearance_collect_css( $dragblock_ae_dragblock, $dragblock_a
 			if ( empty( $dragblock_ae_user['blockName'] ) || empty( $dragblock_ae_user['attrs']['dragBlockClientId'] ) ) {
 				continue;
 			}
-			// dev-reply#24126.
+			// dev-reply#24127.
 			$dragblock_ae_block = dragblock_uid_key( $dragblock_ae_user );
 			if ( ! empty( $dragblock_css[ $dragblock_ae_block ] ) ) {
 				$dragblock_ae_json .= $dragblock_css[ $dragblock_ae_block ];
 				unset( $dragblock_css[ $dragblock_ae_block ] );
-				// dev-reply#24132.
+				// dev-reply#24133.
 			}
 		}
 	}
 	if ( $dragblock_ae_json ) {
 		$dragblock_css[ $dragblock_ae_theme ] = $dragblock_ae_json;
 	}
-	// dev-reply#24145.
+	// dev-reply#24146.
 	return $dragblock_ae_dragblock;
 }
 /**
@@ -126,21 +126,21 @@ add_action( 'wp_enqueue_scripts', 'dragblock_appearance_front_scripts' );
  * Check Documentation#2493
  */
 function dragblock_appearance_front_scripts() {
-	// dev-reply#24216.
+	// dev-reply#24217.
 	global $dragblock_css;
-	// dev-reply#24231.
+	// dev-reply#24232.
 	$dragblock_ae_parsed = implode( '', $dragblock_css );
-	// dev-reply#24234.
+	// dev-reply#24235.
 	global $dragblock_theme_json;
 	global $dragblock_default_json;
 	global $dragblock_user_json;
-	// dev-reply#24243.
+	// dev-reply#24244.
 	if (
 		! empty( $dragblock_user_json['settings']['color']['palette']['theme'] )
 	) {
 		$dragblock_theme_json['settings']['color']['palette']['theme'] = $dragblock_user_json['settings']['color']['palette']['theme'];
 	}
-	// dev-reply#24255.
+	// dev-reply#24256.
 	$dragblock_ae_uid = array();
 	if ( ! empty( $dragblock_theme_json['settings']['color']['palette']['theme'] ) ) {
 		$dragblock_ae_uid = array_merge( $dragblock_ae_uid, $dragblock_theme_json['settings']['color']['palette']['theme'] );
@@ -151,52 +151,52 @@ function dragblock_appearance_front_scripts() {
 	if ( ! empty( $dragblock_default_json['settings']['color']['palette']['default'] ) ) {
 		$dragblock_ae_uid = array_merge( $dragblock_ae_uid, $dragblock_default_json['settings']['color']['palette']['default'] );
 	}
-	// dev-reply#24270.
+	// dev-reply#24271.
 	foreach ( $dragblock_ae_uid as $dragblock_ae_key ) {
 		if ( empty( $dragblock_ae_key['slug'] ) ) {
 			continue;
 		}
-		// dev-reply#24285.
+		// dev-reply#24286.
 		$dragblock_ae_parsed = str_replace(
 			ColorVarStart . $dragblock_ae_key['slug'] . ColorVarEnd,
 			$dragblock_ae_key['color'],
 			$dragblock_ae_parsed
 		);
-		// dev-reply#24292.
+		// dev-reply#24293.
 		$dragblock_ae_parsed = str_replace(
 			ColorVarStart . $dragblock_ae_key['slug'] . ColorVarAlphaSep . ColorVarEnd,
 			substr( $dragblock_ae_key['color'], 0, 7 ),
 			$dragblock_ae_parsed
 		);
 	}
-	// dev-reply#24300.
+	// dev-reply#24301.
 	foreach ( $dragblock_ae_uid as $dragblock_ae_block => $dragblock_ae_uids ) {
 		if ( empty( $dragblock_ae_uids['slug'] ) || empty( $dragblock_ae_uids['color'] ) ) {
 			unset( $dragblock_ae_uid[ $dragblock_ae_block ] );
 			continue;
 		}
 	}
-	// dev-reply#24309.
+	// dev-reply#24310.
 	$dragblock_ae_json = explode( ColorVarStartNew, $dragblock_ae_parsed );
 	for ( $dragblock_ae_selector = 1; $dragblock_ae_selector < count( $dragblock_ae_json ); $dragblock_ae_selector++ ) {
 		$dragblock_ae_inner = explode( ColorVarEndNew, $dragblock_ae_json[ $dragblock_ae_selector ] );
-		if ( count( $dragblock_ae_inner ) < 2 ) continue; // dev-reply#24315.
-		if ( strpos( $dragblock_ae_inner[0], '{' ) !== false ) continue; // dev-reply#24316.
+		if ( count( $dragblock_ae_inner ) < 2 ) continue; // dev-reply#24316.
+		if ( strpos( $dragblock_ae_inner[0], '{' ) !== false ) continue; // dev-reply#24317.
 		$dragblock_ae_save = explode( ColorVarBackupSep, $dragblock_ae_inner[0] );
 		$dragblock_ae_colors = $dragblock_ae_save[0];
 		$dragblock_ae_color = strpos( $dragblock_ae_colors, ColorVarAlphaSepNew ) !== false;
 		if ( $dragblock_ae_color ) {
 			$dragblock_ae_colors = explode( ColorVarAlphaSepNew, $dragblock_ae_colors )[0];
 		}
-		$dragblock_ae_c = count( $dragblock_ae_save ) > 1 ? $dragblock_ae_save[1] : ''; // dev-reply#24327.
+		$dragblock_ae_c = count( $dragblock_ae_save ) > 1 ? $dragblock_ae_save[1] : ''; // dev-reply#24328.
 		foreach ( $dragblock_ae_uid as $dragblock_ae_uids ) {
 			if ( ( $dragblock_ae_colors ) !== $dragblock_ae_uids['slug'] ) continue;
 			$dragblock_ae_c = $dragblock_ae_uids['color'];
 			break;
 		}
-		// dev-reply#24334.
+		// dev-reply#24335.
 		if ( empty( $dragblock_ae_c ) || strlen( $dragblock_ae_c ) > 36 ) continue;
-		// dev-reply#24338.
+		// dev-reply#24339.
 		if ( $dragblock_ae_color ) {
 			$dragblock_ae_c = substr( $dragblock_ae_c, 0, 7 );
 		}
@@ -204,7 +204,7 @@ function dragblock_appearance_front_scripts() {
 		$dragblock_ae_json[ $dragblock_ae_selector ] = $dragblock_ae_c . implode( ColorVarEndNew, $dragblock_ae_inner );
 	}
 	$dragblock_ae_parsed = implode( '', $dragblock_ae_json );
-	// dev-reply#24349.
+	// dev-reply#24350.
 	$dragblock_ae_i = array();
 	if ( ! empty( $dragblock_theme_json['settings']['color']['gradients']['theme'] ) ) {
 		$dragblock_ae_i = array_merge( $dragblock_ae_i, $dragblock_theme_json['settings']['color']['gradients']['theme'] );
@@ -221,13 +221,13 @@ function dragblock_appearance_front_scripts() {
 	if ( ! empty( $dragblock_default_json['settings']['color']['duotone']['default'] ) ) {
 		$dragblock_ae_i = array_merge( $dragblock_ae_i, $dragblock_default_json['settings']['color']['duotone']['default'] );
 	}
-	// dev-reply#24385.
+	// dev-reply#24386.
 	foreach ( $dragblock_ae_i as $dragblock_ae_block => $dragblock_ae_parts ) {
 		if ( empty( $dragblock_ae_parts['slug'] ) ) {
 			unset( $dragblock_ae_i[ $dragblock_ae_block ] );
 			continue;
 		}
-		// dev-reply#24397.
+		// dev-reply#24398.
 		if ( empty( $dragblock_ae_parts['gradient'] ) ) {
 			if ( empty( $dragblock_ae_parts['colors'] ) || count( $dragblock_ae_parts['colors'] ) < 2 ) {
 				unset( $dragblock_ae_i[ $dragblock_ae_block ] );
@@ -240,20 +240,20 @@ function dragblock_appearance_front_scripts() {
 			$dragblock_ae_i[ $dragblock_ae_block ] = $dragblock_ae_parts;
 		}
 	}
-	// dev-reply#24412.
+	// dev-reply#24413.
 	$dragblock_ae_var = '⮕g=';
-	$dragblock_ae_slug = '⬇g='; // dev-reply#24414.
+	$dragblock_ae_slug = '⬇g='; // dev-reply#24415.
 	$dragblock_ae_has = 'g⬅';
 	$dragblock_ae_json = explode( GradientVarStart, $dragblock_ae_parsed );
 	for ( $dragblock_ae_selector = 1; $dragblock_ae_selector < count( $dragblock_ae_json ); $dragblock_ae_selector++ ) {
 		$dragblock_ae_inner = explode( GradientVarEnd, $dragblock_ae_json[ $dragblock_ae_selector ] );
-		if ( count( $dragblock_ae_inner ) < 2 ) continue; // dev-reply#24421.
-		if ( strpos( $dragblock_ae_inner[0], '{' ) !== false ) continue; // dev-reply#24422.
+		if ( count( $dragblock_ae_inner ) < 2 ) continue; // dev-reply#24422.
+		if ( strpos( $dragblock_ae_inner[0], '{' ) !== false ) continue; // dev-reply#24423.
 		$dragblock_ae_alpha = explode( GradientVarBackup, $dragblock_ae_inner[0] );
-		// dev-reply#24426.
+		// dev-reply#24427.
 		if ( count( $dragblock_ae_alpha ) < 2 ) continue;
 		$dragblock_ae_colors = $dragblock_ae_alpha[0];
-		$dragblock_ae_c = $dragblock_ae_alpha[1]; // dev-reply#24430.
+		$dragblock_ae_c = $dragblock_ae_alpha[1]; // dev-reply#24431.
 		if ( ! str_ends_with( $dragblock_ae_c, ')' ) ) continue;
 		foreach ( $dragblock_ae_i as $dragblock_ae_parts ) {
 			if ( ( $dragblock_ae_colors ) !== $dragblock_ae_parts['slug'] ) continue;

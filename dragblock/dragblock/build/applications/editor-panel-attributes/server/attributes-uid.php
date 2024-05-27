@@ -54,16 +54,16 @@ function dragblock_uid_inserter( $dragblock_au_block, $dragblock_au_dragblock, $
 		return $dragblock_au_block;
 	}
 	global $dragblock_uids;
-	// dev-reply#782.
+	// dev-reply#786.
 	$dragblock_au_preload = dragblock_uid_key( $dragblock_au_dragblock );
 	$dragblock_au_uid = 'class="';
 	$dragblock_au_key = strpos( $dragblock_au_block, $dragblock_au_uid );
 	$dragblock_au_short = strpos( $dragblock_au_block, '>' );
-	// dev-reply#790.
+	// dev-reply#794.
 	if ( false === $dragblock_au_short ) {
 		return $dragblock_au_block;
 	}
-	// dev-reply#795.
+	// dev-reply#799.
 	if ( false === $dragblock_au_key ) {
 		return (
 			substr( $dragblock_au_block, 0, $dragblock_au_short ) .

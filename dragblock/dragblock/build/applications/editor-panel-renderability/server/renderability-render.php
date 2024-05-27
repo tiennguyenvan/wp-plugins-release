@@ -28,16 +28,16 @@ function dragblock_renderability_render( $dragblock_rr_block, $dragblock_rr_cont
 	$dragblock_rr_oses = null;
 	$dragblock_rr_user = null;
 	$dragblock_rr_logged = array();
-	// dev-reply#1626.
+	// dev-reply#1630.
 	foreach ( $dragblock_rr_content['attrs']['dragBlockRenderability'] as $dragblock_rr_languages ) {
 		if ( ! empty( $dragblock_rr_languages['disabled'] ) || empty( $dragblock_rr_languages['slug'] ) || ! isset( $dragblock_rr_languages['value'] ) ) {
 			continue;
 		}
-		// dev-reply#1635.
+		// dev-reply#1639.
 		if ( 'url-query' === $dragblock_rr_languages['slug'] ) {
-			// dev-reply#1641.
+			// dev-reply#1645.
 			if ( empty( $dragblock_rr_languages['name'] ) ) continue;
-			// dev-reply#1644.
+			// dev-reply#1648.
 			$dragblock_rr_url = $dragblock_rr_languages['name'];
 			if ( ! isset( $_GET[ $dragblock_rr_url ] ) ) return '';
 			if ( empty( $dragblock_rr_logged[ $dragblock_rr_url ] ) ) {
@@ -55,7 +55,7 @@ function dragblock_renderability_render( $dragblock_rr_block, $dragblock_rr_cont
 			}
 			return $dragblock_rr_block;
 		}
-		// dev-reply#1667.
+		// dev-reply#1671.
 		if ( 'language' === $dragblock_rr_languages['slug'] ) {
 			if ( null === $dragblock_rr_user ) {
 				$dragblock_rr_user = false;
@@ -69,7 +69,7 @@ function dragblock_renderability_render( $dragblock_rr_block, $dragblock_rr_cont
 			}
 			continue;
 		}
-		// dev-reply#1688.
+		// dev-reply#1692.
 		if ( 'browser' === $dragblock_rr_languages['slug'] ) {
 			if ( null === $dragblock_rr_parsed ) {
 				$dragblock_rr_parsed = false;
@@ -83,7 +83,7 @@ function dragblock_renderability_render( $dragblock_rr_block, $dragblock_rr_cont
 			}
 			continue;
 		}
-		// dev-reply#16103.
+		// dev-reply#16107.
 		if ( 'device' === $dragblock_rr_languages['slug'] ) {
 			if ( null === $dragblock_rr_browsers ) {
 				$dragblock_rr_browsers = false;
@@ -97,7 +97,7 @@ function dragblock_renderability_render( $dragblock_rr_block, $dragblock_rr_cont
 			}
 			continue;
 		}
-		// dev-reply#16118.
+		// dev-reply#16122.
 		if ( 'os' === $dragblock_rr_languages['slug'] ) {
 			if ( null === $dragblock_rr_devices ) {
 				$dragblock_rr_devices = false;
@@ -111,7 +111,7 @@ function dragblock_renderability_render( $dragblock_rr_block, $dragblock_rr_cont
 			}
 			continue;
 		}
-		// dev-reply#16133.
+		// dev-reply#16137.
 		if ( 'user-logged' === $dragblock_rr_languages['slug'] ) {
 			if ( null === $dragblock_rr_oses ) {
 				$dragblock_rr_oses = false;
@@ -127,15 +127,15 @@ function dragblock_renderability_render( $dragblock_rr_block, $dragblock_rr_cont
 			continue;
 		}
 	}
-	// dev-reply#16151.
+	// dev-reply#16155.
 	foreach ( $dragblock_rr_logged as $dragblock_rr_url => $dragblock_rr_conditions ) {
-		// dev-reply#16154.
+		// dev-reply#16158.
 		$dragblock_rr_condition = false;
 		$dragblock_rr_name = isset( $_GET[ $dragblock_rr_url ] ) ? sanitize_text_field( wp_unslash( $_GET[ $dragblock_rr_url ] ) ) : '';
 		foreach ( $dragblock_rr_conditions as $dragblock_rr_get ) {
 			$dragblock_rr_status = empty( $dragblock_rr_get['operator'] ) || $dragblock_rr_get['operator'] === '==' ? '==' : '!=';
 			$dragblock_rr_logic = $dragblock_rr_get['value'];
-			// dev-reply#16163.
+			// dev-reply#16167.
 			if (
 				( $dragblock_rr_status ) === '==' && ( $dragblock_rr_name ) === $dragblock_rr_logic ||
 				( $dragblock_rr_status ) === '!=' && ( $dragblock_rr_name ) !== $dragblock_rr_logic
@@ -146,7 +146,7 @@ function dragblock_renderability_render( $dragblock_rr_block, $dragblock_rr_cont
 		}
 		if ( ( $dragblock_rr_condition ) === false ) return '';
 	}
-	// dev-reply#16177.
+	// dev-reply#16181.
 	if ( null === $dragblock_rr_parsed ) $dragblock_rr_parsed = true;
 	if ( null === $dragblock_rr_browsers ) $dragblock_rr_browsers = true;
 	if ( null === $dragblock_rr_devices ) $dragblock_rr_devices = true;

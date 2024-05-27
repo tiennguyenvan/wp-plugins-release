@@ -68,7 +68,7 @@ function dragblock_content_inserter( $dragblock_cr_text, $dragblock_cr_parsed ) 
 		return $dragblock_cr_text;
 	}
 	$dragblock_cr_site = strrpos( $dragblock_cr_text, '</' );
-	// dev-reply#682.
+	// dev-reply#683.
 	if ( false === $dragblock_cr_site ) {
 		return $dragblock_cr_text;
 	}

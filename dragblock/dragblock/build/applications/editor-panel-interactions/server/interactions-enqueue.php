@@ -47,9 +47,9 @@ function dragblock_interactions_collect_js( $dragblock_ie_dragblock, $dragblock_
 				);
 		}
 	}
-	// dev-reply#760.
+	// dev-reply#763.
 	global $dragblock_js;
-	// dev-reply#764.
+	// dev-reply#767.
 	if ( ! empty( $dragblock_ie_js['innerBlocks'] ) ) {
 		foreach ( $dragblock_ie_js['innerBlocks'] as $dragblock_ie_uid ) {
 			if ( empty( $dragblock_ie_uid['blockName'] ) || empty( $dragblock_ie_uid['attrs']['dragBlockClientId'] ) ) {
@@ -75,7 +75,7 @@ function dragblock_enqueue_front_end() {
 	global $dragblock_js;
 	$dragblock_ie_uids = implode( '', $dragblock_js );
 	if ( $dragblock_ie_uids ) {
-		// dev-reply#797.
+		// dev-reply#7100.
 		wp_add_inline_script( DRAGBLOCK_EDITOR_INIT_SLUG, $dragblock_ie_uids, 'before' );
 	}
 }

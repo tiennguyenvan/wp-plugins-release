@@ -152,11 +152,11 @@ function dragblock_attributes_parsing( $dragblock_ar_parsed ) {
 	$dragblock_ar_alt = '';
 	if ( ! empty( $dragblock_ar_block['name'] ) && dragblock_is_reseved_terms( $dragblock_ar_block['name'] ) ) {
 		$dragblock_ar_block['name'] .= '__dragblock_wp_reseved_terms';
-		// dev-reply#20202.
+		// dev-reply#20203.
 	}
 	foreach ( $dragblock_ar_block as $dragblock_ar_aria => $dragblock_ar_label ) {
 		$dragblock_ar_child = esc_attr( do_shortcode( $dragblock_ar_label ) );
-		// dev-reply#20207.
+		// dev-reply#20208.
 		if ( ( $dragblock_ar_aria ) === 'src' && $dragblock_ar_locale && empty( $dragblock_ar_child ) ) {
 			$dragblock_ar_parsed['attrs']['dragBlockParsedAttrs'] = '';
 			return $dragblock_ar_parsed;
@@ -177,7 +177,7 @@ add_filter( 'render_block', 'dragblock_attributes_insert', 10, 2 );
  */
 function dragblock_attributes_insert( $dragblock_ar_text, $dragblock_ar_parsed ) {
 	if ( empty( $dragblock_ar_parsed['attrs']['dragBlockParsedAttrs'] ) ) {
-		// dev-reply#20229.
+		// dev-reply#20230.
 		if ( 'dragblock/image' === $dragblock_ar_parsed['blockName'] ) {
 			return '';
 		}
