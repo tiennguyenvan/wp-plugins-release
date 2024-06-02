@@ -27,6 +27,7 @@ add_filter( 'render_block', 'dragblock_interactions_collect_js', 10, 2 );
  * @param object|array|string $dragblock_ie_js check var-def#712.
  */
 function dragblock_interactions_collect_js( $dragblock_ie_dragblock, $dragblock_ie_js ) {
+	// dev-reply#731.
 	if (
 		'core/null' === $dragblock_ie_js['blockName'] ||
 		empty( $dragblock_ie_js['attrs']['dragBlockClientId'] )
@@ -47,9 +48,9 @@ function dragblock_interactions_collect_js( $dragblock_ie_dragblock, $dragblock_
 				);
 		}
 	}
-	// dev-reply#763.
+	// dev-reply#764.
 	global $dragblock_js;
-	// dev-reply#767.
+	// dev-reply#768.
 	if ( ! empty( $dragblock_ie_js['innerBlocks'] ) ) {
 		foreach ( $dragblock_ie_js['innerBlocks'] as $dragblock_ie_uid ) {
 			if ( empty( $dragblock_ie_uid['blockName'] ) || empty( $dragblock_ie_uid['attrs']['dragBlockClientId'] ) ) {
@@ -69,13 +70,13 @@ function dragblock_interactions_collect_js( $dragblock_ie_dragblock, $dragblock_
 }
 add_action( 'wp_footer', 'dragblock_enqueue_front_end' );
 /**
- * Check Documentation#755
+ * Check Documentation#756
  */
 function dragblock_enqueue_front_end() {
 	global $dragblock_js;
 	$dragblock_ie_uids = implode( '', $dragblock_js );
 	if ( $dragblock_ie_uids ) {
-		// dev-reply#7100.
+		// dev-reply#7101.
 		wp_add_inline_script( DRAGBLOCK_EDITOR_INIT_SLUG, $dragblock_ie_uids, 'before' );
 	}
 }

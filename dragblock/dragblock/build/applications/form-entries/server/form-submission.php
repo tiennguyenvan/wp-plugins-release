@@ -9,7 +9,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 // dev-reply#124.
-add_action( 'init', 'dragblock_form_submission', 1 );
+add_action( 'init', 'dragblock_form_submission', 100 );
 // dev-reply#126.
 /**
  * Check Documentation#125
@@ -25,9 +25,9 @@ function dragblock_form_submission() {
 	// dev-reply#1221.
 	if (
 		// dev-reply#1225.
-		! isset( $_POST['dragblock/form-title'] ) ||
+		! isset( $_POST[ DRAGBLOCK_FORM_TITLE_FIELD_NAME ] ) ||
 		// dev-reply#1228.
-		! empty( $_POST['dragblock/form-title'] ) ||
+		! empty( $_POST[ DRAGBLOCK_FORM_TITLE_FIELD_NAME ] ) ||
 		// dev-reply#1231.
 		empty( $_POST['dragblock/form-session-token'] )
 	) {
@@ -49,16 +49,16 @@ function dragblock_form_submission() {
 	}
 	// dev-reply#1256.
 	$dragblock_fs_id = '';
-	if ( isset( $_POST['dragblock/form-client-id'] ) ) {
-		$dragblock_fs_id = sanitize_text_field( wp_unslash( $_POST['dragblock/form-client-id'] ) );
+	if ( isset( $_POST[ DRAGBLOCK_FORM_CLIENT_ID_FIELD_NAME ] ) ) {
+		$dragblock_fs_id = sanitize_text_field( wp_unslash( $_POST[ DRAGBLOCK_FORM_CLIENT_ID_FIELD_NAME ] ) );
 	} else {
 		$dragblock_fs_id = 'dragblock-form-unorganized';
 	}
 	// dev-reply#1265.
-	unset( $_POST['dragblock/form-client-id'] );
+	unset( $_POST[ DRAGBLOCK_FORM_CLIENT_ID_FIELD_NAME ] );
 	unset( $_POST['dragblock/form-nonce-field'] );
 	unset( $_POST['dragblock/form-session-token'] );
-	unset( $_POST['dragblock/form-title'] );
+	unset( $_POST[ DRAGBLOCK_FORM_TITLE_FIELD_NAME ] );
 	unset( $_POST['submit'] );
 	// dev-reply#1273.
 	global $dragblock_form_entries_message_error;
@@ -93,8 +93,8 @@ function dragblock_form_submission() {
 	$dragblock_fs_transienthash = array();
 	foreach ( $dragblock_fs_createdformtime as $dragblock_fs_formclientid => $dragblock_fs_dragblock ) {
 		// dev-reply#12144.
-		if ( strpos( $dragblock_fs_formclientid, '__dragblock_wp_reseved_terms' ) !== false ) {
-			$dragblock_fs_formclientid = str_replace( '__dragblock_wp_reseved_terms', '', $dragblock_fs_formclientid );
+		if ( strpos( $dragblock_fs_formclientid, DRAGBLOCK_WP_RESEVED_TERMS_PLACEHOLDER ) !== false ) {
+			$dragblock_fs_formclientid = str_replace( DRAGBLOCK_WP_RESEVED_TERMS_PLACEHOLDER, '', $dragblock_fs_formclientid );
 		}
 		if ( '_wp_http_referer' !== $dragblock_fs_formclientid ) {
 			$dragblock_fs_message .= '<p><strong>' . esc_html( $dragblock_fs_formclientid ) . ':</strong> ' . esc_html( $dragblock_fs_dragblock ) . '</p>';

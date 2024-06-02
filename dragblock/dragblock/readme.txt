@@ -4,7 +4,7 @@ Donate link: https://www.paypal.me/sneeit
 Tags: gutenberg, gutenberg blocks, site builder, drag-and-drop, visual editor
 Requires at least: 5.9
 Requires PHP: 7.4
-Stable tag: 24.05.26
+Stable tag: 24.06.02
 Tested up to: 6.5.3
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
@@ -61,7 +61,10 @@ language plugin. Saving time by not creating many different pages.
 No need Contact-Form 7 or any other form plugins.
 
 == Changelog ==
-= 24.05.26 =
+= 24.06.02 =
+* Replace CSS Variable names to suppot non-unicode databases
+
+= 24.05.27 =
 * DragBlock default form action does not work
 * Support more options for Ignore Loaded Posts filter
 

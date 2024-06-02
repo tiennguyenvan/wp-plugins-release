@@ -12,26 +12,23 @@ global $dragblock_form_script_required;
 $dragblock_form_script_required = false;
 add_filter( 'render_block', 'dragblock_form_render', 20, 2 );
 /**
- * Check Documentation#95
+ * Check Documentation#105
  *
- * @param object|array|string $dragblock_fr_dragblock check var-def#95.
- * @param object|array|string $dragblock_fr_form check var-def#95.
+ * @param object|array|string $dragblock_fr_dragblock check var-def#105.
+ * @param object|array|string $dragblock_fr_form check var-def#105.
  */
 function dragblock_form_render( $dragblock_fr_dragblock, $dragblock_fr_form ) {
-	// dev-reply#915.
-	if ( empty( $dragblock_fr_form['attrs']['dragBlockClientId'] ) ) {
-		return $dragblock_fr_dragblock;
-	}
-	// dev-reply#921.
+	// dev-reply#1029.
 	if (
 		'dragblock/form' !== $dragblock_fr_form['blockName'] ||
-		strpos( $dragblock_fr_dragblock, DRAGBLOCK_FORM_ACTION_SHORTCODE ) === false
+		empty( $dragblock_fr_form['attrs']['dragBlockClientId'] )
 	) {
-		return str_replace( '__dragblock_wp_reseved_terms', '', $dragblock_fr_dragblock );
+		return $dragblock_fr_dragblock;
 	}
+	// dev-reply#1039.
 	global $dragblock_form_script_required;
 	$dragblock_form_script_required = true;
-	// dev-reply#932.
+	// dev-reply#1047.
 	$dragblock_fr_script = false;
 	if ( $dragblock_fr_form['attrs']['dragBlockAttrs'] ) {
 		foreach ( $dragblock_fr_form['attrs']['dragBlockAttrs'] as $dragblock_fr_required ) {
@@ -43,11 +40,13 @@ function dragblock_form_render( $dragblock_fr_dragblock, $dragblock_fr_form ) {
 			}
 		}
 	}
-	// dev-reply#945.
+	// dev-reply#1062.
 	if ( ! $dragblock_fr_script ) {
+		// dev-reply#1064.
+		$dragblock_fr_dragblock = str_replace( DRAGBLOCK_WP_RESEVED_TERMS_PLACEHOLDER, '', $dragblock_fr_dragblock );
 		return $dragblock_fr_dragblock;
 	}
-	// dev-reply#950.
+	// dev-reply#1069.
 	$dragblock_fr_block = '';
 	foreach ( $dragblock_fr_form['attrs']['dragBlockAttrs'] as $dragblock_fr_required ) {
 		if ( 'name' === $dragblock_fr_required['slug'] ) {
@@ -60,50 +59,50 @@ function dragblock_form_render( $dragblock_fr_dragblock, $dragblock_fr_form ) {
 	if ( ! $dragblock_fr_block && $dragblock_fr_form['attrs']['dragBlockClientId'] ) {
 		$dragblock_fr_block = $dragblock_fr_form['attrs']['dragBlockClientId'];
 	}
-	// dev-reply#968.
+	// dev-reply#1086.
 	$dragblock_fr_content = strrpos( $dragblock_fr_dragblock, '</form>' );
 	if ( false !== $dragblock_fr_content ) {
 		$dragblock_fr_parsed = '';
-		// dev-reply#972.
+		// dev-reply#1090.
 		if ( $dragblock_fr_block ) {
-			// dev-reply#974.
+			// dev-reply#1092.
 			if ( strlen( $dragblock_fr_block ) > 32 ) {
 				$dragblock_fr_block = substr( $dragblock_fr_block, 0, 32 );
 			}
-			// dev-reply#979.
+			// dev-reply#1097.
 			$dragblock_fr_block = sanitize_key( $dragblock_fr_block );
-			$dragblock_fr_parsed .= '<input type="hidden" name="dragblock/form-client-id" value="' . esc_attr( $dragblock_fr_block ) . '"/>';
+			$dragblock_fr_parsed .= '<input type="hidden" name="' . DRAGBLOCK_FORM_CLIENT_ID_FIELD_NAME . '" value="' . esc_attr( $dragblock_fr_block ) . '"/>';
 		}
-		// dev-reply#985.
-		$dragblock_fr_parsed .= '<input type="text" name="dragblock/form-title" value="">';
+		// dev-reply#10103.
+		$dragblock_fr_parsed .= '<input type="text" name="' . DRAGBLOCK_FORM_TITLE_FIELD_NAME . '" value="">';
 		$dragblock_fr_dragblock = substr( $dragblock_fr_dragblock, 0, $dragblock_fr_content ) . ' ' . $dragblock_fr_parsed . substr( $dragblock_fr_dragblock, $dragblock_fr_content );
 	}
-	// dev-reply#995.
+	// dev-reply#10113.
 	global $dragblock_form_entries_message_error;
-	// dev-reply#998.
-	$dragblock_fr_hasaction = 'class="';
-	$dragblock_fr_attr = strpos( $dragblock_fr_dragblock, $dragblock_fr_hasaction );
-	if ( false === $dragblock_fr_attr ) {
-		$dragblock_fr_hasaction = 'class=\'';
-		$dragblock_fr_attr = strpos( $dragblock_fr_dragblock, $dragblock_fr_hasaction );
+	// dev-reply#10116.
+	$dragblock_fr_has = 'class="';
+	$dragblock_fr_action = strpos( $dragblock_fr_dragblock, $dragblock_fr_has );
+	if ( false === $dragblock_fr_action ) {
+		$dragblock_fr_has = 'class=\'';
+		$dragblock_fr_action = strpos( $dragblock_fr_dragblock, $dragblock_fr_has );
 	}
-	if ( false !== $dragblock_fr_attr && isset( $dragblock_form_entries_message_error[ $dragblock_fr_block ] ) ) {
-		$dragblock_fr_attr += strlen( $dragblock_fr_hasaction );
+	if ( false !== $dragblock_fr_action && isset( $dragblock_form_entries_message_error[ $dragblock_fr_block ] ) ) {
+		$dragblock_fr_action += strlen( $dragblock_fr_has );
 		if ( false === $dragblock_form_entries_message_error[ $dragblock_fr_block ] ) {
-			// dev-reply#9110.
-			$dragblock_fr_dragblock = substr( $dragblock_fr_dragblock, 0, $dragblock_fr_attr ) . 'pass ' . substr( $dragblock_fr_dragblock, $dragblock_fr_attr );
+			// dev-reply#10128.
+			$dragblock_fr_dragblock = substr( $dragblock_fr_dragblock, 0, $dragblock_fr_action ) . 'pass ' . substr( $dragblock_fr_dragblock, $dragblock_fr_action );
 		} else {
-			// dev-reply#9113.
-			$dragblock_fr_dragblock = substr( $dragblock_fr_dragblock, 0, $dragblock_fr_attr ) . 'fail ' . substr( $dragblock_fr_dragblock, $dragblock_fr_attr );
+			// dev-reply#10131.
+			$dragblock_fr_dragblock = substr( $dragblock_fr_dragblock, 0, $dragblock_fr_action ) . 'fail ' . substr( $dragblock_fr_dragblock, $dragblock_fr_action );
 		}
 	}
-	// dev-reply#9118.
+	// dev-reply#10136.
 	$dragblock_fr_dragblock = str_replace(
 		'[dragblock.form.message.error]',
 		! empty( $dragblock_form_entries_message_error[ $dragblock_fr_block ] ) ? $dragblock_form_entries_message_error[ $dragblock_fr_block ] : '',
 		$dragblock_fr_dragblock
 	);
-	// dev-reply#9125.
+	// dev-reply#10143.
 	$dragblock_fr_dragblock = str_replace( DRAGBLOCK_FORM_ACTION_SHORTCODE, '', $dragblock_fr_dragblock );
 	return $dragblock_fr_dragblock;
 }
