@@ -115,7 +115,7 @@ function sneeit_core_enqueue_app( $sneeit_core_le_slug, $sneeit_core_le_location
 			$sneeit_core_le_current = $sneeit_core_le_get->get( 'Name' );
 			$sneeit_core_le_page = $sneeit_core_le_get->get( 'UpdateURI' );
 			$sneeit_core_le_pagenow = $sneeit_core_le_get->get( 'ThemeURI' );
-			// dev-reply#13111.
+			// dev-reply#13112.
 			wp_enqueue_script( 'jquery' );
 			wp_localize_script( 'jquery', 'sneeitCore', array(
 				'ajaxUrl' => admin_url( 'admin-ajax.php' ),
@@ -132,8 +132,8 @@ function sneeit_core_enqueue_app( $sneeit_core_le_slug, $sneeit_core_le_location
 				'adminUrl' => admin_url(),
 				'uploadUrl' => wp_upload_dir()['url'],
 				'isLocalhost' => SNEEIT_CORE_IS_LOCAL,
-				// dev-reply#13129.
-				'sneeitLicenseUsername' => get_option( SNEEIT_CORE_KEY_SNEEIT_LICENSE_USERNAME, '' ), // dev-reply#13130.
+				// dev-reply#13130.
+				'sneeitLicenseUsername' => get_option( SNEEIT_CORE_KEY_SNEEIT_LICENSE_USERNAME, '' ), // dev-reply#13131.
 				'siteFaviconKey' => SNEEIT_CORE_SITE_FAVICON_META_KEY,
 				'siteThemeColorKey' => SNEEIT_CORE_SITE_THEME_COLOR_META_KEY,
 			) );
@@ -145,30 +145,30 @@ function sneeit_core_enqueue_app( $sneeit_core_le_slug, $sneeit_core_le_location
 				wp_enqueue_style( $sneeit_core_le_theme );
 				wp_enqueue_script( $sneeit_core_le_theme );
 			}
-			// dev-reply#13144.
+			// dev-reply#13145.
 			if ( ( $sneeit_core_le_location ) === 'editor' ) {
 				sneeit_core_enqueue_single( "applications/{$sneeit_core_le_slug}/client/index.js", array( 'jquery' ) );
 				sneeit_core_enqueue_single( "applications/{$sneeit_core_le_slug}/client/index.css" );
-				// dev-reply#13148.
+				// dev-reply#13149.
 				return;
 			}
-			// dev-reply#13152.
+			// dev-reply#13153.
 			$sneeit_core_le_name = include SNEEIT_CORE_BUILD_PATH . 'applications/' . $sneeit_core_le_slug . '/client/index.asset.php';
-			// dev-reply#13157.
+			// dev-reply#13158.
 			foreach ( $sneeit_core_le_name['dependencies'] as $sneeit_core_le_update ) {
 				wp_enqueue_style( $sneeit_core_le_update );
 			}
-			// dev-reply#13161.
+			// dev-reply#13162.
 			array_push( $sneeit_core_le_name['dependencies'], 'wp-i18n' );
 			$sneeit_core_le_uri = ( $sneeit_core_le_location ) === 'admin' ? '' : 'style-';
-			// dev-reply#13167.
+			// dev-reply#13168.
 			sneeit_core_enqueue_multiple(
 				array(
 					"applications/{$sneeit_core_le_slug}/client/{$sneeit_core_le_uri}index.css",
 					"applications/{$sneeit_core_le_slug}/client/index.js" => $sneeit_core_le_name['dependencies'],
 				)
 			);
-			// dev-reply#13175.
+			// dev-reply#13176.
 		},
 		1
 	);
