@@ -101,13 +101,13 @@ function dragblock_url_search() {
 		// dev-reply#888.,
 	);
 	$dragblock_la_args = get_posts( $dragblock_la_permalink );
-	foreach ( $dragblock_la_args as $dragblock_la_posts ) {
+	foreach ( $dragblock_la_args as $post ) {
 		// dev-reply#896.
-		$dragblock_la_term = get_permalink( $dragblock_la_posts );
-		$dragblock_la_title = get_the_title( $dragblock_la_posts );
+		$dragblock_la_term = get_permalink( $post );
+		$dragblock_la_posts = get_the_title( $post );
 		$dragblock_la_taxonomies[ $dragblock_la_term ] = array(
-			'title' => $dragblock_la_title,
-			'type' => get_post_type( $dragblock_la_posts ),
+			'title' => $dragblock_la_posts,
+			'type' => get_post_type( $post ),
 		);
 	}
 	// dev-reply#8107.

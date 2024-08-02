@@ -29,6 +29,7 @@ function dragblock_database_loader() {
 		$dragblock_dl_id['title'] = dragblock_shortcode_post_title( null, $dragblock_dl_ids );
 		$dragblock_dl_id['snippet'] = dragblock_shortcode_post_snippet( null, $dragblock_dl_ids );
 		$dragblock_dl_id['comment_number'] = dragblock_shortcode_post_comment_number( null, $dragblock_dl_ids );
+		$dragblock_dl_id['post_count'] = dragblock_shortcode_post_view_count( null, $dragblock_dl_ids );
 		$dragblock_dl_id['image_src'] = dragblock_shortcode_post_image_src( null, $dragblock_dl_ids );
 		$dragblock_dl_id['date'] = dragblock_shortcode_post_date( null, $dragblock_dl_ids );
 		$dragblock_dl_id['author_name'] = dragblock_shortcode_post_author_name( null, $dragblock_dl_ids );
@@ -37,6 +38,6 @@ function dragblock_database_loader() {
 		$dragblock_dl_id['cat_name'] = dragblock_shortcode_post_cat_name( null, $dragblock_dl_ids );
 		$dragblock_dl_posts[] = $dragblock_dl_id;
 	}
-	// dev-reply#434.
+	// dev-reply#435.
 	dragblock_ajax_succeed_die( $dragblock_dl_posts );
 }

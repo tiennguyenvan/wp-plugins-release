@@ -76,7 +76,8 @@ function dragblock_editor_init_editor_assets() {
 		),
 		'postTypes' => array_keys( get_post_types() ),
 		'startTaxQueryKey' => DRAGBLOCK_START_TAX_QUERY_KEY,
-		// dev-reply#9113.
+		'postViewsKey' => DRAGBLOCK_POST_VIEWS_KEY,
+		// dev-reply#9114.
 		'colorVarV0Start' => COLOR_VAR_V0_START,
 		'colorVarV0AlphaSep' => COLOR_VAR_V0_ALPHA_SEP,
 		'colorVarV0End' => COLOR_VAR_V0_END,
@@ -87,35 +88,35 @@ function dragblock_editor_init_editor_assets() {
 		'gradientVarV1Start' => GRADIENT_VAR_V1_START,
 		'gradientVarV1BackupSep' => GRADIENT_VAR_V1_BACKUP_SEP,
 		'gradientVarV1End' => GRADIENT_VAR_V1_END,
-		// dev-reply#9125.
+		// dev-reply#9126.
 		'colorVarV2Start' => COLOR_VAR_V2_START,
-		'colorVarV2BackupSep' => COLOR_VAR_V2_BACKUP_SEP, // dev-reply#9127.
+		'colorVarV2BackupSep' => COLOR_VAR_V2_BACKUP_SEP, // dev-reply#9128.
 		'colorVarV2AlphaSep' => COLOR_VAR_V2_ALPHA_SEP,
 		'colorVarV2End' => COLOR_VAR_V2_END,
 		'gradientVarV2Start' => GRADIENT_VAR_V2_START,
-		'gradientVarV2BackupSep' => GRADIENT_VAR_V2_BACKUP_SEP, // dev-reply#9132.
+		'gradientVarV2BackupSep' => GRADIENT_VAR_V2_BACKUP_SEP, // dev-reply#9133.
 		'gradientVarV2End' => GRADIENT_VAR_V2_END,
 	) );
-	// dev-reply#9136.
+	// dev-reply#9137.
 	wp_localize_script( DRAGBLOCK_EDITOR_INIT_SLUG, 'dragBlockEditorInit', $dragblock_eie_family );
 }
 add_action( 'after_setup_theme', 'dragblock_editor_init_editor_iframe', 100 );
 /**
- * Check Documentation#994
+ * Check Documentation#995
  */
 function dragblock_editor_init_editor_iframe() {
 	add_editor_style( DRAGBLOCK_URL . 'assets/css/animate.min.css' );
-	// dev-reply#9150.
+	// dev-reply#9151.
 	if ( ! DRAGBLOCK_CUSTOM_DEFAULT_STYLE ) {
 		add_editor_style( DRAGBLOCK_URL . 'build/applications/editor-init/client/front/style-index.css' );
 	}
 }
 add_action( 'wp_enqueue_scripts', 'dragblock_editor_init_front_scripts' );
 /**
- * Check Documentation#9103
+ * Check Documentation#9104
  */
 function dragblock_editor_init_front_scripts() {
-	// dev-reply#9163.
+	// dev-reply#9164.
 	dragblock_enqueue( DRAGBLOCK_EDITOR_INIT_SLUG, 'build/applications/editor-init/client/front/index.js' );
 	if ( ! DRAGBLOCK_CUSTOM_DEFAULT_STYLE ) {
 		dragblock_enqueue( DRAGBLOCK_EDITOR_INIT_SLUG, 'build/applications/editor-init/client/front/style-index.css' );

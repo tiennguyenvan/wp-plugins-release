@@ -3,7 +3,7 @@
 /**
  * Plugin Name: Sneeit Core
  * Plugin URI:  https://sneeit.com/
- * Version: 24.07.31-1217
+ * Version: 24.08.01-2109
  * Author:      Sneeit.Com
  * Author URI:  https://sneeit.com/
  * Update URI:  https://sneeit.com/
@@ -69,7 +69,7 @@ function sneeit_core_load_textdomain() {
 //             strpos($_SERVER['OPENSSL_CONF'], 'E:/') == 0
 //         )
 //     );
-//     define('SNEEIT_CORE_VERSION', SNEEIT_CORE_IS_LOCAL ? time() : '24.07.31-1217');
+//     define('SNEEIT_CORE_VERSION', SNEEIT_CORE_IS_LOCAL ? time() : '24.08.01-2109');
 
 //     function sneeit_core_include_files_recursive($folder_path)
 //     {
