@@ -14,6 +14,9 @@
   "supports": {
     "html": false
   },
+  "parent": [
+    "dragblock/select"
+  ],
   "textdomain": "dragblock",
   "editorScript": "file:./index.js",
   "editorStyle": "file:./index.css",

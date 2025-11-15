@@ -1,0 +1,25 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 2,
+  "name": "dragblock/pattern",
+  "version": "0.1.0",
+  "title": "Pattern",
+  "category": "dragblock-basic",
+  "icon": "image-filter",
+  "description": "Insert a pattern from library",
+  "keywords": [
+    "pattern",
+    "blocks",
+    "pattern",
+    "preset",
+    "studio"
+  ],
+  "supports": {
+    "html": false
+  },
+  "textdomain": "dragblock",
+  "editorScript": "file:./index.js",
+  "editorStyle": "file:./index.css",
+  "style": "file:./style-index.css",
+  "attributes": {}
+}

@@ -4,7 +4,7 @@ Donate link: https://www.paypal.me/sneeit
 Tags: gutenberg, gutenberg blocks, site builder, drag-and-drop, visual editor
 Requires at least: 5.9
 Requires PHP: 7.4
-Stable tag: 24.08.01
+Stable tag: 25.11.15
 Tested up to: 6.6.1
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
@@ -61,6 +61,9 @@ language plugin. Saving time by not creating many different pages.
 No need Contact-Form 7 or any other form plugins.
 
 == Changelog ==
+= 25.11.15 =
+* Toolbar popover does not not hide when switching blocks
+
 = 24.08.01 =
 * Remove unused toolbar buttons
 

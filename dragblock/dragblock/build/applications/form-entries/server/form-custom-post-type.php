@@ -43,8 +43,8 @@ function dragblock_register_post_type_form_entries() {
 	);
 	$dragblock_fcpt_args = array(
 		'labels'              => $dragblock_fcpt_labels,
-		'public'              => true,
-		'publicly_queryable'  => true,
+		'public'              => false,
+		'publicly_queryable'  => false,
 		'show_ui'             => true,
 		'show_in_menu'        => false,
 		'query_var'           => true,
@@ -55,7 +55,7 @@ function dragblock_register_post_type_form_entries() {
 		'menu_position'       => 1,
 		'supports'            => array( 'title', 'editor', 'custom-fields' ),
 		'menu_icon'           => 'dashicons-email',
-		'show_in_rest'        => true,
+		'show_in_rest'        => false, // dev-reply#660.
 		'exclude_from_search' => true,
 	);
 	register_post_type( DRAGBLOCK_FORM_ENTRY, $dragblock_fcpt_args );

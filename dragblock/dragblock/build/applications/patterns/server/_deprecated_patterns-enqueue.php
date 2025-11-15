@@ -2,7 +2,7 @@
 /**
  * DragBlock's Patterns.
  *
- * @package Patterns enqueue
+ * @package _deprecated_patterns enqueue
  */
 
 if ( ! defined( 'ABSPATH' ) ) {

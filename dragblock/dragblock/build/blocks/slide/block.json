@@ -1,0 +1,31 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 2,
+  "name": "dragblock/slide",
+  "version": "0.1.0",
+  "title": "Slide",
+  "category": "dragblock-compact",
+  "icon": "media-default",
+  "description": "Insert a slide into a slider",
+  "keywords": [
+    "slide",
+    "slide item",
+    "carousel item"
+  ],
+  "supports": {
+    "html": false
+  },
+  "parent": [
+    "dragblock/slider"
+  ],
+  "textdomain": "dragblock",
+  "editorScript": "file:./index.js",
+  "editorStyle": "file:./index.css",
+  "style": "file:./style-index.css",
+  "attributes": {
+    "dragBlockText": {
+      "type": "array",
+      "default": ""
+    }
+  }
+}

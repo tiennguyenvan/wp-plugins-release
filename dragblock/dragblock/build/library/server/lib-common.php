@@ -8,54 +8,54 @@
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
-// dev-reply#193.
+// dev-reply#203.
 /**
- * Check Documentation#193
+ * Check Documentation#203
  *
- * @param object|array|string $dragblock_lc_receiver check var-def#193.
- * @param object|array|string $dragblock_lc_provider check var-def#193.
+ * @param object|array|string $dragblock_lc_receiver check var-def#203.
+ * @param object|array|string $dragblock_lc_provider check var-def#203.
  */
 function dragblock_theme_json_merge( $dragblock_lc_receiver, $dragblock_lc_provider ) {
-	// dev-reply#1915.
+	// dev-reply#2015.
 	if ( ! is_array( $dragblock_lc_receiver ) || ! is_array( $dragblock_lc_provider ) ) {
 		return $dragblock_lc_receiver;
 	}
 	foreach ( $dragblock_lc_provider as $dragblock_lc_key => $dragblock_lc_value ) {
-		// dev-reply#1922.
+		// dev-reply#2022.
 		if ( ! isset( $dragblock_lc_receiver[ $dragblock_lc_key ] ) ) {
 			$dragblock_lc_receiver[ $dragblock_lc_key ] = $dragblock_lc_value;
 			continue;
 		}
-		// dev-reply#1934.
+		// dev-reply#2034.
 		$dragblock_lc_receiver[ $dragblock_lc_key ] = dragblock_theme_json_merge( $dragblock_lc_receiver[ $dragblock_lc_key ], $dragblock_lc_value );
 	}
 	return $dragblock_lc_receiver;
 }
 /**
- * Check Documentation#1920
+ * Check Documentation#2020
  *
- * @param object|array|string $dragblock_lc_path check var-def#1920.
+ * @param object|array|string $dragblock_lc_path check var-def#2020.
  */
 function dragblock_url( $dragblock_lc_path ) {
 	return DRAGBLOCK_URL . '/' . $dragblock_lc_path;
-	// dev-reply#1948.
+	// dev-reply#2048.
 }
 /**
- * Check Documentation#1925
+ * Check Documentation#2025
  *
- * @param object|array|string $dragblock_lc_attachment check var-def#1925.
+ * @param object|array|string $dragblock_lc_attachment check var-def#2025.
  */
 function dragblock_get_image_srcsets( $dragblock_lc_attachment ) {
-	// dev-reply#1957.
+	// dev-reply#2057.
 	if ( ! is_numeric( $dragblock_lc_attachment ) ) {
 		$dragblock_lc_attachment = attachment_url_to_postid( $dragblock_lc_attachment );
 		if ( ! $dragblock_lc_attachment ) {
 			return '';
 		}
 	}
-	// dev-reply#1965.
+	// dev-reply#2065.
 	$dragblock_lc_attachment = (int) $dragblock_lc_attachment;
-	$dragblock_lc_id = get_intermediate_image_sizes(); // dev-reply#1968.
+	$dragblock_lc_id = get_intermediate_image_sizes(); // dev-reply#2068.
 	$dragblock_lc_image = array();
 	foreach ( $dragblock_lc_id as $dragblock_lc_sizes ) {
 		$dragblock_lc_srcset = wp_get_attachment_image_src( $dragblock_lc_attachment, $dragblock_lc_sizes );
@@ -67,15 +67,15 @@ function dragblock_get_image_srcsets( $dragblock_lc_attachment ) {
 	foreach ( $dragblock_lc_image as $dragblock_lc_size => $dragblock_lc_src ) {
 		$dragblock_lc_values .= $dragblock_lc_src . ' ' . $dragblock_lc_size . ', ';
 	}
-	// dev-reply#1985.
+	// dev-reply#2085.
 	$dragblock_lc_values = rtrim( $dragblock_lc_values, ', ' );
 	return $dragblock_lc_values;
 }
 define( 'DRAGBLOCK_WP_RESEVED_TERMS_PLACEHOLDER', '__dragblock_wp_reseved_terms' );
 /**
- * Check Documentation#1953
+ * Check Documentation#2053
  *
- * @param object|array|string $dragblock_lc_width check var-def#1953.
+ * @param object|array|string $dragblock_lc_width check var-def#2053.
  */
 function dragblock_is_reseved_terms( $dragblock_lc_width ) {
 	$dragblock_lc_url = array(
@@ -403,4 +403,27 @@ function dragblock_is_reseved_terms( $dragblock_lc_width ) {
 		'zxcvbn-async',
 	);
 	return in_array( $dragblock_lc_width, $dragblock_lc_url );
+}
+/**
+ * Check Documentation#20381
+ *
+ * @param object|array|string $dragblock_lc_term check var-def#20381.
+ */
+function dragblock_is_sub_admin_page( $dragblock_lc_term ) {
+	return ( $dragblock_lc_term ) === sanitize_key( wp_unslash( isset( $_GET['page'] ) ? $_GET['page'] : '' ) );
+}
+/**
+ * Check Documentation#20384
+ */
+function dragblock_is_administrator() {
+	return current_user_can( 'manage_options' );
+}
+/**
+ * Check Documentation#20387
+ *
+ * @param object|array|string $dragblock_lc_reserved check var-def#20387.
+ */
+function dragblock_slug_to_title( $dragblock_lc_reserved ) {
+	$dragblock_lc_terms = str_replace( array( '_', '-' ), ' ', $dragblock_lc_reserved );
+	return ucwords( $dragblock_lc_terms );
 }

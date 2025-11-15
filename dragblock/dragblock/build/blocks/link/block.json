@@ -5,11 +5,14 @@
   "version": "0.1.0",
   "title": "Link",
   "category": "dragblock-basic",
-  "icon": "button",
+  "icon": "admin-links",
   "description": "Insert a flexible link/button",
   "keywords": [
     "button",
-    "link"
+    "link",
+    "a",
+    "href",
+    "url"
   ],
   "supports": {
     "html": false

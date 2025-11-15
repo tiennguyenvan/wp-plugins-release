@@ -19,13 +19,13 @@ function dragblock_content_parser( $dragblock_cr_parsed ) {
 	if ( empty( $dragblock_cr_parsed['attrs']['dragBlockText'] ) ) {
 		return $dragblock_cr_parsed;
 	}
-	// dev-reply#616.
+	// dev-reply#617.
 	$dragblock_cr_block = '';
 	$dragblock_cr_content = '';
 	$dragblock_cr_english = get_locale();
-	// dev-reply#622.
+	// dev-reply#623.
 	foreach ( $dragblock_cr_parsed['attrs']['dragBlockText'] as $dragblock_cr_us ) {
-		// dev-reply#624.
+		// dev-reply#625.
 		if (
 			empty( $dragblock_cr_us['slug'] ) ||
 			! isset( $dragblock_cr_us['value'] ) ||
@@ -34,22 +34,22 @@ function dragblock_content_parser( $dragblock_cr_parsed ) {
 		) {
 			continue;
 		}
-		// dev-reply#634.
+		// dev-reply#635.
 		if ( ( $dragblock_cr_english ) === $dragblock_cr_us['slug'] ) {
 			$dragblock_cr_block = $dragblock_cr_us['value'];
 			break;
 		}
-		// dev-reply#640.
+		// dev-reply#641.
 		if ( 'en_US' === $dragblock_cr_us['slug'] ) {
 			$dragblock_cr_content = $dragblock_cr_us['value'];
 			continue;
 		}
 	}
-	// dev-reply#647.
+	// dev-reply#648.
 	if ( '' === $dragblock_cr_block && '' !== $dragblock_cr_content ) {
 		$dragblock_cr_block = $dragblock_cr_content;
 	}
-	// dev-reply#654.
+	// dev-reply#655.
 	$dragblock_cr_block = do_shortcode( $dragblock_cr_block );
 	if ( ( $dragblock_cr_block ) !== '' ) {
 		$dragblock_cr_parsed['attrs']['dragBlockParsedContent'] = $dragblock_cr_block;
@@ -64,12 +64,12 @@ add_filter( 'render_block', 'dragblock_content_inserter', 10, 2 );
  * @param object|array|string $dragblock_cr_parsed check var-def#647.
  */
 function dragblock_content_inserter( $dragblock_cr_text, $dragblock_cr_parsed ) {
-	// dev-reply#679.
+	// dev-reply#685.
 	if ( ! isset( $dragblock_cr_parsed['attrs']['dragBlockParsedContent'] ) || $dragblock_cr_parsed['attrs']['dragBlockParsedContent'] === '' ) {
 		return $dragblock_cr_text;
 	}
 	$dragblock_cr_site = strrpos( $dragblock_cr_text, '</' );
-	// dev-reply#686.
+	// dev-reply#691.
 	if ( false === $dragblock_cr_site ) {
 		return $dragblock_cr_text;
 	}

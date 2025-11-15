@@ -10,7 +10,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 dragblock_ajax_register( 'dragblock_database_loader' );
 /**
- * Check Documentation#43
+ * Check Documentation#53
  */
 function dragblock_database_loader() {
 	dragblock_ajax_request_verify_die( 'data' );
@@ -19,7 +19,7 @@ function dragblock_database_loader() {
 	if ( ! isset( $dragblock_dl_data['post_status'] ) ) {
 		$dragblock_dl_data['post_status'] = 'publish';
 	}
-	// dev-reply#414.
+	// dev-reply#514.
 	$dragblock_dl_post = new WP_Query( dragblock_wp_query_args_processor( $dragblock_dl_data ) );
 	$dragblock_dl_query = $dragblock_dl_post->posts;
 	$dragblock_dl_posts = array();
@@ -31,6 +31,9 @@ function dragblock_database_loader() {
 		$dragblock_dl_id['comment_number'] = dragblock_shortcode_post_comment_number( null, $dragblock_dl_ids );
 		$dragblock_dl_id['post_count'] = dragblock_shortcode_post_view_count( null, $dragblock_dl_ids );
 		$dragblock_dl_id['image_src'] = dragblock_shortcode_post_image_src( null, $dragblock_dl_ids );
+		$dragblock_dl_id['image_caption'] = dragblock_shortcode_post_image_caption( null, $dragblock_dl_ids );
+		$dragblock_dl_id['image_alt'] = dragblock_shortcode_post_image_alt( null, $dragblock_dl_ids );
+		$dragblock_dl_id['image_desc'] = dragblock_shortcode_post_image_desc( null, $dragblock_dl_ids );
 		$dragblock_dl_id['date'] = dragblock_shortcode_post_date( null, $dragblock_dl_ids );
 		$dragblock_dl_id['author_name'] = dragblock_shortcode_post_author_name( null, $dragblock_dl_ids );
 		$dragblock_dl_id['author_avatar_src'] = dragblock_shortcode_post_author_avatar_src( null, $dragblock_dl_ids );
@@ -38,6 +41,6 @@ function dragblock_database_loader() {
 		$dragblock_dl_id['cat_name'] = dragblock_shortcode_post_cat_name( null, $dragblock_dl_ids );
 		$dragblock_dl_posts[] = $dragblock_dl_id;
 	}
-	// dev-reply#435.
+	// dev-reply#538.
 	dragblock_ajax_succeed_die( $dragblock_dl_posts );
 }

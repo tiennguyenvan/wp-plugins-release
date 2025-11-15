@@ -244,30 +244,24 @@ define(
 						'background' => 'var(--wp--preset--color--primary)',
 					),
 				),
-				'heading' =>
-				array(
-					'color' =>
-					array(
-						'text' => 'var(--wp--preset--color--contrast)',
-					),
-				),
+				// dev-reply#20255.
 			),
 		),
 	)
 );
-// dev-reply#20269.
 define( 'DRAGBLOCK_CUSTOM_DEFAULT_STYLE', false );
 add_action( 'init', 'dragblock_init_defines', 1 );
 /**
- * Check Documentation#20252
+ * Check Documentation#20245
  */
 function dragblock_init_defines() {
 	$dragblock_b_upload = wp_upload_dir();
 	define( 'DRAGBLOCK_UPLOAD_DIR', $dragblock_b_upload['basedir'] . '/dragblock' );
 	define( 'DRAGBLOCK_UPLOAD_URL', $dragblock_b_upload['baseurl'] . '/dragblock' );
-	// dev-reply#20283.
+	// dev-reply#20284.
 }
 require_once 'library/server/index.php';
+require_once 'settings/server/index.php';
 require_once 'applications/admin-menu/server/index.php';
 require_once 'blocks/block-register.php';
 require_once 'applications/tutorials/server/index.php';
@@ -275,16 +269,20 @@ require_once 'applications/patterns/server/index.php';
 require_once 'applications/form-entries/server/index.php';
 require_once 'applications/font-library/server/index.php';
 require_once 'applications/theme-settings/server/index.php';
+// dev-reply#20302.
 require_once 'applications/post-views/server/index.php';
 require_once 'applications/shortcodes/server/index.php';
 require_once 'applications/editor-init/server/index.php';
-require_once 'applications/editor-panel-database/server/index.php'; // dev-reply#20301.
+require_once 'applications/editor-icons/server/index.php';
+require_once 'applications/editor-panel-settings/server/index.php';
+require_once 'applications/editor-panel-database/server/index.php'; // dev-reply#20310.
 require_once 'applications/editor-panel-content/server/index.php';
 require_once 'applications/editor-panel-appearance/server/index.php';
 require_once 'applications/editor-panel-attributes/server/index.php';
 require_once 'applications/editor-panel-interactions/server/index.php';
 require_once 'applications/editor-panel-renderability/server/index.php';
 require_once 'applications/editor-toolbars/server/index.php';
+// dev-reply#20317.
 $dragblock_b_dir = array(
 	'post_type' => 'post',
 	'tax_query' => array(
@@ -309,4 +307,4 @@ $dragblock_b_dir = array(
 		),
 	),
 );
-// dev-reply#20338.
+// dev-reply#20347.
